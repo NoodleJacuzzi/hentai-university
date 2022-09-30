@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hentai University</title>
+		<script src="scripts/locations.js"></script>
+		<script src="scripts/index.js"></script>
+		<style>
+			@font-face{
+				font-family: railway;
+				src: url('scripts/gamefiles/fonts/railway.otf');
+			}
+			@font-face{
+				font-family: norwester;
+				src: url('scripts/gamefiles/fonts/norwester.otf');
+			}
+			@font-face{
+				font-family: marker;
+				src: url('scripts/gamefiles/fonts/marker.ttf');
+			}
+			@font-face{
+				font-family: spooky;
+				src: url('scripts/gamefiles/fonts/spooky.ttf');
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="scripts/index.css" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body onload ="startup()">
+		<div id = "menu" class = "menu">
+			<div id="titlePanel">
+				<p id = "title" class = "title">Hentai University</p>
+				<div id="closeButton" class="closeButton" onclick="closeButton()"><</div>
+				<p id = "version" class = "version">V26b</p>
+				<!--<p id = "version" class = "version">Updates are in progress, will post this version soon</p>-->
+				<p id = "author">
+					<a href="https://noodlejacuzzi.github.io/index.html" onclick="indexClick()">Noodle Jacuzzi</a><br>
+					<a href="https://www.reddit.com/user/CaptainCryptogreek">Captain Cryptogreek</a><br>
+					<a href="https://www.patreon.com/noodlejacuzzi">Patreon</a>
+				</p>
+			</div>
+			<div id="buttonMenu">
+				<div id="buttonMenuPrimary" class="flexbox">
+					<h4 id="invButton" class="button" onclick="generateWindow('inventory')">INVENTORY</h4>
+					<h4 id="phoneButton" class="button" onclick="generateWindow('phoneSelection')">PHONE</h4>
+					<h4 id="logButton" class="button" onclick="generateWindow('logbookSelection')">LOGBOOK</h4>
+					<h4 id="saveButton" class="button" onclick="generateWindow('save')">SAVE/LOAD</h4>
+				</div>
+				<h4 id="restartButton" class="button" onclick="restartButton()">RESTART</h4>
+				<div id="buttonMenuSecondary" class="flexbox">
+					<h4 id="imgButton" class="button" onclick="disablePictures()">TOGGLE IMAGES</h4>
+					<h4 id="mobButton" class="button"  onclick="window.location.href='https://noodlejacuzzi.github.io/Hentai%20University/Hentai%20University%20Mobile.html'">MOBILE VERSION</h4>
+				</div>
+			</div>
+			<div id="playerPanel" class="flexbox">
+				<img id="playerImage" class="playerImage" src="images/none.png">
+				<div id="playerStats">
+					<h3 id = "playerName" class = "char_player version">???</h3>
+					<p id = "playerMoney" class = "version">$0</p>
+					<p id = "day" class = "version">Day 1</p>
+					<p id = "skills" class = "version"><b>Skills:</b></p>
+					<div id = "skillsList">
+						<p class = "version">Loading has failed!</p>
+					</div>
+				</div>
+			</div>
+			<p id = "sceneAuthor" class = "version"></p>
+		</div>
+			<div id="openButton" class="openButton" onclick="openButton()">></div>
+		<div id = "wrapper" class = "wrapper">
+			<div id="wrapperBG"></div>
+			<div id = "output" class = "output">
+			 <div class="loader"></div> 
+			 <p>If you can read this, the game has failed to load. Please check out the download guide here: <a href="https://www.patreon.com/posts/72303916">https://www.patreon.com/posts/72303916</a></p>
+			 <p>If you see this while playing online, let noodlejacuzzi know asap!</p>
+			</div>
+			<div id="footer" class="footer">
+				<h4 id="saveButton" class="button" onclick="saveButton()">SAVE/LOAD</h4>
+				<h4 id="restartButton" class="button" onclick="restartButton()">RESTART</h4>
+				<h4 id="logButton" class="button" onclick="disablePictures()">DISABLE IMAGES</h4>
+				<h4 id="invButton" class="button" onclick="invButton()">INVENTORY</h4>
+				<h4 id="logButton" class="button" onclick="selfButton()">LOGBOOK</h4>
+				<h4 id="phoneButtonMobile" class="button" onclick="phoneButton()">PHONE</h4>
+			</div>
+			
+			
+			<div id = "windowHolder" class = "windowHolder">
+			</div>
+		</div>
+	</body>
+</html>
