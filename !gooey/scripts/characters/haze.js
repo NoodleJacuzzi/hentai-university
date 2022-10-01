@@ -1,0 +1,1592 @@
+var character = {index: "haze", fName: "Sienna", lName: "", trust: 0, encountered: false, textEvent: "", met: false, color: "#9c66c4", author: "CryptoGreek", artist: "Purple Haze", textHistory: "", unreadText: false,};
+
+var logbook = {
+	index: "haze", 
+	desc: "A shapeshifting dream-eater that has a preference for people within hypnotic trances. She likes to take the forms of famous and attractive fictional characters.",
+	body: "Her most-used form is that of a wet-dream-granting succubus from a recent anime with a curvaceous body with incredible flexibility.",
+	clothes: "She usually wears a pink maid-headdress and and lewd lingerie, though she likes to change outfits when changing forms.",
+	home: "She lives in a world sitting on the border between dream and reality, most easily accessed by hypnotic trance.",
+	tags: "Cosplay, Shapeshifting, Succubus",
+	artist: "Purple Haze",
+	author: "CryptoGreek",
+};
+
+var newItems = [
+	{name: "", 				key: true, 		price: 0, 	image: "scripts/gamefiles/items/.jpg", description: ""},
+	{name: "", 				key: true, 		price: 0, 	image: "scripts/gamefiles/items/.jpg", description: ""},
+];
+
+var encounterArray = [//Lists encounters as they appear on the map. Nonrepeatable, only one per day per character by default.
+	{index: "haze1", name: "You still feel tired, despite just waking up. You could always go back to sleep...", requirements: "?hypnosis 2; ?time Morning; ?location playerHouse;?trust haze 0;", altName: "Lingering Drowsiness", altImage: "images/none.png",},
+	{index: "haze0A", name: "You're feeling a bit tired again. If you went back to sleep, you might have that dream again...", location: 'playerHouse', time: "Morning", itemReq: "", trustMin: 1, trustMax: 1, type: "tab", top: 0, left: 0, day: "both", altName: "Lingering Drowsiness", altImage: "images/none.png",},
+	{index: "haze0B", name: "You're feeling a bit tired again. If you went back to sleep, you might have that dream about haze again...", location: 'playerHouse', time: "Morning", itemReq: "", trustMin: 20, trustMax: 20, type: "tab", top: 0, left: 0, day: "both", altName: "", altImage: "",},
+	//{index: "haze2", name: "TEST: If you laid back down in bed, you could probably visit haze again.", location: 'playerHouse', time: "Morning", itemReq: "", trustMin: 40, trustMax: 40, type: "tab", top: 0, left: 0, day: "both", altName: "", altImage: "",},
+	{index: "haze2", name: "Despite there being nothing here, you can sense that if you focused on haze in your mind, a door would appear...", location: 'playerHouse', time: "Morning", itemReq: "", trustMin: 40, trustMax: 40, type: "tab", top: 0, left: 0, day: "both", altName: "", altImage: "",},
+	{index: "haze3", name: "You could focus on going under and speaking with haze if you wanted...", location: 'playerHouse', time: "Morning", itemReq: "", trustMin: 60, trustMax: 70, type: "tab", top: 0, left: 0, day: "both", altName: "", altImage: "",},
+];
+
+function writeEncounter(name) { //Plays the actual encounter.
+	document.getElementById('output').innerHTML = '';
+	wrapper.scrollTop = 0;
+	switch (name) {
+		case "haze1": {
+			if(checkFlag('haze','First') != true)
+				addFlag('haze','First');
+			writeText("Laying back down, the drowsiness spreads through your body more and more, your eyelids feeling almost absurdly heavy.");
+			writeText("You didn't realize how cold the room felt until you slid back under the covers, curling up as the gentle press of sleep weighs your mind down...");
+			writeText("...");
+			writeText("Your eyes snap open sharply, your hypnotist senses tingling from the suspiciously potent urge to sleep.");
+			writeText("Sure, getting out of bed can be hard, but you can't go skipping work!");
+			writeText("...Or so you'd think, but looking around shows that you are <b>clearly</b> not in your room right now.");
+			writeText("It's closer to a wide, expansive void than anything else, lightly violet in color.");
+			writeText("And standing suggestively in front of you, her hands casually roaming her body, is a pink-haired woman.");
+			writeBig("images/haze/profile.jpg","Art by Purple Haze");
+			writeSpeech("haze","","HIDDENHah~! Wasn't expecting to see <i>you</i> down here, playerF.");
+			if(checkTrust('succubus') >= 60){
+				writeSpeech("player","","...I attracted another succubus...?");
+				writeText("You can't say you're entirely surprised, given what succubusF mentioned about you having a lot of power, but still...");
+				writeSpeech("haze","","HIDDENEh?");
+				writeText("The woman pauses, tilting her head.");
+				writeSpeech("haze","","HIDDENYou've already...?");
+				writeText("She stops, shaking her head a bit... and pretty much every other part of herself in the process.");
+				writeSpeech("haze","","HIDDENSorry, forgot that we haven't <i>actually</i> met.");
+			}
+			else{
+				writeSpeech("player","","Sorry, but do I know you? And where, exactly, <i>is</i> here? And... why am I naked?");
+				writeText("You look around the formless void, frowning a bit.");
+				writeSpeech("player","","I'm way more lucid than I should be for a dream...");
+			}
+			writeSpeech("haze","","HIDDENSorry, I honestly forgot that we haven't <i>actually</i> met!");
+			writeText("She approaches you, leaning forward and running a finger up your neck...");
+			writeText("-before pressing her mouth against yours, moaning gently as her tongue drags against yours.");
+			writeText("A moment later, she pulls back, grinning.");
+			writeSpeech("haze","","I go by hazeF. A <i>wonderful</i> little snack suggested the name a few centuries ago when I was looking for something new, and it stuck. And as for where you are...");
+			writeText("She gestures vaguely at your head.");
+			writeSpeech("haze","","You're in here~! You're having a pleasantly lucid dream right now, with me!");
+			writeSpeech("player","","Okay. So you're a figment of my imagination, tossed into the dream?");
+			writeSpeech("haze","","Ah, that's not...<br>Hm, how do I put this...?");
+			writeText("She pauses to think.");
+			writeFunction("writeEncounter('haze1A')", "Politely give her a moment to collect her thoughts");
+			writeFunction("writeEvent('haze1B')", "If you dreamed such a lewd woman, it was for a reason - fuck her");
+			writeFunction("writeEncounter('haze1Quit')", "Doesn't matter, you're not interested - time to wake up");
+			break;
+		}
+		case "haze1A" : {
+			passTime();
+			writeText("She seems to need a moment to figure out how to explain the situation and, being the polite person you are, you oblige.");
+			writeText("It isn't long before she nods firmly, refocusing on you.");
+			writeSpeech("haze","","This place is your dream. However, I'm a visitor here - I popped in since I noticed a nice, deep dream on my... radar? It's not <i>actually</i> a <i><b>radar,</b></i> but you probably get what I mean.");
+			if(checkTrust('succubus') >= 60){
+				writeSpeech("haze","","And I'm not a succubus, by the way. Not technically, anyway. I am a creature that subsists off the sexual energies of humans, but...");
+				writeText("She thinks for another few moments.");
+				writeSpeech("haze","","...I guess I'm like a cousin? I'm a dream-eating demon, so we're kinda similar, but the fact that I eat sexual dreams is just personal preference. For example, I know this one guy that only eats dreams that have whales in them.");
+				writeSpeech("player","","...Okay. Let's say that that all makes sense. That doesn't explain why you know me.");
+			}
+			else{
+				writeSpeech("haze","","Anyway, I'm a dream-eating demon, and I like to eat sexy dreams.");
+				writeSpeech("player","","...A demon.");
+				writeSpeech("haze","","Yup! That eats dreams.");
+				writeSpeech("player","","Sexy ones specifically.");
+				writeSpeech("haze","","Yup again!");
+				writeText("She grins widely.");
+				writeSpeech("haze","","Though, sex-dreams being my favorite is more of a personal-taste thing - I'm kinda the local weirdo for liking it. Or, at least I am <i>now,</i> seeing as the guy that exclusively ate dreams with whales in them went to linger around a sea park or something.");
+				writeSpeech("player","","...Okay. I suppose that makes sense, but it doesn't explain why you know me.");
+			}
+			writeText("hazeF scoffs, shaking her head.");
+			writeSpeech("haze","","I can only eat the dreams of people that are either sleeping deeply... or who are basically in the same <i>state</i> as sleeping. And if I like my dreams sexually-charged...");
+			writeSpeech("player","","...then you'd want to hang around a sexual hypnotist.");
+			writeSpeech("haze","","Bingo-bongo! I've been making sure those victims of yours end up in my neck of the dream-woods when you put them under - you have <i>excellent</i> taste by the way - but in all the time I've been around you, this is the first time you've popped in here. So...");
+			writeText("She grins widely again, spreading her arms out wide.");
+
+			writeSpeech("haze","","Welcome to my place! It's basically a dream, but also kinda not. You could think of it as a manifestation of a subsection of the collective unconscious manipulable by supernatural entities... or just a Dreamland. They're basically the same thing.");
+			writeText("She rests her hands on her hips.");
+			writeSpeech("haze","","Standard dream rules apply - time is weird, mental strength lets you manipulate things, and you can force yourself awake pretty easily. Most folks go with pinching themselves, but it's really the thought that counts, not the action.");
+			if(checkFlag('haze','Dreamer') != true)
+				addFlag('haze','Dreamer');
+			writeSpeech("haze","","Oh, and don't worry about, like, having your dreams and aspirations for the future eaten by the way - you taking over the town with hypnosis would <i>literally</i> be the best thing that could happen to me right now, so I support you ten billion percent!");
+			if(checkTrust('succubus') >= 60){
+				writeSpeech("player","","...Neat. So I guess that makes you like my familiar or something?");
+				writeSpeech("haze","","Definitely the 'something'. I don't do the whole 'contracting' thing - I don't like being tied down, y'know? I'll leave that to the cum-drunk subby-succys. I'd rather just flit about and enjoy dreams from all over the world, free to enjoy whatever I'm feeling into that year.");
+				writeText("She chuckles softly.");
+				writeSpeech("haze","","You'd be amazed how helpful shapeshifting is for that sort of thing. The 1790s were absolutely <i>delicious</i> when it came to hate-fucking if you were in France, assuming you knew what face to wear. Had to dip once a few guys started to dream about getting a <i>different</i> kind of head, though.");
+				writeText("She shudders.");
+				writeSpeech("haze","","Anyway, I kinda thought you'd be harder to convince about me being real and stuff, but I guess it makes sense if you've already plowed another succer's fields. So I guess we could always just have a bit of fun in here, before you wake up and all.");
+				writeText("She rolls her shoulders back a bit.");
+				writeBig("images/haze/1-1.jpg","Art by Purple Haze");
+				writeSpeech("haze","","I know I'd enjoy it, and I'm sure I could have you moaning too~");
+				writeFunction("writeEvent('haze1A')", "Roll with it and grab her tits");
+				writeFunction("writeEncounter('haze1AA')", "Not today");
+			}
+			else{
+				writeSpeech("player","","Okay, just... hold up. I have no actual guarantee you're anything but a dream, since I could just be dreaming that you're telling me you're a demon, which would imply some weird things about my own perception of how I use my abilities by the way. Not to be the asshole skeptic, but can you prove that you're real?");
+				writeSpeech("haze","","Uh... Not really?");
+				writeText("She stops to think for a moment.");
+				writeSpeech("haze","","I guess... I'm real, but... So, like, I stick to the Dreamlands, meaning I can't exactly pop in through your window and suck your dick in the real world. But I <i>could</i> probably do some stuff if you <i>really</i> need convincing, but... isn't that a whole lotta effort?");
+				writeText("She smiles seductively, running a hand down your chest.");
+				writeSpeech("haze","","It'd be <i>way</i> more fun to just play around in here, wouldn't it? Feeding off of the sexual dreams of your prey is nice and all, but I'd be lying if I said playing with your toys is enough to <i>completely</i> satisfy me~");
+				writeFunction("writeEvent('haze1A')", "Just have some sexual fun");
+				writeFunction("writeEncounter('haze1AB')", "Convince me");
+			}
+			break;
+		}
+		case "haze1AA" : {
+			writeSpeech("player","","Some other time, sure. But I wasn't exactly planning on spending the day in bed.");
+			writeSpeech("haze","","Ah, good point. Gotta keep hypnotizing folk, and all that!");
+			writeText("She grins, one hand going down and lightly pressing against her panties.");
+			writeSpeech("haze","","I can pull you back down here in the mornings - daydreams are a bit easier to mold. See ya around~!");
+			writeSpeech("player","","Yeah, see you later.");
+			writeText("Taking a deep breath, you close your eyes for a moment...");
+			writeText("Before sharply snapping them open, the dream disappearing entirely as you get a good look at your room again.");
+			writeText("And it looks like you were only asleep for a minute or so.");
+			writeText("...Neat.");
+			if(data.player.location != "gallery"){
+				if(checkTrust('haze') < 20)
+					setTrust('haze',20);
+			}
+			writeFunction("changeLocation(data.player.location)", "Get up");
+			break;
+		}
+		case "haze1AB" : {
+			addFlag('haze','NoSex');
+			writeSpeech("player","","If there's something you can convince me with, I say go for it.");
+			writeText("hazeF frowns, sighing as she scratches the back of her head.");
+			writeSpeech("haze","","...Fine. But only because you've been helping me out a whole bunch, okay?");
+			writeText("Stepping right up to you, she presses her finger against her lips for a moment, a faint, glittery glow about them as she leans forward.");
+			writeText("Lightly grasping your chin, she gently kisses your neck once before standing back up and muttering,");
+			writeSpeech("haze","","Jeez... I'll need a refill later...");
+			writeText("Then, with a snap of her fingers, your own eyes snap open sharply.");
+			writeText("You're awake now, feeling less tired as you sit up, the dream far more memorable than it should be.");
+			writeSpeech("player","","...Huh.");
+			writeText("Bringing your hand to your neck, you can feel the light sensation of glitter. Taking a look at your fingers, it's obvious that it's the same stuff from hazeF's lips.");
+			writeSpeech("player","","Well, she's real... but fucking glitter?");
+			writeText("You look down at your sheets, seeing the abominable glittery substance on it.");
+			writeSpeech("player","","...That's not gonna wash off, is it...?");
+			writeText("Might as well try and wash it before getting on with your day.");
+			writeText("At least you were only asleep for a few minutes...");
+			if(data.player.location != "gallery"){
+				if(checkTrust('haze') < 20)
+					setTrust('haze',20);
+			}
+			writeFunction("changeLocation(data.player.location)", "Wash your sheets and head out");
+			break;
+		}
+		case "haze1Quit" : {
+			writeSpeech("player","","Yeah, lemme just stop you right there.");
+			writeText("She pauses.");
+			writeSpeech("player","","I've got things I need to do, and I don't plan on dreaming the day away.");
+			writeSpeech("haze","","O-Oh.");
+			writeSpeech("player","","Yup.");
+			writeSpeech("haze","","Well, in that case, you... should probably get going. If you want, I can bring you back here some other time?");
+			writeFunction("writeEncounter('haze1QuitA')", "Some other time, sure");
+			writeFunction("writeEncounter('haze1QuitB')", "No");
+			break;
+		}
+		case "haze1QuitA" : {
+			setTrust('haze',1);
+			writeSpeech("player","","Not exactly sure how all of this works, but sure.");
+			writeText("hazeF visibly perks up, nodding energetically.");
+			writeSpeech("haze","","Then you'd better get up! Can't take over the town in bed - pun not intended. Good luck out there!");
+			writeSpeech("player","","Er, thanks?");
+			writeText("Shaking your head a bit, you take a deep breath and close your eyes for a moment...");
+			writeText("Before sharply snapping them open, the dream disappearing entirely as you get a good look at your room again.");
+			writeText("And it looks like you were only asleep for a minute or so.");
+			writeText("Neat.");
+			writeFunction("changeLocation(data.player.location)", "Get up");
+			break;
+		}
+		case "haze1QuitB" : {
+			writeSpeech("player","","Nope.");
+			writeText("Taking a deep breath, you close your eyes for a moment...");
+			writeText("Before sharply snapping them open, the dream disappearing entirely as you get a good look at your room again.");
+			writeText("And it looks like you were only asleep for a minute or so.");
+			writeText("Neat.");
+			setTrust('haze',-1);
+			writeFunction("changeLocation(data.player.location)", "Get up");
+			break;
+		}
+		case "hazeEvent1A" : {
+			writeText("You grasp her chest firmly, guiding her body down until her chest is just above your cock, leaning your own body back onto the immaterial ground.");
+			writeText("The angle is a bit too awkward to keep a good hold on her tits, but she quickly makes up for it as she fills in the gaps, pressing the head of your cock between her breasts and grasping your shaft.");
+			writeBig("images/haze/1-4.jpg","Art by Purple Haze");
+			writeSpeech("player","","Put those tits to good use, hazeF.");
+			writeSpeech("haze","","Nnf~ Yes, <i>*Master~</i>");
+			writeText("Your slick cock slides between her tits, her unrealistic bra keeping them together enough to squeeze around your head as she starts stroking up and down, her other hand languidly tracing circles along your thigh.");
+			writeText("Breathing heavily, she heaves her chest up and down by just a bit, the head of your cock going from the warm squeeze of her chest to the cool air above it every second.");
+			writeText("Meanwhile, she keeps changing her grip as she strokes you up and down, her arm bouncing against her breast as she bounces up and down, squeezing tightest at the base of your cock before relaxing and dropping back down.");
+			writeSpeech("player","","F-Fuck...!");
+			writeText("She smiles as you groan, pushing her body against yours.");
+			writeSpeech("haze","","God yes...~! Moan for me, darling! I want to know <i>exactly</i> how good you're feeling~!");
+			writeText("She presses forward a bit more, your balls against her stomach as she speeds up her hand, bouncing her entire body with every stroke.");
+			writeSpeech("player","","Crap, I'm already...!");
+			writeSpeech("haze","","Yes, yes, <i>yes...!</i> Come on, paint this body with your tasty cum, darling~!");
+			writeText("The slick gloves have a completely different feeling compared to skin, and with her tits stimulating your head so much, it's pushing you over...!");
+			writeSpeech("player","","I'm cumming!");
+			writeBig("images/haze/1-5.jpg","Art by Purple Haze");
+			writeSpeech("haze","","Oh my~!");
+			writeText("Your hips buck forward as you start to jizz, hazeF's eyes going wide as you spatter her chest.");
+			writeText("But she doesn't slow down, her body still bouncing and her hand still stroking as you realize the pleasure isn't getting weaker.");
+			writeSpeech("haze","","Keep going~! Empty those thick, beautiful balls all over me~!");
+			writeSpeech("player","","I can't stop...!");
+			writeText("More and more cum spurts out, your body tensing up as you cum rope after rope, covering her hair and hand for what feels like minutes before she finally lets out a gentle giggle.");
+			writeSpeech("haze","","Haah~ Jeez, you really are something, aren't you playerF?");
+			writeBig("images/haze/1-6.jpg","Art by Purple Haze");
+			writeSpeech("haze","","This is totally my favorite part~");
+			writeText("Pulling away from you, your breathing heavy, she uses her hands to pick up as much cum as she can with one hand, and starts licking it up.");
+			writeSpeech("haze","","Mmn~!");
+			writeText("While she laps her tongue along one hand, the other presses against the cum she missed, rubbing it all around her tits with a nearly orgasmic expression.");
+			writeSpeech("haze","","Haah~... A sinner's cum is my favorite after all~");
+			writeText("She grins down at you, your mind still swimming from the overload of pleasure as you sit up.");
+			writeText("As you do, though, a soft light starts to shine in the center of your vision, a slight tinge of sadness appearing in hazeF's voice as she speaks.");
+			writeSpeech("haze","","But it looks like our time's up... What a shame, hm? Come back later though, and maybe we can play around with another sexy body of mine~! Just check your office, stud!");
+			writeSpeech("haze","","Ooh, and one more thing!");
+			writeText("You can't see her anymore, but you can feel her breath on your ear...");
+			writeSpeech("haze","","Slip a condom on next time~ It'll help~!");
+			writeText("You open your mouth to respond, but your eyes end up flickering open instead.");
+			writeSpeech("player","","...Well, fuck.");
+			writeText("Sitting up, you can see your familiar room, the clock saying you were asleep for a couple hours... and your crotch is absolutely <b>soaked.</b>");
+			writeSpeech("player","","...Which is the reason for the condom.");
+			writeText("Sighing and scratching the back of your head, you get up to change your pants and wash your sheets, glad that you don't have regular hours at the university. Otherwise, principalF would be on your ass for not showing up today...");
+			if(data.player.location != "gallery"){
+				if(checkTrust('haze') < 40)
+					setTrust('haze',40);
+			}
+			writeFunction("changeLocation(data.player.location)", "Wash your sheets and head out");
+			break;
+		}
+		case "hazeEvent1B" : {
+			writeText("You pull your hands off her tits, instead grabbing the top of her head and pushing her down as you stand.");
+			writeText("Your cock brushes against her chin as she squats, dragging the slick shaft across her face as she moans, her smooth skin gliding pleasantly against your cock.");
+			writeSpeech("haze","","F-Fuck, you smell <i><b>wonderful...!</b></i>");
+			writeText("She rubs your cock across her face, grinning at it as she grasps the base, slapping it against her cheek with a moan.");
+			writeSpeech("player","","You seem to be having fun.");
+			writeSpeech("haze","","With a cock like this, how could I <i>not?</i>");
+			writeText("Her free hand moves up to grasp her chest, fondling it roughly as she extends her tongue, wasting no time dragging it against your shaft.");
+			if(checkTrust('meji') > 20 && checkTrust('tomgirl') > 1)
+				writeSpeech("haze","","F-Fuck, I haven't had a real cock in <i><b>ages...!</b></i> Those boys you brought in before were <i>total</i> subs...!");
+			else if(checkTrust('meji') > 20 || checkTrust('tomgirl') > 1)
+				writeSpeech("haze","","F-Fuck, I haven't had a real cock in <i><b>ages...!</b></i> That boy you brought last time was a <i><b>total</b></i> sub...!");
+			else
+				writeSpeech("haze","","F-Fuck, I haven't had a real cock in <i><b>ages...!</b></i>");
+			writeText("She takes a moment to hungrily look up at you.");
+			writeSpeech("haze","","M-May I...?");
+			writeSpeech("player","","I didn't exactly push you down there to talk.");
+			writeText("Her face lights up as she slides forward.");
+			writeBig("images/haze/1-7.jpg","Art by Purple Haze");
+			writeText("Her tongue extends out, the underside of your head dragging against it for a moment before she pushes her head forward, sealing her lips around your shaft.");
+			writeText("You can feel her tongue press your cockhead against the roof of her warm, slick mouth as she sways a bit, teasing at every inch with her tongue.");
+			writeText("The hand that isn't busy squeezing her tit grasps your cock by the base, slowly jerking you off into her mouth with slow, methodical movements.");
+			writeText("Squeezing tightly as she goes up, and relaxing on the way back up... It's almost like she's trying to milk your cock, while sliding your head against every surface in her mouth that she can.");
+			writeText("And from her moaning...");
+			writeSpeech("haze","","<i>Mmf~...</i>");
+			writeText("...you can guess that she's enjoying it as much as you.");
+			writeSpeech("player","","Fuck... Deeper, slut.");
+			writeText("Her fingers dig sharply into her breast as she pulls her hand away from your cock, loyally starting to bob down your length.");
+			writeText("She doesn't dip much lower than halfway at first, slowly getting a taste of each inch of your cock, but after a few moments...");
+			writeSpeech("player","","C-Crap...!");
+			writeText("She thrusts her head forward, taking you into her throat with a low, throaty moan that turns into a gag.");
+			writeText("She keeps herself there for another few moments before pulling back up, her spit spilling past her lips and onto her chest as she takes a deep breath.");
+			writeText("Looking up at you, swallowing firmly, she smiles.");
+			writeSpeech("haze","","Sorry about this darling, but it's been so long that I don't think I can hold back~");
+			writeText("She pushes her head back down, her tongue moving carefully along your shaft as your cock starts to feel warmer and more sensitive than before.");
+			writeText("Her spit makes every slick surface in her mouth feel incredible as she shoves herself forward, your cockhead stretching out her throat as she keeps moaning.");
+			writeText("You can barely hold on for a minute before the sensations start to overwhelm you.");
+			writeText("She even pulls her head back, keeping only your head in her mouth, but you can still feel the sensation of her throat like she didn't stop as her hand joins in.");
+			writeSpeech("haze","","Come on, give me that thick, hot cum...! I haven't tasted jizz in <i>so long~!</i>");
+			writeText("Her begging, her hand, and the sensation of her throat is finally enough to finish you off, your cock throbbing hard as you feel it.");
+			writeSpeech("player","","F-Fucking take it...!");
+			writeText("She quickly takes your head back in her mouth, the ecstatic gleam in her eyes shifting to an orgasmic one as your start to spurt.");
+			writeText("Each rope blasts to the back of her mouth, her hand milking every drop as she starts moaning, her body shaking.");
+			writeText("The taste of your cum pushes her over the edge too, her eyes shutting tightly, a low moan shaking out of her as she squeezes her tit and starts to swallow.");
+			writeBig("images/haze/1-8.jpg","Art by Purple Haze");
+			writeText("Despite that, though, you feel yourself cumming more and more, the pleasure of the orgasm not fading in the least as she keeps milking your length with her hand, your entire body going tense and your vision getting shaky.");
+			writeText("You're not sure how long you're standing there, cumming more than should be possible into her mouth, but you're sure it's a least a full minute before you finally stop.");
+			writeText("Even with her swallowing so much, cum spilled down out of her mouth and onto her chest, spattering and covering her and sliding between her tits.");
+			writeBig("images/haze/1-9.jpg","Art by Purple Haze");
+			writeText("When she finally pulls her mouth off of your cock, it's with a gasping moan as she shoves a hand down her panties.");
+			writeSpeech("haze","","F-Fuck...~! I forgot how <i>addictive</i> a sinner's cum can be~...!");
+			writeText("Grinning widely, she looks up at you, but you feel a bit drained, and a small light seems to appear in your vision.");
+			writeText("hazeF seems to notice this, letting out a small whine of disappointment.");
+			writeSpeech("haze","","It's been that long already...? But we only came once...!");
+			writeText("She sighs, standing up as the white takes up more of your vision, though you can still hear her fingering herself.");
+			writeSpeech("haze","","Make sure to come back again sometime, and maybe we can play around with another sexy body of mine~! Just check your office, stud!");
+			writeSpeech("haze","","Ooh, and one more thing!");
+			writeText("You can't see her anymore, but you can feel her breath on your ear...");
+			writeSpeech("haze","","Slip a condom on next time~ It'll help~!");
+			writeText("You open your mouth to respond, but your eyes end up flickering open instead.");
+			writeSpeech("player","","...Well, fuck.");
+			writeText("Sitting up, you can see your familiar room, the clock saying you were asleep for a couple hours... and your crotch is <b>soaked.</b>");
+			writeSpeech("player","","...Which is the reason for the condom.");
+			writeText("Sighing and scratching the back of your head, you get up to change your pants and wash your sheets, glad that you don't have regular hours at the university. Otherwise, principalF would be on your ass for not showing up today...");
+			writeFunction("changeLocation(data.player.location)", "Wash your sheets and head out");
+			break;
+		}
+		case "haze0A" : {
+			passTime();
+			writeText("You did mention in the dream that you'd be back later... And honestly, now's as good a time as any.");
+			writeText("You lay back down in bed, breathing deeply for a few seconds. Counting backwards down from ten, you hear some movement around the count of 3.");
+			writeSpeech("haze","","Ah, you're back!");
+			writeText("Opening your eyes, you can see hazeF standing in front of you again.");
+			writeSpeech("haze","","So, did you come 'cause you were looking for some fun, or...?");
+			writeFunction("writeEncounter('haze0AA')", "Ask her for the full explanation");
+			writeFunction("writeEvent('haze1B')", "You came here for sex, not conversation");
+			break;
+		}
+		case "haze0AA" : {
+			passTime();
+			setTrust('haze',40);
+			writeSpeech("player","","Actually, I wanted to know what's up with this place. ");
+			writeSpeech("haze","","Ah, okay. Can't blame you - it's probably a bit of a weird place to a human.");
+			if(checkTrust('succubus') >= 60){
+				writeSpeech("player","","You're some sort of a demon, then? That makes two, I guess.");
+				writeText("She stops in place, looking at you in surprise.");
+				writeSpeech("haze","","...Huh. If you already met one, then I guess that makes things easier.");
+				writeText("She scratches the back of her head, shifting in place.");
+				writeSpeech("haze","","I'm a type of dream-eating demon. Kinda like a... cousin, I guess, to succubi. We can subsist off of just dreams, and any type will do, really. I know one guy who'd only eat dreams that involved whales - last I heard, he went to go linger around a sea park or something.");
+				writeText("She taps her chin thoughtfully.");
+				writeSpeech("haze","","I just happen to like sexually-charged dreams. They've got a specific flavor to 'em that I just really dig. So when I stumbled across a certain perverted hypnotist, I decided to stick around and see if you'd be a good source for dreams.");
+				writeSpeech("player","","And... does that affect them?");
+				writeSpeech("haze","","Only if I take too much, and I'm not exactly strapped for food nowadays. I mean, even if you weren't a hypnotist, we <i>are</i> kinda right next to a university, which is, like, the number one place for sexually frustrated dreamers and nymphos.");
+				writeText("Harsh, but not entirely untrue...");
+				writeSpeech("haze","","Anyway...");
+				writeText("hazeF smirks.");
+				writeSpeech("haze","","Choosing to linger around your taste paid off pretty quick. And that brings us to the now!");
+			}
+			else{
+				writeText("...Human?");
+				writeSpeech("player","","The way you phrased that makes it sound like you're distinctly <i>not</i> human.");
+				writeSpeech("haze","","How many humans do you know that can mess with people's dreams?");
+				if(checkTrust('scarf') >= 62){
+					writeSpeech("player","","Just the one, but it was pretty memorable.");
+					writeSpeech("haze","","...Right, forgot about her. Point is, I'm a demon - a dream-eating one, specifically. I'm kinda like a, uh... a cousin, I guess, to succubi. I can subsist off of just dreams, and any type will do, really. I know one guy who'd only eat dreams that involved whales - last I heard, he went to go linger around a sea park or something.");
+				}
+				else{
+					writeSpeech("player","","Fair point.");
+					writeSpeech("haze","","Yup. So basically, I'm a demon. A dream-eating one, to be specific. I'm kinda like a, uh... a cousin, I guess, to succubi. We can subsist off of just dreams, and any type will do, really. I know one guy who'd only eat dreams that involved whales - last I heard, he went to go linger around a sea park or something.");
+				}
+				writeSpeech("player","","So you eat people's dreams to survive?");
+				writeSpeech("haze","","Eeeehhhhh...");
+				writeText("She kinda wiggles in place, thinking for a moment.");
+				writeSpeech("haze","","Sorta? It's a lot more complicated than that makes it sound, but that's basically it. I like sexually-charged dreams, so I usually stick around really hedonistic places or people.");
+				writeText("She smirks.");
+				writeSpeech("haze","","Which is why I've been sticking around you lately. The more people you put under, the more sexually charged dreams I get to snack on.");
+				writeSpeech("player","","And... does that affect them?");
+				writeSpeech("haze","","Only if I take too much, and I'm not exactly strapped for food nowadays. I mean, even if you weren't a hypnotist, we <i>are</i> kinda right next to a university, which is, like, the number one place for sexually frustrated dreamers and nymphos.");
+				writeText("Harsh, but not entirely untrue...");
+			}
+			writeSpeech("player","","Huh. So I've basically had a demon on my shoulder since coming here?");
+			writeSpeech("haze","","Not really...? I stick in the Dreamlands, so it's not like I can really see you. I just wait until I feel someone with your flavor go into a trance and make sure they end up in my neck of the dream-woods.");
+			writeSpeech("player","","So... more like a cosmic mooch.");
+			writeText("She chuckles, shaking her head.");
+			writeSpeech("haze","","Not too far off, actually. I've been a lot more careful about my feeding ever since I got a bit ahead of myself... if you'll forgive the pun.");
+			writeText("...What pun?");
+			writeSpeech("haze","","Either way, welcome to my place. It's basically a dream, but also kinda not. You could think of it as a manifestation of a subsection of the collective unconscious manipulable by supernatural entities... or just a Dreamland. They're basically the same thing.");
+			writeText("She rests her hands on her hips.");
+			writeSpeech("haze","","Standard dream rules apply - time is weird, mental strength lets you manipulate things, and you can force yourself awake pretty easily. Most folks go with pinching themselves, but it's really the thought that counts, not the action.");
+			if(checkFlag('haze','Dreamer') != true)
+				addFlag('haze','Dreamer');
+			writeSpeech("haze","","Oh, and don't worry about, like, having your dreams and aspirations for the future eaten by the way - you taking over the town with hypnosis would <i>literally</i> be the best thing that could happen to me right now, so I support you ten billion percent!");
+			writeSpeech("player","","And I take it you mean moral support, not actual assistance?");
+			writeSpeech("haze","","Got it in one. I do my best to not make ripples anymore. If some lower-ranked demon wants to go around, raising their mark to the top of the world to get themselves a sip of that corrupted essence, then more power to 'em. But honestly...");
+			writeText("She grins, pushing out her chest.");
+			writeBig("images/haze/1-1.jpg", "Art by Purple Haze");
+			writeSpeech("haze","","I might not get to have fun as <i>often</i> as them, but I've learned to appreciate <i>every single moment.</i> And seeing as you're down here~...");
+			writeText("There is absolutely no subtlety to her movements as one of her hands caresses the outside of her panties.");
+			writeFunction("writeEvent('haze1A')", "Enjoy the moment with her");
+			break;
+		}
+		case "haze0B" : {
+			passTime();
+			if(checkFlag('haze','gallery') != true)
+				addFlag('haze','NoSex');
+			if(checkTrust('haze')<60)
+				setTrust('haze',60);
+			writeText("You did mention that you'd come back later, and now's as good a time as any, so...");
+			writeText("You lay back down in bed, breathing deeply for a few seconds... Though it only takes a moment for you to hear hazeF's voice.");
+			writeSpeech("haze","","Hello again!");
+			writeText("Sitting up... Standing up? The void is weirdly floaty, which makes sense for a dream, but it's still a bit weird.");
+			writeSpeech("player","","Hello hazeF.");
+			writeText("You try to focus on standing and, sure enough, you feel the sensation of solid ground beneath your feet a moment later.");
+			writeSpeech("haze","","Ooh, nice - fast learner, aren't ya?");
+			writeText("She smiles and sits down on the air, though you can still see the shape of ass flatten a bit like she was sitting on an invisible chair.");
+			if(checkFlag('haze','NoSex') != true){
+				writeSpeech("haze","","Sorry about last time, by the way. I'm usually better with controlling myself, but you don't exactly have a long history of hypnotizing and fucking <i>studs</i>, so I got a little <i>too</i> excited.");
+				writeText("She pauses, looking over you.");
+				writeSpeech("haze","","I, uh... didn't drain you <i>too</i> hard, right? You were fine after you woke up?");
+				writeSpeech("player","","I was out for most of the afternoon, if that's what you mean.");
+				writeText("hazeF relaxes a bit, smiling.");
+				writeSpeech("haze","","If that's all, then good. Humans can be pretty fragile, so I just wanted to make sure I didn't break you.");
+				writeSpeech("player","","...I feel mildly offended that you think I'd break that easily.");
+				writeText("hazeF just kinda shrugs, leaning back on the non-existant furniture.");
+				writeSpeech("haze","","Sorry, then. Like I said before, I don't get to feed as often as I'd like, and most of the people I <i>do</i> feed on tend to be pretty average - one of many trade-offs, I guess.");
+				writeText("At that, her grin quickly returns, a faint shimmer surrounding her body.");
+				writeSpeech("haze","","Speaking of, if you're here looking for a quickie, I'd be <i>thrilled</i> to get another taste of you~ Though if you're interested, I could try on another 'look' for you~");
+				writeFunction("writeEvent('haze1A')", "Use her as she is");
+			}
+			else{
+				writeSpeech("haze","","So, are you fully convinced now~?");
+				writeSpeech("player","","Now that my sheets have been filled with glitter, yup. I swear, I'll have to burn the things to get rid of it.");
+				writeSpeech("haze","","You wanted evidence, hun. Plus, it's magically generated, and I didn't feel like making anything permanent, so... it'll actually dissolve pretty soon.");
+				writeSpeech("player","","Oh, neat... Self-disposing glitter.");
+				writeText("She smirks.");
+				writeSpeech("haze","","Of course. I'm not <i>evil,</i> hun. Now, what brings you down into here?");
+				writeText("Her hand roams around her stomach, slowly tracing a line to her chest.");
+				writeSpeech("haze","","Maybe you're looking for a bit of fun~?");
+				writeFunction("writeEvent('haze1A')", "Use her as she is");
+			}
+			writeFunction("writeEncounter('hazeChange1')", "Take a look at her other forms [3 available]");
+			writeFunction("writeEncounter('hazeStory')", "You came to chat, actually");
+			break;
+		}
+		case "haze2" : {
+			passTime();
+			if(checkTrust('haze')<60)
+				setTrust('haze',60);
+			writeText("Focusing on her image in your mind, you feel a something like the shimmering of a light as the blank space in front of you seems to take on the appearance of a heat haze.");
+			writeText("Reaching towards it, you can feel your hand settle on something like a doorknob and, already knowing what's behind it, you pull it open.");
+			writeSpeech("haze","","Welcome back, playerF~!");
+			writeText("You don't need to walk through the doorway to already be standing near her as she seems to be sitting on a non-existant chair.");
+			if(checkFlag('haze','Explain')){
+				removeFlag('haze','Explain');
+				writeSpeech("player","","Hello again. So, given the fact that I didn't <i>quite</i> get here by falling asleep... I'm beginning to think that last time wasn't <i>just</i> your run-of-the-mill lucid sex dream.");
+				writeText("hazeF smirks, shaking her head gently.");
+				writeSpeech("haze","","I did try to tell you that, but I think we both got a little overexcited. I might enjoy getting a taste of the fairer sex, but it's been too long since I got to taste a real stud~");
+				writeSpeech("haze","","It <i>is</i> still a dream, though. Just not the kind you humans are you're used to.");
+				if(checkTrust('succubus') >= 60){
+					writeSpeech("player","","You're some sort of a demon, then? That makes two, I guess.");
+					writeText("She stops in place, looking at you in surprise.");
+					writeSpeech("haze","","...Huh. If you already met one, then I guess that makes things easier.");
+					writeText("She scratches the back of her head, shifting in place.");
+					writeSpeech("haze","","I'm a type of dream-eating demon. Kinda like a... cousin, I guess, to succubi. We can subsist off of just dreams, and any type will do, really. I know one guy who'd only eat dreams that involved whales - last I heard, he went to go linger around a sea park or something.");
+					writeText("She taps her chin thoughtfully.");
+					writeSpeech("haze","","I just happen to like sexually-charged dreams. They've got a specific flavor to 'em that I just really dig. So when I stumbled across a certain perverted hypnotist, I decided to stick around and see if you'd be a good source for dreams.");
+					writeSpeech("player","","And... does that affect them?");
+					writeSpeech("haze","","Only if I take too much, and I'm not exactly strapped for food nowadays. I mean, even if you weren't a hypnotist, we <i>are</i> kinda right next to a university, which is, like, the number one place for sexually frustrated dreamers and nymphos.");
+					writeText("Harsh, but not entirely untrue...");
+					writeSpeech("haze","","Anyway...");
+					writeText("hazeF smirks.");
+					writeSpeech("haze","","Choosing to linger around your taste paid off pretty quick. And that brings us to the now!");
+				}
+				else{
+					writeText("...Human?");
+					writeSpeech("player","","The way you phrased that makes it sound like you're distinctly <i>not</i> human.");
+					writeSpeech("haze","","How many humans do you know that can mess with people's dreams?");
+					if(checkTrust('scarf') >= 62){
+						writeSpeech("player","","Just the one, but it was pretty memorable.");
+						writeSpeech("haze","","...Right, forgot about her. Point is, I'm a demon - a dream-eating one, specifically. I'm kinda like a, uh... a cousin, I guess, to succubi. I can subsist off of just dreams, and any type will do, really. I know one guy who'd only eat dreams that involved whales - last I heard, he went to go linger around a sea park or something.");
+					}
+					else{
+						writeSpeech("player","","Fair point.");
+						writeSpeech("haze","","Yup. So basically, I'm a demon. A dream-eating one, to be specific. I'm kinda like a, uh... a cousin, I guess, to succubi. We can subsist off of just dreams, and any type will do, really. I know one guy who'd only eat dreams that involved whales - last I heard, he went to go linger around a sea park or something.");
+					}
+					writeSpeech("player","","So you eat people's dreams to survive?");
+					writeSpeech("haze","","Eeeehhhhh...");
+					writeText("She kinda wiggles in place, thinking for a moment.");
+					writeSpeech("haze","","Sorta? It's a lot more complicated than that makes it sound, but that's basically it. I like sexually-charged dreams, so I usually stick around really hedonistic places or people.");
+					writeText("She pauses.");
+					writeSpeech("haze","","Which is why I've been sticking around you lately. The more people you put under, the more sexually charged dreams I get to snack on.");
+					writeSpeech("player","","And... does that affect them?");
+					writeSpeech("haze","","Only if I take too much, and I'm not exactly strapped for food nowadays. I mean, even if you weren't a hypnotist, we <i>are</i> kinda right next to a university, which is, like, the number one place for sexually frustrated dreamers and nymphos.");
+					writeText("Harsh, but not entirely untrue...");
+				}
+				writeSpeech("player","","Huh. So I've basically had a demon on my shoulder since coming here?");
+				writeSpeech("haze","","Not really...? I stick in the Dreamlands, so it's not like I can really see you. I just wait until I feel someone with your flavor go into a trance and make sure they end up in my neck of the dream-woods.");
+				writeSpeech("player","","So... more like a cosmic mooch.");
+				writeText("She chuckles, shaking her head.");
+				writeSpeech("haze","","Not too far off, actually. I've been a lot more careful about my feeding ever since I got a bit ahead of myself... if you'll forgive the pun.");
+				writeText("...What pun?");
+				writeSpeech("haze","","Either way, welcome to my place. It's basically a dream, but also kinda not. You could think of it as a manifestation of a subsection of the collective unconscious manipulable by supernatural entities... or just a Dreamland. They're basically the same thing.");
+				writeText("She rests her hands on her hips.");
+				writeSpeech("haze","","Standard dream rules apply - time is weird, mental strength lets you manipulate things, and you can force yourself awake pretty easily. Most folks go with pinching themselves, but it's really the thought that counts, not the action.");
+				if(checkFlag('haze','Dreamer') != true)
+					addFlag('haze','Dreamer');
+				writeSpeech("haze","","Oh, and don't worry about, like, having your dreams and aspirations for the future eaten by the way - you taking over the town with hypnosis would <i>literally</i> be the best thing that could happen to me right now, so I support you ten billion percent!");
+				writeSpeech("player","","And I take it you mean moral support, not actual assistance?");
+				writeSpeech("haze","","Got it in one. I do my best to not make ripples anymore. If some lower-ranked demon wants to go around, raising their mark to the top of the world to get themselves a sip of that corrupted essence, then more power to 'em. But honestly...");
+				writeText("She grins, pushing out her chest.");
+				writeBig("images/haze/1-1.jpg", "Art by Purple Haze");
+				writeSpeech("haze","","I might not get to have fun as <i>often</i> as them, but I've learned to appreciate <i>every single moment.</i> And seeing as you're down here~...");
+				writeText("There is absolutely no subtlety to her movements as one of her hands caresses the outside of her panties.");
+				writeSpeech("haze","","So, did you come here looking for a quickie? I'd be absolutely <i>thrilled</i> to get another taste of you~ Though if you're interested, I could try on another 'look' for you~");
+				writeFunction("writeEvent('haze1C')", "Use her as she is");
+				writeFunction("writeEncounter('hazeChange1')", "Take a look at her other forms [3 available]");
+				writeFunction("writeEncounter('hazeStory')", "You came to chat, actually");
+				break;
+			}
+			else{
+				if(checkTrust('haze')<60)
+					setTrust('haze',60);
+				writeText("You did mention that you'd come back later, and now's as good a time as any, so...");
+				writeText("You lay back down in bed, breathing deeply for a few seconds... Though it only takes a moment for you to hear hazeF's voice.");
+				writeSpeech("haze","","Hello again!");
+				writeText("Sitting up... Standing up? The void is weirdly floaty, which makes sense for a dream, but it's still a bit weird.");
+				writeSpeech("player","","Hello hazeF.");
+				writeText("You try to focus on standing and, sure enough, you feel the sensation of solid ground beneath your feet a moment later.");
+				writeSpeech("haze","","Ooh, nice - fast learner, aren't ya?");
+				writeText("She smiles and sits down on the air, though you can still see the shape of ass flatten a bit like she was sitting on an invisible chair.");
+				writeSpeech("haze","","Sorry about last time, by the way. I'm usually better with controlling myself, but you don't exactly have a long history of hypnotizing and fucking <i>studs</i>, so I got a little <i>too</i> excited.");
+				writeText("She pauses, looking over you.");
+				writeSpeech("haze","","I, uh... didn't drain you <i>too</i> hard, right? You were fine after you woke up?");
+				writeSpeech("player","","I was out for most of the afternoon, if that's what you mean.");
+				writeText("hazeF relaxes a bit, smiling.");
+				writeSpeech("haze","","If that's all, then good. Humans can be pretty fragile, so I just wanted to make sure I didn't break you.");
+				writeSpeech("player","","...I feel mildly offended that you think I'd break that easily.");
+				writeText("hazeF just kinda shrugs, leaning back on the non-existant furniture.");
+				writeSpeech("haze","","Sorry, then. Like I said before, I don't get to feed as often as I'd like, and most of the people I <i>do</i> feed on tend to be pretty average - one of many trade-offs, I guess.");
+				writeText("At that, her grin quickly returns, a faint shimmer surrounding her body.");
+				writeSpeech("haze","","Speaking of, if you're here looking for a quickie, I'd be <i>thrilled</i> to get another taste of you~ Though if you're interested, I could try on another 'look' for you~");
+				writeFunction("writeEvent('haze1C')", "Use her as she is");
+				writeFunction("writeEncounter('hazeChange1')", "Take a look at her other forms [3 available]");
+				writeFunction("writeEncounter('hazeStory')", "You came to chat, actually");
+				break;
+			}
+			break;
+		}
+		case "hazeEvent1RepA" : {
+			writeText("Seeing as she's already thrusting it forward, you grab her chest and grope her, hearing her moan excitedly as she smiles.");
+			writeBig("images/haze/1-2.jpg","Art by Purple Haze");
+			writeText("Her nipples are hard under your palms, her breathing getting the littlest bit heavier as she leans into your hands.");
+			writeSpeech("haze","","Mm, you like my tits playerF? You can probably tell that I'm not the only one getting excited here~");
+			writeSpeech("player","","I noticed.");
+			writeText("Moving your hands a bit, you start toying with her nipples, listening to her groan in pleasure as you squeeze them.");
+			writeBig("images/haze/1-3.jpg","Art by Purple Haze");
+			writeSpeech("haze","","Haa~");
+			writeText("Moaning, she leans heavily against you as you feel yourself leaning back, the pleasant sensation of a soft bed appearing under you as she lets her tits drag against your body.");
+			writeText("After a few moments, you feel your cock press against the bottom of them as you watch her bring her hand to her mouth, winking as her tongue lolls out, dripping with spit.");
+			writeText("She slowly, sensually licks at her hand for a moment before bringing her slick palm down to your shaft as you slide between her tits.");
+			writeBig("images/haze/1-4.jpg","Art by Purple Haze");
+			writeSpeech("haze","","Mm, you feel nice and hard, playerF~");
+			writeText("Like last time, you can feel a hazy sensation passing through your head, the pleasure suddenly gettin much stronger.");
+			writeText("Despite that, though...");
+			writeSpeech("haze","","Ooh~!");
+			writeText("You buck your hips forward, her chest bouncing sharply as you keep your head clear enough not to completely lose it.");
+			writeText("Given the determined look on her face, though, you're pretty sure she took that as a challenge.");
+			writeSpeech("haze","","Well, if you don't want to take the <i>easy</i> way of making it feel good, let's try this...~!");
+			writeText("Bringing one arm across her chest, she squeezes it around her breasts as you feel it completely cover your cock, even her hand grasping it disappearing under her tits.");
+			writeText("You can't help but let out a small groan as a mixture of the pressure, her spit, and your pre make her chest wonderfully slick and tight, making her giggle and moan gently as she grings her arm against her nipples.");
+			writeText("Each small giggle only makes her body shake more, and when she adds in a grinding motion forward, making your head just barely poke out, she grins and leans her head forward, lapping at the sensitive tip with her tongue.");
+			writeSpeech("player","","F-Fuck...!");
+			writeText("The small motions, the changes in pressure, and even her hand that's not gently playing with your balls...");
+			writeText("It's bringing you close to the edge, and she knows it.");
+			writeText("Shifting again, she pulls back into the same position she started in, her hand going back to your shaft and carefully squeezing and milking your cock as she pants hungrily.");
+			writeSpeech("haze","","Come on, stud~! <i>Paint my chest white~!</i>");
+			writeText("Unable to hold out any longer, your body tenses as you cum, ropes of jizz surging through the air as you grunt.");
+			writeBig("images/haze/1-5.jpg","Art by Purple Haze");
+			writeSpeech("haze","","Mm, fuck yes~! Absolutely <i>cover</i> me, playerF~!");
+			writeText("After a few more seconds of bucking your hips, you feel like you've completely emptied yourself all over her, and given how satisfied she looks...");
+			writeBig("images/haze/1-6.jpg","Art by Purple Haze");
+			writeSpeech("haze","","Mm, you even got your thick, sticky cum in my hair~");
+			writeText("You're pretty sure she enjoyed it too.");
+			writeText("Now that you've cum, your mind is starting to wake up a bit more, a few dots of light appearing in your vision.");
+			writeSpeech("haze","","Come back soon~!");
+			writeFunction("changeLocation(data.player.location)", "Wake up");
+			break;
+		}
+		case "hazeEvent1RepB" : {
+			writeSpeech("player","","How about you squat down and open your mouth?");
+			writeText("She lets out a small laugh, nodding.");
+			writeSpeech("haze","","Don't mind if I do~!");
+			writeText("Spreading her legs a bit, she drops down slowly, one hand trailing down your stomach and the other going to her chest, grasping it roughtly.");
+			writeText("When her free hand reaches your cock, she lets out a pleased hum while grasping it by the base.");
+			writeSpeech("haze","","Absolutely lovely~");
+			writeText("She leans her head forward to give a gentle kiss to the tip, looking up at you as she does.");
+			writeText("A moment later, she extends her tongue and starts taking you into her mouth properly.");
+			writeBig("images/haze/1-7.jpg","Art by Purple Haze")
+			writeText("Bobbing her head up and down, she uses her lips to tease your head a bit as her hand strokes you, a low humming moan adding pleasantly to the sensation.");
+			writeText("After a few more short bobs, she takes you halfway into her mouth, the underside of your cock dragging against her tongue for a moment... before she pulls all the way off.");
+			writeSpeech("haze","","Mm, having fun~? How about we...");
+			writeText("She pauses to lean forward, giving a gentle kiss to your shaft.");
+			writeSpeech("haze","","...get a bit rougher? ");
+			writeSpeech("player","","Hah, if you can handle it.");
+			writeText("She smirks, rolling her eyes playfully.");
+			writeSpeech("haze","","Let's see what <i>you</i> can handle.");
+			writeText("Leaning her head forward, her tongue massages at the underside of your cock as she bobs her head forward, taking you halfway down to the base.");
+			writeText("You can feel the pressure in her mouth start to grow as she sucks in, her cheeks concaving as she starts giving a vacuum blowjob, a sparkle in her eyes as she looks up at you.");
+			writeText("She picks up speed more and more, moaning and humming as she does, even swallowing around you whenever she reaches the base.");
+			writeText("Between the fast but meticulous bobbing and the movements of her tongue against your shaft, it isn't long before you start to get close.");
+			writeText("And going by her own moaning, she's enjoying playing with herself while sucking you off, getting closer herself.");
+			writeSpeech("player","","hazeF, I'm-");
+			writeText("A low, moaning hum around your dick causes you to gasp mid-sentence, and you swear you can feel a certain smugness as she lifts her head away...");
+			writeText("Only for the sensation of the blowjob to keep going.");
+			writeSpeech("haze","","A wonderful thing about dreams, playerF, is all the fun you can have that you can't with a <i>real</i> body.");
+			writeText("Smiling, she moves her lips back to your cock, toying with the head and taking only the tip into her mouth as the sensations of both blowjobs just get stronger.");
+			writeSpeech("haze","","Fun, isn't it?");
+			writeText("You can hear her voice even with her lips around your cock, the feeling of a teasing handjob joining into the symphony of sensation.");
+			writeSpeech("haze","","I can make you feel all sorts of things when you're in here~");
+			writeText("You grit your teeth as you feel the urge to cum start to boil over, the hands moving faster, her tongue even more stimulating...!");
+			writeSpeech("haze","","Come on, fill my mouth stud~! I want to cum while tasting you on my tongue~!");
+			writeText("Unable to hold back, you start to cum, hazeF's own body tightening up as the first rope sprays across her tongue, your hips bucking as the sensation just keeps going.");
+			writeBig("images/haze/1-8.jpg","Art by Purple Haze");
+			writeText("You can feel hazeF's deep, sensual moan vibrating her mouth as you cum, her hand jerking you off into her mouth as she groans.");
+			writeText("More than a little cum ends up spilling past her lips as her tongue teases your head inside of her mouth, your own voice a throaty groan as the pleasure surges through you.");
+			writeText("When you're finally finished cumming, she starts to slow her tongue down as she shudders a bit, still groping her chest.");
+			writeBig("images/haze/1-9.jpg","Art by Purple Haze");
+			writeText("She swallows heavily once, then a second time, before looking up at you with a smile and going,");
+			writeSpeech("haze","","<i>Ahh~</i>");
+			writeText("Her mouth is completely cum-free, though you can't say the same for her chest.");
+			writeSpeech("haze","","Thanks for the treat, hun~!");
+			writeText("She brings a finger down to her pussy, smirking.");
+			writeSpeech("haze","","Next time, I'll have you fill me up nice and full with your cum, stud~");
+			writeText("Now that you've cum, your mind is starting to wake up a bit more, a few dots of light appearing in your vision.");
+			writeSpeech("haze","","Come back soon~!");
+			writeFunction("changeLocation(data.player.location)", "Wake up");
+			break;
+		}
+		// case "hazeEvent1RepC" : {
+		// 	break;
+		// }
+		case "hazeChange1" : {
+			//writeSpecial("There should be no way to access this scene at this current time. Please post what you were doing when it happened in #bug-reporting on the Discord so that CryptoGreek can figure out how to fix this. Thanks!");
+			writeText("hazeF grins and waves her hand, a shimmering light spreading across her body for a few moments before images flash through your mind.");
+			// writeBig("images/haze/profileYoru.jpg","Art by Purple Haze");
+			writeSpeech("haze","","I've only got a couple at the moment, but pick whichever you like~");
+			// writeFunction("writeEvent('haze2A')", "Fuck Sporty Yoruichi");
+			openWardrobe();
+			writeFunction("writeEncounter('hazeTalkReturn')", "Never mind");
+			break;
+		}
+		case "hazeTalkReturn" : {
+			writeSpeech("haze","","So, what do you wanna do~?");
+			if(checkFlag('haze','NoSex'))
+				writeFunction("writeEvent('haze1A')", "Fuck her");
+			else
+				writeFunction("writeEvent('haze1C')", "Fuck her as she is again");
+			if(checkTrust('haze') >= 60)
+				writeFunction("writeEncounter('hazeChange1')", "Take a look at her other forms [3 available]");
+			writeFunction("writeEncounter('hazeStory')", "Chat with her");
+			writeFunction("changeLocation(data.player.location)", "Leave");
+			break;
+		}
+		case "hazeStory" : {
+			if(checkFlag('haze','Story') != true){
+				addFlag('haze','Story');
+				writeSpeech("player","","I wanted to chat, actually.");
+				writeText("She pauses, her hands stopping their roaming.");
+				writeSpeech("haze","","Oh.");
+				writeSpeech("haze","","...Wait, really?");
+				writeSpeech("player","","Yup. You <i>are</i> a demon, and that does kinda beg a whole lot of questions. Aside from the whole 'Hell' thing - I kinda assumed I'm damned given the whole 'extra-marital sex' thing I have going on.");
+				writeSpeech("haze","","And the hypnosis.");
+				writeSpeech("player","","And the hypnosis, yeah.");
+				writeText("hazeF seems to think about it for a moment before shrugging and leaning back.");
+				writeSpeech("haze","","Huh. Alright, ask away then.");
+			}
+			else{
+				writeSpeech("player","","I wanted to ask you a few things.");
+				writeText("hazeF shrugs, leaning back a bit against a non-existant wall.");
+				writeSpeech("haze","","What do you wanna know, hun?");
+			}
+			writeFunction("writeEncounter('hazeStory1')", "Are you a succubus?");
+			writeFunction("writeEncounter('hazeStory2')", "What's Hell like?");
+			writeFunction("writeEncounter('hazeStory3')", "What's Heaven like?");
+			writeFunction("writeEncounter('hazeStory4')", "Why do you use the bodies of famous fictional characters?");
+			writeFunction("writeEncounter('hazeTalkReturn')", "Go back");
+			break;
+		}
+		case "hazeStory1" : {
+			writeSpeech("player","","So... Since you feed off of sexually-charged dreams, does that make you a succubus?");
+			writeSpeech("haze","","Nope. Dream-eating demon - there's a pretty big difference. Namely in the level of power, but also in methodology, the nature of feeding...");
+			writeText("She shrugs.");
+			writeSpeech("haze","","It's not a great parallel, but we're basically cousins. We gather up tainted essence and basically use it to 'level up' in terms of power and social status... Though we usually get our underlings to get us the essence.");
+			writeSpeech("player","","Interesting... So if a succubus gathered enough tainted energy, they would become a dream-eater?");
+			writeSpeech("haze","","They could. They basically just get to make up their own powers as they grow - we just put labels on the groups for tax purposes. Succubus is a blanket term for 'demon who subsists off of the tainted sexual essence of humans'.");
+			writeSpeech("player","","...Wouldn't that make you a succubus, since you're getting the same stuff but from dreams?");
+			writeSpeech("haze","","I draw the taint from their souls directly rather than deal with the physical bodies, which is <i>just</i> different enough that I'm allowed to file as a Baku instead of a succubus, which gives me some extra exemptions. It does mean that I'm not allowed to self-identify as a succubus, though.");
+			writeSpeech("player","","That's... incredibly mundane, actually.");
+			writeSpeech("haze","","Maybe, but after a couple centuries, the little bits of tainted essence start to build up. If you can't gather essence faster than your competitors, then you'll be working for them in no time flat.");
+			writeText("She shrugs.");
+			writeSpeech("haze","","But that's just the way a competitive market works. If you're not leading, you're following, and that's just not my style. Well, unless there's a nice juicy dick involved anyway.");
+			writeText("She leans back, casually running a hand through her long pink hair.");
+			writeSpeech("haze","","So, uh... Yeah. I'm technically not a succubus for reasons of tax exemptions.");
+			writeFunction("writeEncounter('hazeStory')", "Go back");
+			break;
+		}
+		case "hazeStory2" : {
+			writeSpeech("player","","So, what's Hell like? Is it another dream-place like this one?");
+			writeSpeech("haze","","Sorta, but not really? Hell isn't exactly a physical place, but it's not a dream either. It'd be easiest to just think of it as a place on the border of dream and reality. And as for what it's actually like...");
+			writeText("She runs her hand through her hair, thinking deeply.");
+			writeSpeech("haze","","I guess it's not too different from what the human world has been like recently, with pyramid schemes and loan sharks, but just with... <i>more.</i> It's hard to describe, especially since I've been a part of it for so long.");
+			writeSpeech("haze","","Oh, and the culture is really casual about the debauchery. There's no fucking in the streets or going down on people in cubicles, or at least there <i>shouldn't</i> be since some people need to do their damn jobs without having to listen to your coworker moan five-<i>hundred</i> decibels above acceptable volume, but it's kinda like a beach right across from a nudist colony - anyone who's used to being there probably doesn't think twice when seeing bouncing H-cups and foot-long schlongs.");
+			writeSpeech("player","","You sound like you're talking from experience.");
+			writeSpeech("haze","","I was in management for a long time, and even worked a cubicle before that, trying to convince people to basically sell my product for me and still send me the profits. Honestly, it was a valuable experience, and now that I <i>have</i> experienced it, I never want to experience it again.");
+			writeText("A deep scowl goes across hazeF's face for a moment.");
+			writeSpeech("haze","","I'd rather do Lucy's taxes for the next few <i>centuries</i> than have to listen to Bubsy break glass with her sixth screaming orgasm of the afternoon because <i>someone</i> thought it'd be funny to lengthen their tongue so he could literally taste a succubus' <i>womb</i> when they're supposed to be helping me compile the <i>decannual-fucking-profit-reports.</i>");
+			writeSpeech("player","","...That honestly sounds awful, and I'm sorry you had to go through that.");
+			writeText("She takes a moment to take a slow, deep breath, calming herself down.");
+			writeSpeech("haze","","It's fine. It's over, and I don't have to go back. I saved up enough tainted essence in the late 1700s that I never have to deal with her again.");
+			writeText("She pauses.");
+			writeSpeech("haze","","Deal with it, I mean. Bubsy was a whore and a flake, but she was actually almost tolerable after she corrupted a human into her personal sex toy. I still call her and Imgua every so often to catch up on recent events.");
+			writeSpeech("player","","You get service here?");
+			writeSpeech("haze","","Beelzebub has control over T-Mobile.");
+			writeSpeech("player","","That makes sense.");
+			writeFunction("writeEncounter('hazeStory')", "Go back");
+			break;
+		}
+		case "hazeStory3" : {
+			addFlag("haze","Heaven");
+			writeSpeech("player","","What's Heaven like? There's kind of a lot of conflicting reports on the details I've read.");
+			writeSpeech("haze","","...Heaven, huh?");
+			writeText("hazeF sighs, leaning back.");
+			writeSpeech("haze","","A demon isn't the best person to ask for an unbiased report, but I've been there twice, so I guess I'm more educated on it than most.");
+			writeText("She furrows her brow, a momentary look of confusion going across her face.");
+			writeSpeech("haze","","They're nice. The angels, I mean. Both times I visited, they seemed excited to see someone new - I swear, if they were demons, I'd say they actually got off on serving me, but I don't think that was it. They were just...");
+			writeSpeech("haze","","...They were nice, and really polite. Misinformed as <i>fuck</i> when it came to demons, though. They served me a <i>cum chalice</i> thinking it was what succubi drank, and said that they thought it would be impolite to serve something else.");
+			writeSpeech("player","","Huh. Well, I guess they probably knew as much about you as you did them.");
+			writeSpeech("player","","...Did you drink the cum chalice?");
+			writeSpeech("haze","","Nope, I have a rule that I only drink cum I milked personally. I have a sensitive stomach when it comes to drinking jizz with my mouth, so I didn't want to risk getting cramps while I was up there.");
+			writeSpeech("player","","Actually, why <i>were</i> you up there?");
+			writeSpeech("haze","","Lucy put in the order for some chairs and I had to pick them up. Turns out that Heaven is composed entirely of clubs for angels to educate themselves or something. They had the Carpentry Club's Captain of Upholstered Chair Design talk me through the details of how they made the seats, and the only thing I remember is nodding blankly and smiling a bunch since they seemed really proud of their work, and I didn't want to come off as rude after they put in so much effort to be polite to me.");
+			writeSpeech("player","","Huh. Heaven sounds pretty nice.");
+			writeSpeech("haze","","In my experience, it was. Not the sort of place I'd wanna stay, though. They've got clubs for everything, sure, but nothing for after that - just more learning. You're never done.");
+			writeText("She shrugs again, crossing her arms.");
+			writeSpeech("haze","","Don't know if it's just me, but I don't see the point in learning a million different skills that you'll never use. I'd rather just sleep often and fuck when I'm awake instead.");
+			writeFunction("writeEncounter('hazeStory')", "Go back");
+			break;
+		}
+		case "hazeStory4" : {
+			writeSpeech("player","","So... Why use the bodies of fictional characters in these dreams? Wouldn't it be easier to just use your own?");
+			writeSpeech("haze","","The long answer is that I'm a shapeshifter, and have been for so long that the idea of identifying as having a singular body doesn't feel right.");
+			writeSpeech("player","","And the short answer?");
+			writeSpeech("haze","","It's my fetish.");
+			writeSpeech("player","","Ah, okay.");
+			writeFunction("writeEncounter('hazeStory')", "Go back");
+			break;
+		}
+		case "haze3" : {
+			writeText("As you focus, your mind lingers fixates for a few seconds on the idea of the door, the sensation of your body getting heavier weighing you down...");
+			writeText("And when you 'open' your eyes, it's to the familiar sight of the pink void and the just-as-pink dream demon.");
+			writeSpeech("haze","","Heya. You here for a bit of fun, hun~? I don't have another form quite ready for you yet, but I'm up for a bit of play with what I have already~!");
+			writeFunction("writeEvent('haze1C')", "Fuck her as she is again");
+			writeFunction("writeEncounter('hazeChange1')", "Take a look at her other forms [3 available]");
+			writeFunction("writeEncounter('hazeStory')", "Chat with her");
+			writeFunction("changeLocation(data.player.location)", "Leave");
+			break;
+		}
+		case "profileYoru" : {
+			writeText("A haze seems to settle over hazeF for a moment before she gives a gentle flick of her wrist, her form shifting sharply to match the image.");
+			writeText("Smiling, she runs her hands through her purple hair, before cupping her breasts with a smirk.");
+			writeSpeech("haze","hazeYoru.jpg","So, what'll it be? How do you want to have fun with this body here~?");
+			writeText("A few vauge thoughts filter into your head as she toys with her chest in front of you...");
+			writeFunction("writeEvent('haze2A')", "Get a handjob on the beach");
+			writeFunction("writeEvent('haze2B')", "Get a blowjob on the sand");
+			//writeFunction("writeEvent('haze2C')", "Fuck her against the volleyball net");
+			//writeFunction("writeEvent('haze2D')", "Fuck her doggy-style on the sand");
+			writeFunction("writeEncounter('hazeTalkReturn')", "Go back");
+			break;
+		}
+		case "profileMidnight" : {
+			writeText("hazeF's form seems to shift and haze over for a few moments before she snaps her fingers once - the sound echoes out as her form stabilizes.");
+			writeText("She trails a finger along her body stocking with a smile before looking at you, cocking her hip.");
+			writeSpeech("haze","hazeMidnight.jpg","Fits like a glove~ What kind of fun are you looking to have, playerF~?");
+			writeFunction("writeEvent('haze3A')", "Have her blow you");
+			writeFunction("writeEvent('haze3B')", "Have her ride you");
+			writeFunction("writeEncounter('hazeTalkReturn')", "Go back");
+			break;
+		}
+		case "profileBambi" : {
+			writeText("hazeF's form seems to shift and haze over for a few moments before she snaps her fingers once - the sound echoes out as her form stabilizes.");
+			writeText("She runs her hands through her raven-black hair for a moment, before smirking at you and lifting her skirt with a wink.");
+			writeSpeech("haze","hazeBambi.jpg","You a sucker for a bratty-looking girl in uniform, playerF~? The white will match a nice pearl necklace..."); // or a dripping creampie~
+			writeFunction("writeEvent('haze4A')", "Fuck her tits and paint her face");
+			writeFunction("writeEvent('haze4B')", "Prone-bone her into the bed");
+			writeFunction("writeEncounter('hazeTalkReturn')", "Go back");
+			break;
+		}
+		default: {
+			writeSpeech("player", "", "Error! You must've called the wrong encounter. Error code: Failed to write encounter ("+name+") in "+character.index+".js");
+			break;
+		}
+	}
+}
+
+var eventArray = [
+	{index: "haze1A", name: "Meeting - Getting Handsy with hazeF"},
+	{index: "haze1B", name: "Meeting Alt - Impatient and Handsy"},
+	{index: "haze1C", name: "More Fun with the Pink-Haired Succubus"},
+	{index: "haze2A", name: "Sporty Handjob on the Sand"},
+	{index: "haze2B", name: "Getting Blown on the Beach"},
+	{index: "haze3A", name: "Superheroine Blowjob"},
+	{index: "haze3B", name: "Midnight Riding"},
+	{index: "haze4A", name: "Uniformed Titjob"},
+	{index: "haze4B", name: "Prone-Boned"},
+];
+
+function writeEvent(name) { //Plays the actual event.
+	wrapper.scrollTop = 0;
+	switch (name) {
+		case "haze1A": {
+			if(!checkFlag('haze','haze1AGallery'))
+				addFlag('haze','haze1AGallery')
+			if(data.player.location != "gallery"){
+				if(checkFlag('haze','First')){
+					removeFlag('haze','First');
+					writeEvent("haze1B");
+				}
+				if(checkTrust('haze') < 40)
+					setTrust('haze',40);
+				if(checkFlag('haze','Explain'))
+					removeFlag('haze','Explain');
+			}
+			if(checkFlag('haze','NoSex'))
+				removeFlag('haze','NoSex');
+			document.getElementById('output').innerHTML = '';
+			writeText("Might as well have some fun while you're down here, right?");
+			writeText("You reach forward, your hands grabbing her tits as she lets out a soft moan.");
+			writeText("Smiling at you, she reaches both of her gloved hands down, the first firmly grasping your cock and the other sliding into her panties.");
+			writeBig("images/haze/1-2.jpg","Art by Purple Haze");
+			writeSpeech("haze","","Good answer, darling~ Feel free to play with these tits all you like~!");
+			writeText("You can feel her nipples stiffen under your palms as she uses her hands to get you both off, the sound of her stirring up her wet pussy filling the air as she bites her lip.");
+			writeText("A moment later, she pulls both of her hands away, switching them around as you feel her slick hand start to get your shaft wet with her fluids.");
+			writeText("Moving your own hands, you give her nipples a sharp squeeze.");
+			writeBig("images/haze/1-3.jpg","Art by Purple Haze");
+			writeSpeech("haze","","Ahn~!");
+			writeText("She seems to enjoy it, her grip tightening a little bit as she starts jerking you off more slowly.");
+			writeSpeech("haze","","You must really like these tits, darling~! I've picked up more than a few sexy bodies from all sorts of dreams, but I'd be lying if I said I don't play favorites...~!");
+			writeText("She leans into your hands, jerking you off and fingering herself even faster as you feel her breath on your neck.");
+			writeSpeech("haze","","Such lewd, <i>sensitive</i> tits, and they're all yours to play with~ This whole body exists for your pleasure, so go right ahead and <i>take what you want~!</i>");
+			writeFunction("writeEncounter('hazeEvent1A')", "Titfuck her");
+			writeFunction("writeEncounter('hazeEvent1B')", "Have her blow you");
+			break;
+		}
+		case "haze1B" : {
+			if(!checkFlag('haze','haze1BGallery'))
+				addFlag('haze','haze1BGallery')
+			if(data.player.location != "gallery"){
+				if(checkFlag('haze','First')){
+					removeFlag('haze','First');
+					writeEvent("haze1A");
+				}
+				if(checkTrust('haze') < 40)
+					setTrust('haze',40);
+				if(checkFlag('haze','Explain') != true)
+					addFlag('haze','Explain');
+			}
+			document.getElementById('output').innerHTML = '';
+			writeText("You casually reach forward, grasping her tits firmly.");
+			writeSpeech("player","","If this is a dream, I think I'll have some fun.");
+			writeSpeech("haze","","Oh-ho...?");
+			writeBig("images/haze/1-2.jpg","Art by Purple Haze");
+			writeText("She curves her back a bit, offering up her chest for you with a wry smile.");
+			writeSpeech("haze","","Someone's a little impatient, hm? Not that I mind, of course~ I'll explain later, so for now...");
+			writeText("She moves her hands deftly, one reaching forward to your cock, the other moving to her cunt.");
+			writeSpeech("haze","","Play with me as much as you like, playerF~");
+			writeText("As she does, you can feel her nipples begin to stiffen. The sound of her fingers stirring up her pussy fill the air as she bites her lip.");
+			writeText("Moving your own hands, you give her nipples a sharp squeeze.");
+			writeBig("images/haze/1-3.jpg","Art by Purple Haze");
+			writeSpeech("haze","","Ahn~!");
+			writeText("She clearly doesn't seem to mind.");
+			writeSpeech("haze","","Do you like them~?");
+			writeText("She grins widely, her gloved hand starting to stroke up and down your length.");
+			writeSpeech("haze","","I've picked up a nice number of sexy forms from all sorts of dreams, but this one is one of my favorites~ Such lewd, <i>sensitive</i> tits, and they're all yours to play with~!");
+			writeText("You keep squeezing, teasing, and playing around with her tits, enjoying each moan as she jerks you off and plays with herself.");
+			writeText("Every few seconds, she switches her hands around, getting your shaft slick with her juices as you get rougher with her chest.");
+			writeText("After a minute or so of that, though, you both seem ready to move on to something a little more <b>stimulating</b>...");
+			writeFunction("writeEncounter('hazeEvent1A')", "Titfuck her");
+			writeFunction("writeEncounter('hazeEvent1B')", "Have her blow you");
+			break;
+		}
+		case "haze1C" : {
+			if(!checkFlag('haze','haze1CGallery'))
+				addFlag('haze','haze1CGallery')
+			document.getElementById('output').innerHTML = '';
+			writeSpeech("player","","I'll check out those other forms of yours later, I think. For now...");
+			writeText("hazeF grins, running a hand along her stomach.");
+			writeSpeech("haze","","Mm, interested in playing with me like this, huh? I can't really blame you - I wouldn't have copied this form if I didn't like it~!");
+			writeText("She strides forward confidently folding her arms behind her back and leaning forward with a seductive look.");
+			writeSpeech("haze","","But there's just so many things we could do~ I just can't seem to decide~");
+			writeText("Obviously, she wants you to choose how you take her...");
+			writeFunction("writeEncounter('hazeEvent1RepA')", "Use her tits");
+			writeFunction("writeEncounter('hazeEvent1RepB')", "Have her suck you off");
+			//writeFunction("writeEncounter('hazeEvent1RepC')", "Tell her to turn around and show herself off");
+			break;
+		}
+		case "haze2A" : {
+			if(!checkFlag('haze','haze2AGallery'))
+				addFlag('haze','haze2AGallery')
+			if(data.player.location != 'gallery'){
+				if(data.player.time == "Morning")
+					passTime();
+				if(checkFlag('haze2BGallery') && checkTrust('haze') < 70){
+					setTrust('haze',70)
+				}
+				else{
+					setTrust('haze',65)
+				}
+			}
+			document.getElementById('output').innerHTML = '';
+			writeText("hazeF steps calmly towards you, the area around you shifting to match that of a beach. The sun feels pleasantly warm as she reaches her arms up, stretching out with a comfy mewl.");
+			writeText("When she gets close to you, though, she pauses, her lips pulling into a smile.");
+			writeText("Her hand calmly reaches down, gently rubbing against you through your pants as she lets out a joyful hum.");
+			writeSpeech("haze","hazeYoru.jpg","Well now, I think I can tell how much you like the look~!");
+			writeBig("images/haze/2-1.jpg","Art by Purple Haze");
+			writeSpeech("haze","hazeYoru.jpg","Mm, but... how about we get rid of this annoying pair of pants~");
+			writeText("Leaning in, the hand on your shoulder shifts for a moment before there's a resonant, echoing <b>snap.</b> Looking down, you can see your pants are already gone, her fingers already tracing along your exposed length.");
+			writeSpeech("haze","hazeYoru.jpg","Mm, that's much better, isn't it~?");
+			writeText("Her breath is warm and heavy on your neck,as the pleasure in your body seems to build more and more... Her fingers feel incredible gliding up and down your shaft, sliding from the base to the tip.");
+			writeText("Her palm gently rubs against the tip, smearing your pre all over her hand before going back down, getting your cock nice and slick as she picks up speed, her grip shifting quickly to vary up the pressure as the pleasure grows.");
+			writeSpeech("player","","N-Nn...!");
+			writeSpeech("haze","hazeYoru.jpg","Mm, there we go...");
+			writeText("Her tongue drags along your neck as she smiles.");
+			writeSpeech("haze","hazeYoru.jpg","Just focus on your cock, on the bliss of my hand stroking you <i><b>up...</b></i> and <i><b>down...</b></i>");
+			writeText("Her lips keep teasing at your neck, each gentle press sending sparks of pleasure up and down your body, your hips bucking unconsciously.");
+			writeSpeech("player","","C-Crap, you're...");
+			writeSpeech("haze","hazeYoru.jpg","Making it feel <i>way</i> better than it should~?");
+			writeText("Her lips pull at your ear for a moment, a soft giggle ringing out.");
+			writeSpeech("haze","hazeYoru.jpg","That's because I want to give you a little test drive~ A taste of what sorts of things we can do here...");
+			writeText("hazeF's hand picks up speed, the pleasure spiking sharply as you hear her coo gently.");
+			writeSpeech("haze","hazeYoru.jpg","Come on, cum for me~ I know you want to~");
+			writeText("She bites her lip gently, giving a soft laugh.");
+			writeSpeech("haze","hazeYoru.jpg","This beautiful tan stomach would look lovely with a nice load of cum on it, don't you think~? So go ahead...");
+			writeText("She smiles widely, getting even faster with her strokes now as you start groaning deeply.");
+			writeText("You can feel yourself rapidly approaching the edge, as she throatily says,");
+			writeSpeech("haze","hazeYoru.jpg","<b>Cum for me, playerF~</b>");
+			writeBig("images/haze/2-2.jpg","Art by Purple Haze");
+			writeSpeech("haze","hazeYoru.jpg","Oh~!");
+			writeText("Her body shudders slightly as your cum spurts out, spattering against her skin as she lets out a heavy breath.");
+			writeText("Biting her lip, she keeps stroking, milking out more and more as your orgasm drags on, the pleasure unabating.");
+			writeText("It feels like you're cumming for minutes before she finally lets her hand come to a stop, a content sigh coming from her as she does.");
+			writeBig("images/haze/2-3.jpg","Art by Purple Haze");
+			writeSpeech("haze","hazeYoru.jpg","Mm, nice and thick I see~ Just the way I like it~");
+			writeText("She brings her hand up to her mouth, dragging her tongue seductively along her fingers before winking.");
+			writeSpeech("haze","hazeYoru.jpg","Hope it's just as thick next time, playerF~");
+			writeText("She leans forward again, her breath hot against your ear as everything gets a bit brighter, your body starting to wake up.");
+			writeSpeech("haze","hazeYoru.jpg","I'll be looking forward to it~");
+			if(data.player.location != 'gallery'){
+				if(data.player.time == "Morning")
+					passTime();
+				writeFunction("changeLocation(data.player.location)", "Get up");
+			}
+			break;
+		}
+		case "haze2B" : {
+			if(!checkFlag('haze','haze2BGallery'))
+				addFlag('haze','haze2BGallery')
+			if(data.player.location != 'gallery'){
+				if(data.player.time == "Morning")
+					passTime();
+				if(checkFlag('haze2AGallery') && checkTrust('haze') < 70)
+					setTrust('haze',70)
+				else
+					setTrust('haze',65)
+				if(checkFlag('haze2AGallery') && checkTrust('haze') < 70)
+					setTrust('haze',70)
+				else
+					setTrust('haze',65)
+			}
+			document.getElementById('output').innerHTML = '';
+			writeText("You're thinking for only a few moments before a sea breeze seems to brush across your skin, the Dreamscape shifting around you gently.");
+			writeText("hazeF looks around for a moment before licking her lips, looking you up and down.");
+			writeSpeech("haze","hazeYoru.jpg","Mm, nice locale - and the outfit's not bad either...");
+			writeText("You're wearing trunks now, though all the way up for much longer, as hazeF's hand teases the elastic down.");
+			writeSpeech("player","","You know what I want, then?");
+			writeSpeech("haze","hazeYoru.jpg","One of the perks of owning the dream, playerF...");
+			writeText("She kneels down, your trunks going down with her as she deftly extends her tongue to your tip, guiding it into her mouth even as you can still somehow hear,");
+			writeSpeech("haze","hazeYoru.jpg","...is ignoring some of the dumber rules of the outside reality~");
+			writeText("She gently swirls her tongue around your head, letting out an aroused hum as she looks up at you.");
+			writeBig("images/haze/2-4.jpg","Art by Purple Haze");
+			writeText("She takes your shaft deeper as she goes, the underside of your shaft dragging against her tongue.");
+			writeText("Bobbing up and down, you can feel the sensation of your head pressing against the entrance to her throat for a second... before she pulls back.");
+			writeSpeech("haze","hazeYoru.jpg","Hm... Let's try this~");
+			writeSpeech("player","","Try wh-<i><b>NN~</b></i>");
+			writeText("Your cockhead slides against the inside of her cheek as she gives you a mischievious look, her fingers rubbing against her cheek to swirl faintly against your cock.");
+			writeSpeech("player","","Ohhh fuck...!");
+			writeText("Her tongue doesn't stop its continuous teasing of your shaft, teasing along its length as she uses her full palm now to tease at your cock through her cheek.");
+			writeText("A few moments later, though, the sensation disappears as she pulls your head away for a moment...");
+			writeText("Before she swings her entire head forward, her nose pressing to your abdomen in a second.");
+			writeSpeech("haze","hazeYoru.jpg","<i><b>GHUK~!</b></i>");
+			writeText("You hear her let out a deep, wet grunt around your shaft as she starts using your cock to fuck her throat.");
+			writeSpeech("player","","S-Shit, it's so <i>tight</i>...!");
+			writeText("She lets out several excited, almost proud giggles around your cock, the vibrations stimulating you further.");
+			writeText("But as she stops suddenly, her lips to your base and her chin to your balls, you're not quite ready when she starts to <b>swallow.</b>");
+			writeText("The sensation of her entire throat squeezing and massaging at your shaft is incredible, your head held deep in and being teased by her throat.");
+			writeSpeech("player","","I'm...!");
+			writeText("You feel the pleasure beginning to reach its peak as she turns her head just a bit, gliding just the smallest bit back and forth as she swallows again and again.");
+			writeText("Her voice seems to hover in your head as she looks up at you hungrily.");
+			writeSpeech("haze","hazeYoru.jpg","<i>Cum for me~</i>");
+			writeText("You buck your hips forward, unable to resist the urge to cum as you swing forwward.");
+			writeText("Rope after rope spurts into her stomach at first, before she draws herself away a bit even as you cum.");
+			writeText("Her mouth fills up with more than a few spurts as she shuts her eyes, her body shuddering gently in pleasure as you finish.");
+			writeBig("images/haze/2-5.jpg","Art by Purple Haze");
+			writeText("She holds that position for several seconds, your throbbing cock still resting on her slick tongue as she hums in contentment.");
+			writeText("hazeF opens her eyes a moment later, looking up to you and maintaining eye-contact as she pulls herself off your cock, a bit of cum still connecting your cock to her lips.");
+			writeSpeech("haze","hazeYoru.jpg","Mm~!");
+			writeText("She swallows heavily, looking up at your still-dribbling cock with a smile.");
+			writeBig("images/haze/2-6.jpg","Art by Purple Haze");
+			writeSpeech("haze","hazeYoru.jpg","Hah~... Such a wonderful flavor~");
+			writeText("She slowly starts to stand up, her mouth going to your tip just long enough to pick up the last of the cum as the lights around you start to get brighter again.");
+			writeSpeech("haze","hazeYoru.jpg","Time's up again... but seems to me we both had fun~ See you next time, playerF~");
+			if(data.player.location != 'gallery'){
+				if(data.player.time == "Morning")
+					passTime();
+				writeFunction("changeLocation(data.player.location)", "Get up");
+			}
+			break;
+		}
+		case "haze3A" : {
+			document.getElementById('output').innerHTML = '';
+			if(!checkFlag('haze','haze3AGallery'))
+				addFlag('haze','haze3AGallery')
+			writeHTML(`
+				define haze = sp haze; im images/haze/hazeMidnight.jpg;
+				sp player; How about you get kneeling, hazeF?
+				t hazeF smirks at you, snapping her fingers once. The sound fills the void and your ears, a fuzzy pink light illuminating the area as she kneels down in front of you.
+				t Your cock hangs in front of her for a moment as she takes a slow, deep breath and smirks.
+				sp player; Well, I certainly can't complain about the view.
+				t You look down at her as her chest presses against your legs, your cock resting on her face as she looks up at you lustily.
+				haze How about we get right into it, playerF~?
+				sp player; Sounds good to me.
+				t hazeF's mouth opens wide as she takes your cockhead into her mouth, a low hum sending a pleasant buzz down your cock as she focuses down on it.
+				im 3-1.jpg
+				t You stare down as her eyes roll back and she groans, beginning to suck your cock with more focus.
+				haze "Gck~ Hm~..."
+				sp player; "Looks like I'm not the only one enjoying what you're doing..."
+				t She rolls her eyes slightly, but keeps focusing on sliding down your cock with her lips.
+				sp player; "Mm... This is good."
+				t She bobs her head up and smirks up at you, as you watch as her tongue runs along the bottom of your shaft, her eyes closing as she begins to hum again.
+				t You slide almost halfway down this time, and the waves of pleasure that pour through your body feel incredible.
+				sp player; "Oh, fuck yes. hazeF...!"
+				t She looks up at you mischievously.
+				haze "Those moans of yours are gonna make me jealous of the feeling, playerF~"
+				t The words echo in your mind, even as she continues to carefully tease at your shaft with her mouth.
+				t A moment later, there's a shift in her expression, before her cheeks pull in and you feel the sensation of a vacuum blowjob.
+				sp player; "Fuck...!"
+				t Your hand moves down and grasps some of her hair, your head rolling back slightly from the powerful pleasure.
+				t As she continues to blow you, she looks up at you with a hungry expression, her hands moving to stroke your shaft quickly with a tight grip. Her saliva acts like lube, smearing around your shaft as each moan she lets out only seems to bring you closer.
+				haze "Go right ahead, playerF. We won't be stopping after the first load~" hazeF says, her own voice filled with lust as her tongue laps at the bottom of your shaft.
+				t Your hips buck and your cock throbs, feeling it begin to spurt the first of several loads into the dream demon's waiting mouth.
+				t She swallows the first few spurts, before mischievously letting the rest begin to spill down your shaft.
+				im 3-2.jpg
+				sp player; "Hah... No refractory period in here, right?"
+				t hazeF looks up at you, gives you a wink, and continues sucking you off. Grasping at her hair with one hand and thrusting deeper into her mouth, you groan deeply, and she lets out a gentle laugh.
+				haze "Let's see how many I can make you unload tonight..."
+				...
+				t It's your fourth load that finally has you finished, your balls thoroughly drained as she continues to rest on her knees below you. You slowly pull her from your shaft, a jolt of pleasure doing up your spine as your head slides completely from her mouth.
+				t Some of your cum dribbles down to her hand as she licks her lips, a smirk visible on her face.
+				im 3-3.jpg
+				haze "Seems like you enjoyed this one, playerF. I look forward to testing it out again sometime soon~"
+				sp player; "Same to you, hazeF. We'll see how many loads you can milk out next time."
+				haze "Hah! I'll look forward to trying and breaking this record~ In the meantime, it's time to wake up, playerF~"
+				t The world begins to fade into white as she says that, before your vision starts to return and you sit up in bed again.
+			`);
+			if(data.player.location != 'gallery'){
+				if(data.player.time == "Morning")
+					passTime();
+				writeFunction("changeLocation(data.player.location)", "Get up");
+			}
+			break;
+		}
+		case "haze3B" : {
+			document.getElementById('output').innerHTML = '';
+			if(!checkFlag('haze','haze3BGallery'))
+				addFlag('haze','haze3BGallery')
+			writeHTML(`
+				define haze = sp haze; im images/haze/hazeMidnight.jpg;
+				sp player; Why don't I just lay back and let you have some fun on top for now?
+				t hazeF smirks, resting a hand on her hip and flipping her hair slightly.
+				haze Sounds fine to me. Besides, this form has me feeling like more of a top than a bottom this morning~
+				t The sound of her snapping her fingers shakes the void around you, the world taking on a light, fuzzy pink hue before it's replaced by an enclosed room, and you're laying back on a bed.
+				t hazeF saunters over, her hips swaying salaciously as she steps up onto the bed. A red nail grasps at the crotch of her outfit, pulling aside the leotard as her nails trace along her inner thighs.
+				t A split forms in her tights, spreading out in a perfect circle as rolls her hips forward and crouches down.
+				sp player; Getting a show too, huh? Better deal than I thought.
+				haze And it only gets better, *playerF~
+				t Resting her hands just above her knees, she lets out a gentle gasp of pleasure as your head slides into her pussy, the warm sensation causing your cock to twitch in pleasure.
+				t She continues sliding down, but stops halfway down as she smiles up to you.
+				haze How's the view, stud?
+				im 4-1.jpg
+				sp player; It's phenomonal... but it'd be better if you were moving.
+				haze Funny, I was thinking you'd say that~
+				t Her smirk becomes a smile as she starts bobbing down, slowly at first as your cock stretches her out, before she starts grinding back up, her hips rolling as she does. The shifting and pitching of her body has her tight cunt stimulating every millimeter of your cock, and you can't stop a near-gasping breath from spilling out.
+				t hazeF's voice spills out in tandem, particularly as she rolls her hips forward on the descent again. Her fingernails dig into the tight purple leggings as she pushes your cock into her G-spot, making her shudder blissfully around your shaft.
+				sp player; God damn, you feel good...!
+				haze I'm master of this dream realm, hun~
+				t Her eyes narrow playfully as the sensations begin to feel stronger, your cock becoming more sensitive as she picks up speed, bouncing down faster now, and squeezing rhythmically around your shaft.
+				haze I don't just feel <i>good...</i><br>I feel <i>fucking amazing.</i>
+				t As she says that, she bites down on her lip slightly and shudders.
+				haze And the same can be said of you, stud~!
+				t Continuing to bounce up and down, her gasping and panting continues to grow louder as do yours. Your own picks up as well, even as you feel yourself approaching the edge.
+				sp player; I'm getting close...!
+				haze Don't hold back~! We'll keep going either way, so <i>fill me up~!</i>
+				t You breathe sharply through your teeth as you buck your hips upwards, going over the edge just as quickly. Your cock throbs as ropes of cum spurt out, hazeF letting out quaking, bliss-filled breaths as she feels every drop spurt into her.
+				im 4-2.jpg
+				sp player; Fuck... That's a lot of cum.
+				t You can still feel your cock twitching inside of her warm, wet folds as your cum spills out, but hazeF just runs her hands through her hair with a still-hungry expression.
+				haze Hopefully you have a lot more to keep pumping in, because I intend on going until the moment you wake up~
+				t You smirk back at her, bucking your hips upwards into her and forcing her to gasp sharply.
+				sp player; Then let's get started, hazeF.
+				...
+				im 4-3.jpg
+				haze <i><b>F-FUCK~!</b></i>
+				t Your fifth and final load spills out inside of her as her bouncing slows down to a crawl, her breathing heavy as sweat pours down her body.
+				haze S-Sweet Lucy, that's quite the workout...~!
+				t She lets out a soft laugh, shaking her head as she looks at you.
+				t You feel your cock slide out of her as she stands up shakily, before she plops down next to you with a gasping breath.
+				sp player; I'm surprised you can feel exhausted in a place like this.
+				haze I can... if I wanna. It makes the post-fuck cuddling that much more pleasant~
+				t She pauses at that, throwing you a smirk over her shoulder.
+				haze Maybe next time, I'll stop soon enough to get some of that cuddling before you have to get up and out there.
+				t As she says that, you can see the white light slowly beginning to infringe on your vision.
+				sp player; A shame we can't now, but I'll look forward to it then. See you around, hazeF.
+				haze See you around, playerF~
+				t A moment later, the white overtakes your vision entirely.
+				t You're staring at the familiar ceiling of your room, feeling awake enough to hop and do whatever business you needed done for the day...
+				t ...Or just lay back down, if you've got no plans.
+				`);
+			if(data.player.location != 'gallery'){
+				if(data.player.time == "Morning")
+					passTime();
+				writeFunction("changeLocation(data.player.location)", "Get up");
+			}
+			break;
+		}
+		case "haze4A" : {
+			document.getElementById('output').innerHTML = '';
+			if(!checkFlag('haze','haze4AGallery'))
+				addFlag('haze','haze4AGallery')
+			writeHTML(`
+				define haze = sp haze; im images/haze/hazeBambi.jpg;
+				t hazeF flashes her panties to you, smirking mischievously.
+				sp player; How about you put those tits to work, hazeF?
+				t She doesn't hesitate, though she does roll her eyes slightly.
+				haze Whatever you say, <i>*Sir~</i>
+				t Her tone is teasing, but she still licks her lips as she kneels down. You watch as she unbuttons her top casually, letting her breasts hang freely as you note the lack of a bra.
+				t Your head pokes out from between her tits as she pushes them against you, her hand going around and squeezing her chest a bit tighter to add to the stimulation. Winking once, she gives your tip a wet kiss, letting her drool serve as lube for a moment as she smirks up at you.
+				im 5-1.jpg
+				haze How's the view from there, *Sir~?
+				sp player; Almost as good as it feels.
+				haze Hah~ Keep saying things like that, and I'll have trouble holding myself back.
+				t At that, she begins shifting her body forward, your cock disappearing between her tits for a moment as she squeezes her arm across her chest tighter... only to roll backwards again, the tight cleavage getting spread by your shaft.
+				t The warm, wet feeling of her skin isn't the same as a pussy, but it still feels like you're actually fucking a tight hole as repeats the process.
+				haze Come on *Sir, moan for me~
+				t Her whispers seem to echo through your mind as she says that, making you shudder in even greater pleasure as she picks up speed. Each time your cock slides between her tits, the sensation only seems to grow stronger and stronger, as you start to pant heavily.
+				sp player; You're... increasing my sensitivity, aren't you...?
+				t She just smirks up at you, winks, and gives you another kiss on the tip. This time, the sensation against your sensitive cockhead makes you buck your hips sharply, forcing her entire body to jump slightly as she lets out a melodic laugh.
+				haze Oh? Did I do something good~?
+				t You let out a low grunt.
+				sp player; You're just making me want to fuck you rougher when we're done here.
+				haze Threatening me with a good time, are you?
+				t She lets out another soft giggle, before the sound of her snapping her fingers rings out.
+				t The pleasure starts ramping up more and more, and your focus starts to wane heavily.
+				haze I'll milk you dry tonight, cutie... and if you want to pay me back by fucking me nice and good next time, I'll accept my 'punishment'~
+				t Saying that, she keeps peppering your tip with kisses each time it pokes out from between her tits, each one only bringing you closer and closer to the edge. By the time you reach it, you can't hold back for even a second as your cock begins throbbing rhythmically.
+				haze Hah~!
+				im 5-2.jpg
+				t The load fires out sharply, spraying across her face as she shuts her eyes, the cum shooting off high enough to reach her hat as she keeps gently twisting her body to make her tits squeeze out ever drop.
+				t But despite the fact that you've already shot rope after rope... you still show no signs of stopping, your mind reeling as the pleasure simply doesn't go down.
+				haze Like I said... I'm gonna <i>milk you dry,</i> *Sir~
+				...
+				t Her expression shifts as she finally stops, breathing just as heavily as you, your hands grasping at the sheets tightly as you finally come down from what felt like several minutes of non-stop ejaculation.
+				im 5-3.jpg
+				haze H-Huh... Guess being in this body really did make me more of a brat, didn't it?
+				t hazeF takes a slow, deep breath as she stands up, dragging her finger along some of your cum before bringing it to her mouth.
+				haze Sorry about getting carried away, cutie. Maybe you'll make me pay for it next time~
+				t You open your mouth to retort, but by the time that you can formulate words, the white in the edges of your vision is already overtaking the room.
+				t The world turns to white for a moment, before you're back in your room. Slowly sitting up, you find that you're not quite as exhausted as you should be... A benefit of it being in a dream, you suppose.
+				t Still, time to get up...
+			`);
+			if(data.player.location != 'gallery'){
+				if(data.player.time == "Morning")
+					passTime();
+				writeFunction("changeLocation(data.player.location)", "Get up");
+			}
+			break;
+		}
+		case "haze4B" : {
+			document.getElementById('output').innerHTML = '';
+			if(!checkFlag('haze','haze4BGallery'))
+				addFlag('haze','haze4BGallery')
+			writeHTML(`
+				define haze = sp haze; im images/haze/hazeBambi.jpg;
+				sp player; Lay on your stomach, hazeF.
+				t She raises an eyebrow and cocks her hip to the side, before teasingly replying,
+				haze Make me.
+				t You don't hesitate for a moment to step in and grab her waist, pulling her tight against your body as she lets out a melodic laugh. Turning her around is easy and, by the time you do, there's already a bed in front of you to pin her down to.
+				t You can hear another muffled laugh through the sheets as you push down on the small of her back with one hand, the other grabbing at her ass. The short skirt doesn't hide a thing as the quiet laugh becomes a soft moan.
+				haze Hah, looks like you really are gonna 'punish' me, aren't you~?
+				t Trailing your fingers along her ass, you scoff sharply as you slowly push into her cunt. She's clearly enjoying this, given how wet she already is...
+				haze Haah~ This is just plain ol' fun, *Sir!
+				t You roll your eyes, lifting your hand off her back and picking up speed with your thrusts.
+				sp player; Shut up and accept your punishment, brat.
+				haze Fine, fi- <b><i>FUCK~!</i></b>
+				t Your hand grasps and digs into the flesh of her ass roughly, hanndling her almost violently as she lets out a blissful, shuddering gasp.
+				t She looks back at you, and it's hard to miss the excitement in the look she gives you.
+				t It's not much of a punishment if she wants it, but on the other hand...
+				haze <b><i>F-Fucking SHIT~!</i></b>
+				t The way she squeezes down when you slap that firm, tight ass of her is fucking incredible.
+				t Your hands grasp at her ass roughly as you slam your hips into hers, pulling out almost completely each time before thrusting back in.
+				t You raise and swing down a hand down again, listening as she hisses out a breath beneath clenched teeth, only for her entire body to shudder in pleasure afterwards.
+				t The shape of your hand is left clear-as-day on her ass as you look down at her and thrust.
+				im 6-1.jpg
+				haze S-Sweet Lucy, that was- <i><b>Nn~...</b></i>
+				t Her words are interrupted by another sudden moan, though this time by you pressing your fingers against the red mark on her ass.
+				t hazeF squirms slightly as you knead her reddened rear, the sensitive flesh fun to squeeze and tease as she shakes in bliss against the sheets.
+				t The rougher you handle her, the tighter around you she seems to get, and the faster you want to thrust in...
+				sp player; Now what exactly do you mean by <i>'was'?</i>
+				t Your nails trace along her ass for a moment, before firmly spanking her in the same place and letting the sound ring out as you speed up.
+				sp player; We're only just getting <i>started,</i> slut.
+				t The lustful smile she gives you is obvious, her face flushed nearly as deep a red as her ass.
+				t Picking up speed even more, you thrust deeply into her and watch her cheeks shake with each heavy impact of your hips against her; more and more time goes by as your hands tease and grope at her, spanking her gently in that same place a few times... and then one more that wasn't quite as gentle.
+				haze Yes, yes...! Use me, *Sir~!
+				t You smirk down at her at that, putting all of your force into every thrust now as her cunt tightens up around you.
+				t You won't last long with this pace you're setting, but the thought of filling this tight cunt with your seed is enough to make you continue for just a little longer.
+				sp player; Beg for it, slut.
+				t hazeF bites her lip sharply, shuddering in even more pleasure now. There's a moment's hesitation, and it's obvious she's trying to tell just how bratty she wants to be...
+				haze F-Fuck me...! Pound this cute ass into the bed until you can't any more, *Sir~!
+				t And it looks like she gave in.
+				sp player; Much better.
+				t Your hips slam forward and press against her plush ass sharply as you let out your first shot, short gasps escaping your mouth as you gasp from the intense pleasure.
+				im 6-2.jpg
+				haze Holy <i>fuck</i> it's so warm~...! That was- <b><i>HN~</b></i>
+				t Your hand comes down against her ass again, shutting her up immediately as you lean in close.
+				t Her body shudders again as she feels your breathing on her ear and you whisper,
+				sp player; Let's see how much this bratty ass of yours can take, hazeF.
+				haze ...Yes *Sir~
+				...
+				t Shuddering hands grasp at the sheets as another orgasm tears through hazeF's body, leaving her mouth gaping as she shakes.
+				t Her ass is practically completely covered with handprints at this point, her cheeks darkened again and again by the swift smacks upside it. Each one had only gotten rougher each time it became more and more obvious that that's exactly what hazeF wanted.
+				t Even the facade of it being 'punishment' faded away after a while, and you both just enjoyed each other's bodies until the last of cum finally spurted out into her in this last, final shot.
+				im 6-3.jpg
+				t Myriad handprints are left on her ass as you both breathe heavily, hazeF simply laying beneath you for a bit as she catches her breath.
+				haze Y-You... You're getting better with controlling your dream-self, playerF~
+				t Her eyes flicker back to the blue of her previous form for a moment before stabilizing as she smiles back at you.
+				sp player; I've been enjoying the learning process.
+				t hazeF's melodious laugh fills the room as she continues to lay there for a moment, before smirking slightly.
+				haze Enough time, and you actually might be able to dominate me for real...
+				sp player; ...Might?
+				t You're almost offended by her lack of faith.
+				haze Well, we'll just have to see~ I actually quite like being 'put in my place'... So I look forward to being properly disciplined when you master the Dreamscape~
+				t The world around you slowly starts to fade to white again, and you can clearly feel yourself starting to wake up.
+				sp player; I'll look forward to it as well. Breaking you in will be fun for the both of us.
+				haze It's a date, then~ I'll see you later... *Sir~
+				t When the world completely goes white, you're quickly back in your room, staring at the familiar ceiling.
+				t Another afternoon, another bit of cleanup from the dream, and another day to get some business done...
+				t Time to get back to things.
+			`);
+			if(data.player.location != 'gallery'){
+				if(data.player.time == "Morning")
+					passTime();
+				writeFunction("changeLocation(data.player.location)", "Get up");
+			}
+			break;
+		}
+		default: {
+			writeSpeech("player", "", "Error! You must've called the wrong event. Error code: Failed to write event ("+name+") in "+character.index+".js");
+			break;
+		}
+	}
+	//Don't touch the rest of this stuff, it has to do with unlocking scenes.
+	var unlockedScene = "";
+	for (i = 0; i < eventArray.length; i++) {
+		if (eventArray[i].index == name) {
+			unlockedScene = eventArray[i];
+		}
+	}
+	if (unlockedScene != "" && galleryCheck(name) != true) {
+		data.gallery.push(unlockedScene);
+		writeSpecial("You unlocked a new scene in the gallery!");
+	}
+	else {
+		console.log("Error, no scene named "+name+" found to unlock.");
+	}
+	addSkill("corruption", 1);
+}
+
+var phoneArray = [//Lists the potential text events the player can receive at the start of the day, depending on their trust.
+	{index: "hazeReward", requirements: "?flag haze haze3AGallery; ?flag haze haze3BGallery; ?flag haze haze4AGallery;"},
+]
+
+function writePhoneEvent(name) { //Plays the relevant phone event
+	phoneRight.scrollTop = 0;
+	switch (name) {
+		case "hazeReward": {
+			writePhoneImage("images/haze/fin.jpg", "Art by Purple Haze");
+			writePhoneSpeech("haze", "", "You've finished all of hazeF's content for this version, congratulations!");
+			break;
+		}
+		default: {
+			writePhoneSpeech("player", "", "Error! You must've called the wrong event. Error code: Failed to write phone event("+name+") in "+character.index+".js");
+			break;
+		}
+	}
+}
+
+function openWardrobe() {
+	document.getElementById('output').innerHTML += `
+	<div id="wardrobeGrid" style="display:grid; grid-template-columns:auto auto auto auto;">
+	</div>
+	`;
+	writeWardrobeOption("profileYoru");
+	writeWardrobeOption("profileMidnight");
+	writeWardrobeOption("profileBambi");
+	/*
+	switch(checkTrust("nagatoro")) {
+		case 101:
+			writeWardrobeOption("nagatoroBunny1-1");
+			writeWardrobeOption("nagatoroSchoolgirlLocked");
+			writeWardrobeOption("nagatoroSwimsuitLocked");
+			writeWardrobeOption("nagatoroPrincessLocked");
+		break;
+		case 102:
+			writeWardrobeOption("nagatoroBunny2-1");
+			writeWardrobeOption("nagatoroSchoolgirl1-1");
+			writeWardrobeOption("nagatoroSwimsuitLocked");
+			writeWardrobeOption("nagatoroPrincessLocked");
+		break;
+		case 103:
+			writeWardrobeOption("nagatoroBunny3-1");
+			writeWardrobeOption("nagatoroSchoolgirl1-1");
+			writeWardrobeOption("nagatoroSwimsuit1-1");
+			writeWardrobeOption("nagatoroPrincessLocked");
+		break;
+		case 104:
+			writeWardrobeOption("nagatoroBunny3-1");
+			writeWardrobeOption("nagatoroSchoolgirl1-1");
+			writeWardrobeOption("nagatoroSwimsuit1-1");
+			writeWardrobeOption("nagatoroPrincess1-1");
+		break;
+		case 666:
+			writeWardrobeOption("nagatoroBunny3-1");
+			writeWardrobeOption("nagatoroSuccubus1-1");
+			writeWardrobeOption("nagatoroSwimsuit1-1");
+			writeWardrobeOption("nagatoroPrincess1-1");
+		break;
+		default:
+			//writeWardrobeOption("002");
+			//writeWardrobeOption("032");
+			//writeWardrobeOption("112");
+			//writeWardrobeOption("nagatoroPrincessLocked");
+
+	}*/
+}
+
+function writeWardrobeOption(wardrobeImage) {
+	if (wardrobeImage.includes("Locked")==false) {
+		document.getElementById('wardrobeGrid').innerHTML += `
+			<img class="bigPicture" id="`+wardrobeImage+`" src="images/haze/`+wardrobeImage+`.jpg" title="Art by Purple Haze"
+			onclick="writeEncounter('`+wardrobeImage+`')",
+			onmouseover="wardrobeMouseOver('`+wardrobeImage+`')"
+			onmouseout="wardrobeMouseOut('`+wardrobeImage+`')"
+			style="filter:brightness(50%);">
+		`;
+	}
+	else {
+		document.getElementById('wardrobeGrid').innerHTML += `
+			<img class="bigPicture" id="`+wardrobeImage+`" src="images/nagatoro/unknown.png" title="Sorry, but I can't go sharing everything at once you know~!"
+			onmouseover="wardrobeMouseOver('`+wardrobeImage+`')"
+			onmouseout="wardrobeMouseOut('`+wardrobeImage+`')"
+			style="filter:brightness(50%);">
+		`;
+	}
+}
+
+function wardrobeMouseOver(wardrobeImage) {
+	//console.log(document.getElementById(wardrobeImage).style.filter)
+	document.getElementById(wardrobeImage).style.filter = "brightness(100%)"
+}
+
+function wardrobeMouseOut(wardrobeImage) {
+	//console.log(document.getElementById(wardrobeImage).style.filter)
+	document.getElementById(wardrobeImage).style.filter = "brightness(50%)"
+}
+
+//Don't touch anything below this, or things will break.
+//console.log(character.index+'.js loaded correctly. request type is '+requestType)
+
+switch (requestType) {
+	case "load": {
+		data.story.push(character);
+		console.log(character);
+		console.log(data.story);
+		writeSpecial(character.fName+" has been added to the game!");
+		writeSpeech(character.index, "", character.fName+ " " + character.lName + ", written by "+ logbook.author + ", art by "+ logbook.artist+".");
+		break;
+	}
+	case "encounter": {
+		writeEncounter(eventName);
+		break;
+	}
+	case "event": {
+		writeEvent(eventName);
+		if (data.player.location == 'gallery' && eventName != 'gallery') {
+			writeFunction("loadEncounter('system', 'gallery')", "Finish");
+		}
+		break;
+	}
+	case "unlock": {
+		var unlockedScene = "";
+		for (i = 0; i < eventArray.length; i++) {
+			if (eventArray[i].index == n) {
+				unlockedScene = eventArray[i];
+			}
+		}
+		if (unlockedScene != "") {
+			data.gallery.push(unlockedScene);
+			writeSpecial("You unlocked a new scene in the gallery!");
+		}
+		else {
+			console.log("Error, no scene named "+n+" found to unlock.");
+		}
+		break;
+	}
+	case "check": {
+		if (encounteredCheck(character.index) != true) {
+			for (number = 0; number < encounterArray.length; number++) { //start going through encounter array
+				var finalLocation = "";
+				var finalResult = true;
+				if (encounterArray[number].location != null) {
+					var finalLocation = encounterArray[number].location;
+					if (encounterArray[number].location.includes(data.player.location) || data.player.location == "map" && data.player.gps == true) { //check the location
+						if (encounterArray[number].time.includes(data.player.time)) { //check the time
+							if (encounterArray[number].trustMin <= checkTrust(character.index) && encounterArray[number].trustMax >= checkTrust(character.index)) { //check the trust requirements
+								if (encounterArray[number].day == "even" && data.player.day%2 == 1) {
+									finalResult = false;
+									//console.log("Failed event "+encounterArray[number].index+" for "+character.index+" due to incorrect parity");
+								}
+								if (encounterArray[number].day == "odd" && data.player.day%2 == 0) {
+									finalResult = false;
+									//console.log("Failed event "+encounterArray[number].index+" for "+character.index+" due to incorrect parity");
+								}
+								if (encounterArray[number].itemReq != "" && checkItem(encounterArray[number].itemReq) != true) {
+									finalResult = false;
+									//console.log("Failed event "+encounterArray[number].index+" for "+character.index+" due to incorrect item");
+								}
+							}
+							else {
+								//console.log("Failed event "+encounterArray[number].index+" for "+character.index+" due to incorrect trust at "+checkTrust(character.index)+". Trustmin: "+encounterArray[number].trustMin);
+								finalResult = false;
+							}
+						}
+						else {
+							//console.log("Failed event "+encounterArray[number].index+" for "+character.index+" due to incorrect time");
+							finalResult = false;
+						}
+					}
+					else {
+						//console.log("Failed event "+encounterArray[number].index+" for "+character.index+" due to incorrect location");
+						finalResult = false;
+					}
+				}
+				else {
+					//console.log("Now examining encounter entry "+encounterArray[number].index+encounterArray[number].requirements);
+					var requirements = checkRequirements(encounterArray[number].requirements);
+					//console.log(requirements);
+					if (requirements != true) {
+						finalResult = false;
+					}
+				}
+				if (finalResult == true) {
+					//console.log("Final result for "+encounterArray[number].index+" true, location is "+finalLocation);
+					if (data.player.location == "map" && finalLocation != "beach" && finalLocation != "casino") {
+						var textString = "";
+						for (locationIndex = 0; locationIndex < locationArray.length; locationIndex++) { //find the location target
+							if (locationArray[locationIndex].index == finalLocation) {
+								var textString = locationArray[locationIndex].name + " - ";
+							}
+						}
+						if (textString != "") {
+							printEncounterTab(character.index, encounterArray[number].index, textString + encounterArray[number].name, encounterArray[number].altImage, encounterArray[number].altName);
+						}
+						else {
+							printEncounterTab(character.index, encounterArray[number].index, encounterArray[number].name, encounterArray[number].altImage, encounterArray[number].altName);
+						}
+					}
+					else {
+						//console.log(number);
+						printEncounterTab(character.index, encounterArray[number].index, encounterArray[number].name, encounterArray[number].altImage, encounterArray[number].altName);
+					}
+				}
+				else {
+					//console.log("!!!!!!!!!!!!!!!!!!!!!!!!!final result for "+encounterArray[number].index+" false, location is "+finalLocation);
+				}
+			}
+		}
+		break;
+	}
+	case "shop": {
+		var shopItem = "";
+		for (item = 0; item < newItems.length; item++) {
+			console.log("generating item "+ item + ": " + newItems[item].name + newItems[item].description + newItems[item].image + newItems[item].price + newItems[item].key);
+			if (newItems[item].price != 0) {
+				if (newItems[item].key == false) {
+					document.getElementById('output').innerHTML += `
+						<div class = "shopItem" onclick = "purchase('`+newItems[item].name+`','`+newItems[item].image+`','`+newItems[item].price+`','`+newItems[item].key+`')">
+							<p class = "shopName">`+newItems[item].name+`</p>
+							<p class = "shopDesc">`+newItems[item].description+`</p>
+							<p class = "shopPrice">$`+newItems[item].price+`</p>
+							<img class ="shopImage" src="`+newItems[item].image+`">
+						</div>
+						<br>
+					`;
+				}
+				else {
+					if (checkItem(newItems[item].name) == false) {
+						document.getElementById('output').innerHTML += `
+						<div class = "shopItem" onclick = "purchase('`+newItems[item].name+`','`+newItems[item].image+`','`+newItems[item].price+`','`+newItems[item].key+`')">
+								<p class = "shopName">`+newItems[item].name+`</p>
+								<p class = "shopDesc">`+newItems[item].description+`</p>
+								<p class = "shopPrice">$`+newItems[item].price+`</p>
+								<img class ="shopImage" src="`+newItems[item].image+`">
+							</div>
+						<br>
+						`;
+					}
+				}
+			}
+		}
+		break;
+	}
+	case "logbook": {
+		logbookArray.push(logbook);
+		break;
+	}
+	case "phoneCheck": {
+		var finalMessage = "";
+		var finalResult = true;
+		for (number = 0; number < phoneArray.length; number++) { //start going through phone array
+			//Start finding the data.story variable associated with the character
+			for (phoneHistoryCheck = 0; phoneHistoryCheck < data.story.length; phoneHistoryCheck++) {
+				if (data.story[phoneHistoryCheck].index == character.index) {
+					//If the character has no unread texts
+					//If the character does not have this text in their text history
+					if (
+					data.story[phoneHistoryCheck].unreadText != true &&
+					data.story[phoneHistoryCheck].textHistory.includes(phoneArray[number].index) != true &&
+					data.story[phoneHistoryCheck].textEvent != phoneArray[number].index
+					) {
+						//If the phone record is using the old system...
+						if (phoneArray[number].trust != null) {
+							var finalResult = false;
+							if (checkTrust(character.index) == phoneArray[number].trust) { //if the player's trust with the character meets the text requirement
+								for (phoneEventCheck = 0; phoneEventCheck < data.story.length; phoneEventCheck++) { //go through the characters
+									if (data.story[phoneEventCheck].index == character.index) { //check what text is currently assigned to the character
+										if (data.story[phoneEventCheck].textEvent.includes(phoneArray[number].index)==false) {
+											notification(character.index)
+											data.story[phoneEventCheck].textEvent = phoneArray[number].index;
+											console.log(data.story[phoneEventCheck].textEvent);
+										}
+									}
+								}
+							}
+						}
+						else {
+							if (phoneArray[number].requirements.includes("?time") == false) {
+								phoneArray[number].requirements += "?time Morning;";
+							}
+							//Check the requirements
+							var requirements = checkRequirements(phoneArray[number].requirements);
+							console.log("Now examining encounter entry "+phoneArray[number].index+phoneArray[number].requirements+", result is "+requirements);
+							if (requirements != false) {
+								notification(character.index)
+								data.story[phoneHistoryCheck].unreadText = true;
+								data.story[phoneHistoryCheck].textEvent = phoneArray[number].index;
+								data.story[phoneHistoryCheck].textHistory += phoneArray[number].index;
+							}
+						}
+					}
+				}
+			}
+		}
+		break;
+	}
+	case "phoneEvent": {
+		writePhoneEvent(eventName);
+		break;
+	}
+}
