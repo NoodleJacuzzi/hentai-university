@@ -1966,7 +1966,7 @@ function writeHTML(text) {
 						var definition = {shortcut: definitionShortcut, result: definitionResult};
 						definitionArray.push(definition);
 					}
-					//console.log("Now writing definition statement, using shortcut "+definitionShortcut+" for result "+definitionResult+", overwrite value is "+overWrite);
+					console.log("Now writing definition statement, using shortcut "+definitionShortcut+" for result "+definitionResult+", overwrite value is "+overWrite);
 					break;
 				}
 				case "snippet": {
@@ -2027,7 +2027,6 @@ function writeHTML(text) {
 							lines[lineCounter].indexOf("im ") + 3, 
 							lines[lineCounter].indexOf("; ")
 						);
-						console.log("!!!"+image);
 						lines[lineCounter] = lines[lineCounter].replace(`im `+image+`; `, ``);
 					}
 					else {
@@ -2455,7 +2454,7 @@ function writeSpeech (name, img, text, altName, altColor) {
 		text = eggyLines[Math.floor(Math.random() * eggyLines.length)];
 		finalImg = "scripts/gamefiles/profiles/egg.jpg";
 	}
-	//console.log("Now printing "+finalName+" with the image "+finalImg+"");
+	console.info("Now printing "+finalName+" with the image "+finalImg+"");
 	//Output the speech in the assigned style.
 	switch (data.player.style) {
 		case "lobotomy": {
@@ -4269,7 +4268,7 @@ function generateNav(target) {
 
 function loadAchievements() {
 	//generateWindow("logbook");
-	document.getElementById('logButton').style.color = "#FFFFFF";
+	document.getElementById('logButton').style.color = "#CCCCCC";
 	var achievementsPrinted = 0;
 	var redColor = `linear-gradient(306deg, rgba(2,0,36,1) 0%, rgba(121, 9, 104,1) 13%, rgba(228, 119, 255,1) 100%);`;
 	var blueColor = `linear-gradient(306deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 9%, rgba(0,212,255,1) 100%);`;

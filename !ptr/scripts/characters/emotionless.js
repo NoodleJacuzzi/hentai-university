@@ -424,6 +424,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 			break;
 		}
 		case "emotionlessHumilText": {
+			deleteWindow();
 			writeHTML(`
 				t *Ring*... *Ring*...
 				emo H-hello~!
@@ -442,7 +443,6 @@ function writeEncounter(name) { //Plays the actual encounter.
 				trans emotionlessHumil1; Meet up
 			`);
 			clearText("emotionless");
-			hideStuff();
 			setTrust("emotionless", 100);
 			break;
 		}
