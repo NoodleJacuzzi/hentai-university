@@ -3525,6 +3525,10 @@ function generateWindow(type) {
 			if (data.player.currentScene != "" && data.player.currentScene != "newDay") {
 				generateWindow("warning");
 			}
+			if (data.player.currentScene == "morning1") {
+				deleteWindow();
+				loadEncounter("gilf", "encounter2");
+			}
 			break;
 		}
 		case "save": {
