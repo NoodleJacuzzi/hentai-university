@@ -2988,10 +2988,10 @@ function updateMenu() {
 	document.getElementById('skillsList').innerHTML = "";
 	//Code for legacy skills of hypnosis, hacking, and counseling
 	if (checkSkill("hypnosis") < data.player.hypnosis) {
-		setSkill("hypnosis", data.player.hypnosis)
+		//setSkill("hypnosis", data.player.hypnosis)
 	}
 	if (data.player.hypnosis < checkSkill("hypnosis")) {
-		data.player.hypnosis = checkSkill("hypnosis");
+		//data.player.hypnosis = checkSkill("hypnosis");
 	}
 	if (checkSkill("hacking") < data.player.hacking) {
 		setSkill("hacking", data.player.hacking)
@@ -3009,7 +3009,7 @@ function updateMenu() {
 	for (beanCounter = 0; beanCounter < data.skills.length; beanCounter++) {
 		if (data.skills[beanCounter].score > 0) {
 			var skillName = data.skills[beanCounter].name.charAt(0).toUpperCase() + data.skills[beanCounter].name.slice(1);
-			document.getElementById('skillsList').innerHTML += `<p class = "version">`+skillName+`: `+data.skills[beanCounter].score+`</p>`;
+			//document.getElementById('skillsList').innerHTML += `<p class = "version">`+skillName+`: `+data.skills[beanCounter].score+`</p>`;
 		}
 	}
 	

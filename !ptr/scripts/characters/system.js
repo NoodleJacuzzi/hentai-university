@@ -479,6 +479,7 @@ function writeEncounter(scene) {
 			writeCenteredText("This list serves as a method for modders to have their characters uploaded and be made playable online, but please keep in mind that certain content, such as underage or bestiality content, shall not be hosted here. If you would like your characters uploaded to this list, please let me know via discord!");
 			if (checkFlag("mom", "mods") != true) {
 				addFlag("mom", "mods");
+				checkForAchievements();
 			}
 			writeMed("images/sports/profile.jpg");
 			writeCenteredText("Zoe & the volleyball team - SlackerSavior");
@@ -638,10 +639,25 @@ function writeEncounter(scene) {
 			break;
 		}
 		case "loadGhost": {
-			document.getElementById('output').innerHTML += `
-				<input type="text" id="indexSubmission" value="ghost">
-			`;
-			modCharacter();
+			var ghostLoaded = false;
+			for (loadIndex = 0; loadIndex < data.story.length; loadIndex++) {
+				if (data.story[loadIndex].index == "ghost") {
+					console.log(name+' found already in the data variable, aborting function');
+					ghostLoaded = true;
+				}
+			}
+			if (ghostLoaded == false) {
+				var newCharacter = {index: "ghost", fName: "Sadako", lName: "Yamamura", trust: 0, encountered: false, textEvent: "", met: false, color: "#2388ED", author: "Penguinthunder", artist: "Vanitas", textHistory: "", unreadText: false, gender: "female", };
+				data.story.push(newCharacter);
+				writeHTML(`
+					im images/ghost/profile.jpg;
+					sp ghost; ghostF ghostL has been added to the game!
+				`);
+			}
+			else {
+				writeText("ghostF has already been loaded.");
+			}
+			writeFunction("writeEncounter('gameConsole')", "Back to the console");
 			break;
 		}
 		case "wardrobe": {

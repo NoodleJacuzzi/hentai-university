@@ -303,7 +303,7 @@ var achievementArray = [
 	{index:"haze1", frame: "ultraRare", name: "", requirements: "?flag haze haze3AGallery; ?flag haze haze3BGallery; ?flag haze haze4AGallery;", description: "View all of hazeF's content.", image: "images/haze/hazePT.png",},
 	{index:"pizza1", frame: "ultraRare", name: "", requirements: "?flag pizza complete;", description: "Get pizzaF's ending. If you can't find her, check outside your apartment in the morning.", image: "images/pizza/pizzaPT.png",},
 	
-	{index:"sports", frame: "ultraRare", name: "", requirements: "?trust sports 150;", description: "Complete sportF's content. Don't forget to check your phone!", image: "images/sports/sportsPT.png",},
+	{index:"sports", frame: "ultraRare", name: "", requirements: "?trust sports 150;", description: "Complete sportsF's content. Don't forget to check your phone!", image: "images/sports/sportsPT.png",},
 	{index:"coach", frame: "ultraRare", name: "", requirements: "?trust coach 200;", description: "Complete coachF's content. Make sure your counseling score is high, check your phone, and hope that someday the volleyball team will have more content.", image: "images/coach/coachPT.png",},
 	
 	//index:"droupout-mod", frame: "ultraRare", name: "", requirements: "?trust dropout 100;", description: "", image: "images//PT.png",},
