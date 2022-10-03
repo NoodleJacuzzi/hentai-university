@@ -514,6 +514,7 @@ function startup() {
 	}
 	//Check if the player has any new achievements (mostly for testing new ones)
 	checkForAchievements();
+	loadCoreCharacters();
 }
 
 function basicDefinitions() {

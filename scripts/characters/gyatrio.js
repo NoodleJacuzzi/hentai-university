@@ -25,7 +25,7 @@ var newItems = [
 ];
 
 var encounterArray = [//Lists encounters as they appear on the map. Nonrepeatable, only one per day per character by default.
-	{index: "intro3Repeat", name: "Find those girls again", requirements: "?location playerHouse; ?time Night; ?trust gyatrio 0;", altName: "", altImage: "",},
+	{index: "intro3Repeat", name: "Find those girls again", requirements: "?location playerHouse; ?time Night; ?trust gyatrio -1;", altName: "", altImage: "",},
 	{index: "gingerTalk1A", name: "You spy Ginger meandering around", requirements: "?trust gyatrio 1; ?time MorningEvening; ?location schoolEntrance;", altName: "", altImage: "images/gyaginger/gyaginger.jpg",},
 	{index: "gingerTalk2", name: "Ginger is here", requirements: "?trust gyatrio 2; ?time MorningEvening; ?location shoppingDistrict;", altName: "", altImage: "images/gyaginger/gyaginger.jpg",},
 	{index: "gingerTalk3", name: "Ginger is here", requirements: "?trust gyatrio 3; ?time MorningEvening; ?location apartmentOutside;", altName: "", altImage: "images/gyaginger/gyaginger.jpg",},
@@ -91,6 +91,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 			addFlag("mom", "pop3");
 			//var goof = {index: "gyatrio", fName: "Delinquent", lName: "Trio", trust: 0, encountered: false, textEvent: "", met: false, color: "#EA4448", author: "NoodleJacuzzi", artist: "Uo Denim", textHistory: "", unreadText: false,};
 			//data.story.push(goof);
+			setTrust("gyatrio", -1);
 			writeText("The sun has set and the streetlights fizzle on. It'd be best to head home now, otherwise you'll have trouble getting up on time tomorrow.");
 			writeText("So, you begin to walk home, only to be interrupted on the street.");
 			writeBig("images/gyatrio/profile.jpg");

@@ -54,7 +54,6 @@ function writeEncounter(scene) {
 			var bg = "scripts/gamefiles/logo2.png";
 			document.getElementById('wrapperBG').style.backgroundImage = "url("+bg+")";
 			writeBig("scripts/gamefiles/logo2.png");
-			writeCenteredText("<span id = 'versionCheck'></span>");
 			writeCenteredText("Hentai University is an adult game created by NoodleJacuuzi and Captain Cryptogreek. You can find and keep up with all NoodleJacuzzi's games, including Human Alteration App, Anomaly Vault, Bitch Medicenter, and Rainy DayZ at the master index here: <a href='https://noodlejacuzzi.github.io/index.html'>Noodle Jacuzzi's Index</a>.");
 			writeCenteredText("You can find more of Captain Cryptogreek's work here: <a href='https://www.reddit.com/user/CaptainCryptogreek'>Captain Cryptogreek on Reddit</a>");
 			writeCenteredText("Before you begin, please review this short list of other notes and disable content as you please:");
