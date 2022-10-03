@@ -937,9 +937,14 @@ function printEncounterTabFollowup(name, scene, text, altImage, altName) {
 		var cancelTab = false;
 		//Check the list of printed encounters to prevent duplicates
 		for (encounterIndex = 0; encounterIndex < listOfPrintedEncounters.length; encounterIndex++) {
-			if (listOfPrintedEncounters[encounterIndex] == name && listOfPrintedEncounters[encounterIndex] != "principal") {
-				console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!Repeat offender detected! "+name+" has already been printed!!!!!! See here: "+listOfPrintedEncounters);
-				cancelTab = true;
+			if (listOfPrintedEncounters[encounterIndex] == name) {
+				if (listOfPrintedEncounters[encounterIndex] == "principal" && data.player.location.includes("sepia") == true) {
+					console.info("Repeat exemption for Victoria enabled for sepia location");
+				}
+				else {
+					console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!Repeat offender detected! "+name+" has already been printed!!!!!! See here: "+listOfPrintedEncounters);
+					cancelTab = true;
+				}
 			}
 		}
 		//Set name and image
@@ -2454,7 +2459,7 @@ function writeSpeech (name, img, text, altName, altColor) {
 		text = eggyLines[Math.floor(Math.random() * eggyLines.length)];
 		finalImg = "scripts/gamefiles/profiles/egg.jpg";
 	}
-	console.info("Now printing "+finalName+" with the image "+finalImg+"");
+	console.log("Now printing "+finalName+" with the image "+finalImg+"");
 	//Output the speech in the assigned style.
 	switch (data.player.style) {
 		case "lobotomy": {
