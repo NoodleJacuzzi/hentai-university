@@ -423,6 +423,7 @@ function writeEncounter(scene) {
 			if (failureToRead == true) {
 				reminderFontSize += 50;
 				writeText("<span style='font-size: "+reminderFontSize+"%'>You have one or more unread text messages!</span>");
+				document.getElementById('phoneButton').style.color = "#0F0";
 			}
 			else {
 				reminderFontSize = 100;

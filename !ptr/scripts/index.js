@@ -3518,7 +3518,7 @@ function generateWindow(type) {
 					</div>
 				`;
 			}
-			if (data.player.currentScene != "") {
+			if (data.player.currentScene != "" && data.player.currentScene != "newDay") {
 				generateWindow("warning");
 			}
 			break;
@@ -3569,7 +3569,7 @@ function generateWindow(type) {
 				<div class = "logbookRight" id = "phoneRight">
 				</div>
 			`;
-				generateContacts();
+			generateContacts();
 			break;
 		}
 		case "inventory": {
@@ -3811,6 +3811,8 @@ function loadSlot(slot) {
 		}
 	}
 	deleteWindow();
+	document.getElementById('phoneButton').style.color = "#CCCCCC";
+	document.getElementById('logButton').style.color = "#CCCCCC";
 }
 
 function saveFile(){
@@ -4224,7 +4226,7 @@ function checkForAchievements() {
 }
 
 function generateNav(target) {
-	if (data.player.currentScene == "") {
+	if (data.player.currentScene == "" || data.player.currentScene == "newDay") {
 		deleteWindow();
 		generateWindow("logbook");
 		document.getElementById('logbookLeft').innerHTML = '';
@@ -4267,7 +4269,7 @@ function generateNav(target) {
 
 function loadAchievements() {
 	//generateWindow("logbook");
-	//document.getElementById('logButton').style.color = "#FFFFFF";
+	document.getElementById('logButton').style.color = "#FFFFFF";
 	var achievementsPrinted = 0;
 	var redColor = `linear-gradient(306deg, rgba(2,0,36,1) 0%, rgba(121, 9, 104,1) 13%, rgba(228, 119, 255,1) 100%);`;
 	var blueColor = `linear-gradient(306deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 9%, rgba(0,212,255,1) 100%);`;
@@ -4702,8 +4704,9 @@ function loadPhoneEvent(js, name) {
 
 function notification(name) {
 	writeText("Bzzt! You got a text from "+fName(name)+"!");
-	document.getElementById('phoneButton').innerHTML = "PHONE(*)";
-	document.getElementById('phoneButtonMobile').innerHTML = "PHONE(*)";
+	document.getElementById('phoneButton').style.color = "#0F0";
+	document.getElementById('phoneButton').innerHTML = "PHONE";
+	document.getElementById('phoneButtonMobile').innerHTML = "PHONE";
 }
 
 function writePhoneSpeech (name, img, text) {
@@ -4856,6 +4859,7 @@ function generateContacts() {
 	else {
 		document.getElementById('windowTitle').innerHTML = "PHONE";
 	}
+	document.getElementById('phoneButton').style.color = "#CCCCCC";
 	if (imagesDisabled != true) {
 		document.getElementById('phoneLeft').innerHTML += `<p class = "logbookSwitch" onclick = "phoneImages()">Saved Images</p>`;
 	}
