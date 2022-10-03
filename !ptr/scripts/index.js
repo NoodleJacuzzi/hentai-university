@@ -3479,7 +3479,7 @@ function generateWindow(type) {
 			if (checkItem('Ghost AR') == true) {
 				document.getElementById('phoneSelectionMenu').innerHTML += `
 					<div class = "textBox" style="border 3px solid #FFFFFF" onclick = "ghostAR()">
-						<img class = "textThumb" src = "images/ghosts/maudlin.png">
+						<img class = "textThumb" src = "images/ghosts/Maudlin.png">
 						<div class="textBoxContent">
 							<span style = "color: #FFFFFF;" class = "selectionMenuText">Ghost AR</span>
 						</div>
