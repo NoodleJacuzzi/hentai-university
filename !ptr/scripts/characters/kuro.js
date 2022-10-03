@@ -3291,7 +3291,7 @@ function writePhoneEvent(name) { //Plays the relevant phone event
 					writePhoneSpeech("kuro", "", "You've finished all of "+fName('kuro')+"'s content for this version, congratulations!");
 				}
 				else{
-					hideStuff();
+					deleteWindow();
 					writeEvent("kuroMoney1");
 					writeEvent("kuroMoney2");
 					document.getElementById('output').innerHTML = '';

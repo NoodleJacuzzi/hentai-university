@@ -447,6 +447,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 			break;
 		}
 		case "emotionlessHumilQuo": {
+			deleteWindow();
 			writeHTML(`
 				im 083.jpg
 				t What are you calling emotionlessF over for today?
@@ -455,7 +456,6 @@ function writeEncounter(name) { //Plays the actual encounter.
 				trans emotionlessHumilRepeat2; More sex ?flag emotionless emotionlessHumil2;
 				trans cancel; Change your mind
 			`);
-			hideStuff();
 			break;
 		}
 		case "emotionlessHumil1": {

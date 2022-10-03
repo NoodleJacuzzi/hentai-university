@@ -1624,7 +1624,7 @@ function writePhoneEvent(name) { //Plays the relevant phone event
 				writePhoneSpeech("mistress", "", "You've finished all of "+data.story[6].fName+"'s content for this version, congratulations!");
 			}
 			else{
-				hideStuff();
+				deleteWindow();
 				writeEvent("mistress2");
 				writeEvent("mistress3");
 				document.getElementById('output').innerHTML = '';
