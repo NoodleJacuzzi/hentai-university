@@ -825,7 +825,7 @@ function writeEncounter(scene) {
 				}
 			}
 			else {
-				if (checkBody("joker") != true) {
+				if (checkBody("jokette") != true) {
 					var goof = {index: "jokette", artist: "Art by gau aka ggg",};
 					data.bodytypes.push(goof);
 					writeSpecial("The book's contents reminds you of the importance of freedom. You unlocked a new bodytype! Change via the wardrobe.");

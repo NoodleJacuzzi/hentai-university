@@ -4798,7 +4798,7 @@ function writePhoneChoices (text1, text2, text3) {
 
 function phoneChoice(n) {
 	document.getElementById('phoneRight').innerHTML = '';
-	data.story[data.player.lastText].textEvent = n;
+	data.story[data.player.lastText].textEvent += n;
 	writePhoneEvent(data.story[data.player.lastText].textEvent);
 }
 
