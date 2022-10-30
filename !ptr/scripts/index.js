@@ -3491,6 +3491,16 @@ function generateWindow(type) {
 					</div>
 				`;
 			}
+			if (checkItem('Ghost AR') == true) {
+				document.getElementById('phoneSelectionMenu').innerHTML += `
+					<div class = "textBox" style="border 3px solid #FFFFFF" onclick = "ghostAR()">
+						<img class = "textThumb" src = "scripts/gamefiles/images/app.png">
+						<div class="textBoxContent">
+							<span style = "color: #FFFFFF;" class = "selectionMenuText">D. Control</span>
+						</div>
+					</div>
+				`;
+			}
 			if (data.player.pervert == true) {
 				var P = "P";
 			}

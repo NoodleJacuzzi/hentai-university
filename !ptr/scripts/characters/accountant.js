@@ -23,6 +23,7 @@ var encounterArray = [//Lists encounters as they appear on the map. Nonrepeatabl
     {index: "accountantI", name: "Look for accountant.", location: 'teacherLounge', time: "Evening", itemReq: "", trustMin: 5, trustMax: 5, top: 0, left: 0, day: "both",},
     {index: "accountantIIa", name: "accountant is here.", location: 'teacherLounge', time: "Evening", itemReq: "", trustMin: 15, trustMax: 15, top: 0, left: 0, day: "both",},
     {index: "accountantIIb", name: "accountant is here.", location: 'teacherLounge', time: "Evening", itemReq: "", trustMin: 20, trustMax: 20, top: 0, left: 0, day: "both",},
+    {index: "accountantIII", name: "Look for accountant.", location: 'teacherLounge', time: "Evening", itemReq: "", trustMin: 30, trustMax: 30, top: 0, left: 0, day: "both",},
 ];
 
 function writeEncounter(name) { //Plays the actual encounter.
@@ -400,10 +401,47 @@ function writeEncounter(name) { //Plays the actual encounter.
             writeFunction("changeLocation(data.player.location)", "Finish");
 			break;
 		}
-        case "": {
+        case "accountantIII": {
 			writeHTML(`
-				
+				t You take a step inside the teachers' lounge, eager to see accountantF again. However you can't find anyone inside, not even someone you could ask about her.
+                player Well, looks like luck's not on my side today. Maybe I should climb up to the roof and watch the sunset? I could use some "me time" right now...
+                t With that in mind you head to the stairs to the roof, only to be stopped by a semi-loud "psst!" from behind after a few steps.
+                player <i>...There goes my "me time"</i> Who is it?
+                t At least you could make out where the voice was coming from, as you turn around you see a pair of eyes looking at you from inside the archive room.
+                player accountantF?
+                acco Hello, would you be so kind to help me out here? I'm having a little trouble.
+                player Well since you asked nicely.
+                t As you step inside the first thing you do is to instinctively reach for the light switch, which is enough for you to understand what's wrong.
+                player A blackout? No that can't be, the digital clock on the hall is working fine.
+                acco The old lights died on me while I was looking for a file in the archives, I have reported the lights were going to die out any minute to Ms. principalF two days ago and we're expecting them to be replaced tomorrow.
+                t She stops with an upset look on her face.
+                acco Unfortunately I need that file today, I could use my phone's flash for the job but I'm dangerously low on battery. What I'm trying to say is could you borrow me your phone for five minutes?
+                player ...To be fair, this is not what I expected when you asked to meet me in a dark room.
+                acco Would it help if I put my hands together and tilted my head to say "pleaaaase"?
+                player I- What the fuck? This was almost funny.
+                t She raises her head a little with her hands on her waist.
+                acco It was meant to be amusing. And just so you know I would prefer doing "it" in a decently lit place, especially my home, which is where I'll be going once I find the file I mentioned.
+                t She extends her right hand towards you, and continues with a more demanding tone in her voice.
+                acco You're more than welcome to come with me, if I can just borrow your light for a minute.
+                t You reach to your pocket and grab your phone, the moment you turn on its flash she just snatches it out of your hand with a quiet "thanks!" and runs off into the darker corners of the room.
+                t You take a step forward with the intention of helping her, only to stop when you realize you don't even know which file she's looking for. Fortunately there is a chair next to the door so you can just sit down as you wait.
+                acco H...I...J! Alright I found the J's! <font size= '-1'>Janna...Jasmine...Jenkins...J-</font> A-ha! Here it is!  
+                t She returns your phone quickly, with a small kiss on your cheek.
+                acco We can go home now, I got what I wanted.
+                player Whose file were you even looking for anyway?
+                acco Consider that kiss a bribe to not ask me that question. I might tell you when the time is right.
+                player But-
+                acco I think I deserve to keep secrets now and then, especially when they are personal.
+                t You nod, there's no point in insisting when she is not willing to tell you anyway. You let her lead the way to her car once again, and prepare yourself for what's going to happen once you two get home.
+                trans accountant3; name Continue;
 			`);
+			break;
+		}
+        case "accountant3": {
+            passTime();
+			writeEvent(name);
+            setTrust("accountant", 40);
+            writeFunction("changeLocation(data.player.location)", "Finish");
 			break;
 		}
         case "": {
@@ -475,7 +513,7 @@ var eventArray = [
 	{index: "accountant1", name: "Inconvenience"},
     {index: "accountant2a", name: "Experiment"},
     {index: "accountant2b", name: "Agreement"},
-    {index: "accountant3", name: ""}, 
+    {index: "accountant3", name: "Benefits"}, 
     {index: "accountant4", name: ""},
     {index: "accountant5", name: ""}, 
     {index: "accountant6", name: ""},
@@ -602,6 +640,57 @@ function writeEvent(name) { //Plays the actual event.
                 accoa No *sir, I will not change my mind this easily, I can even offer you a ride back home.
                 player Good girl~
                 t Even with your back turned, you can still hear her yelp at the word. After which you leave her home to make your way to yours.
+			`);
+			break;
+		}
+        case "accountant3": {
+			writeHTML(`
+                define acco = sp accountant;
+                define accoa = sp accountant; im images/accountant/accoa.jpg; altColor #959595;
+				t It doesn't take long until she finally stops the car in front of her house and gets out slowly. Pulling her keys out of her purse as she takes her time walking to the door.
+                player Something in your mind? 
+                acco It's nothing, I was just thinking of what to do once you're gone.
+                player And?
+                acco I couldn't think of anything good, I think I will give it another thought once we are done.
+                t She pushes the door open and walks inside, you can't really put your finger on it but she is a little different tonight.
+                t ...
+                player So, are you ready?
+                accoa I am ready, don't worry about me.
+                im 3a.jpg
+                accoa ...And let me worry for myself instead. Because that looks like it's gonna be painful.
+                player I can just keep it gentle if you want.
+                accoa Again, let me worry for myself. I like to experiment and that includes testing my limits. <b>So do as you please~</b>
+                im 3b.jpg
+                accoa Mmm...
+                t Now that you can finally stop going easy on her, you see no reason not to do so. You firmly hold both of her legs as you keep thrusting yourself deep inside her.
+                im 3c.jpg
+                accoa ...Hnn~ O-okay.
+                player Hm? 
+                accoa I... Just noticed I may have asked for way more than I can handle.
+                player Oh yeah, you did.
+                im 3e.jpg
+                accoa NNNH..!
+                player Doesn't mean I'll stop, though.
+                accoa <i>...Sounds fun.</i>
+                t There is not another word neither of you can say now, just little groans and moans escaping your mouths occasionally as you ride the wave of pleasure. Even though she's not the most expressive person you know in her casual life, she's not holding back any noises she can make right now.
+                t It only takes you a few minutes to feel that you're getting close to reaching your climax, and the same could be said about her given the way how she keeps squirming with your each thrust.
+                player accountantF... I'm about to-
+                accoa Huff... Don't waste your breath and do it already! Just... Cum!
+                t And right as she finishes you do, just to almost collapse with all the tiredness suddenly hitting you.
+                im 3f.jpg
+                accoa Mmmhh... I- I am sorry.
+                player Huh?
+                accoa You almost collapsed and I couldn't even raise a hand to try preventing it, I apologize.
+                player I didn't expect you to though.
+                accoa The bathroom is across the hall, make sure you don't take too long in there.
+                player Jeez, okay boss, whatever you say.
+                t You then grab a towel and enjoy the warm water before she drives you back home, it's actually pretty nice to not walk your way back every once in a while!
+			`);
+			break;
+		}
+        case "": {
+			writeHTML(`
+				
 			`);
 			break;
 		}
