@@ -55,7 +55,7 @@ function writeEvent(name) { //Plays the actual event.
 			writeBig("images/pornstar/1-3.jpg", "Art by Oreteki");
 			writeText("You collapse backwards, spent.");
 			if (data.player.gender == "man") {
-				writeSpeech("pornstar", "", "Spectacular! Keep that energy up on camera and my daughter will be a star~!<br>Mmm, and so virile. Maybe I should take you home. My husband does love watching men in glasses.");
+				writeSpeech("pornstar", "", "Spectacular! Keep that energy up on camera and my daughter will be a star~!<br>Mmm, and so virile. Maybe I should take you home. My husband does love watching *men in glasses.");
 			}
 			else {
 				writeSpeech("pornstar", "", "Spectacular! Keep that energy up on camera and my daughter will be a star~!<br>Mmm, and so virile. Maybe I should take you home. My husband does love watching big-dicked women in glasses.");
