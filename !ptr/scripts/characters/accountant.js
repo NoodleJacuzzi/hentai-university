@@ -24,6 +24,9 @@ var encounterArray = [//Lists encounters as they appear on the map. Nonrepeatabl
     {index: "accountantIIa", name: "accountant is here.", location: 'teacherLounge', time: "Evening", itemReq: "", trustMin: 15, trustMax: 15, top: 0, left: 0, day: "both",},
     {index: "accountantIIb", name: "accountant is here.", location: 'teacherLounge', time: "Evening", itemReq: "", trustMin: 20, trustMax: 20, top: 0, left: 0, day: "both",},
     {index: "accountantIII", name: "Look for accountant.", location: 'teacherLounge', time: "Evening", itemReq: "", trustMin: 30, trustMax: 30, top: 0, left: 0, day: "both",},
+    {index: "accountantDO", name: "Wait for accountant.", location: 'playerOffice', time: "Evening", itemReq: "", trustMin: 40, trustMax: 40, top: 0, left: 0, day: "both",},
+    {index: "accountantV", name: "Look for accountant.", location: 'teacherLounge', time: "Evening", itemReq: "", trustMin: 60, trustMax: 60, top: 0, left: 0, day: "both",},
+    //{index: "accountantbreak", name: "Look for accountant.", location: 'teacherLounge', time: "Evening", itemReq: "", trustMin: 80, trustMax: 80, top: 0, left: 0, day: "both",},
 ];
 
 function writeEncounter(name) { //Plays the actual encounter.
@@ -287,10 +290,7 @@ function writeEncounter(name) { //Plays the actual encounter.
                 acco I have to hang up, I will call you again later.<br>S-So, how much of it have you heard?
                 im umm.jpg
                 player The last few minutes, who were you talking to?
-                acco ...It is an old friend of mine, dropoutF. Do you recognize someone of that name? She's a prostitute if the name alone could not jog your memory.
-                t ?flag accountant chloe; You're a little befuddled by what you just heared, thinking of these two in the same room is enough to hurt your brain.
-                player I know a few, what kind of a "friend" is that anyway?
-                acco She's my old classmate, we are both graduates of this same school. Can't really call her a "graduate" though, she left the school on our last year despite all my warnings to chase her "dream".
+                acco ...It is an old friend of mine. One of my old classmates, we are both graduates of this same school. Can't really call her a "graduate" though, she left the school on our last year to "chase her dream".
                 player Her dream?
                 im nyeh.jpg
                 acco Can we talk about anything other than that fool? I am still a little angry.
@@ -352,10 +352,7 @@ function writeEncounter(name) { //Plays the actual encounter.
                 acco I have to hang up, I will call you again later.<br>S-So, how much of it have you heard?
                 im umm.jpg
                 player The last few minutes, who were you talking to?
-                acco ...It is an old friend of mine, dropoutF. Do you recognize someone of that name? She's a prostitute if the name alone could not jog your memory.
-                t ?flag accountant chloe; You're a little befuddled by what you just heared, thinking of these two in the same room is enough to hurt your brain.
-                player I know a few, what kind of a "friend" is that anyway?
-                acco She's my old classmate, we are both graduates of this same school. Can't really call her a "graduate" though, she left the school on our last year despite all my warnings to chase her "dream".
+                acco ...It is an old friend of mine. One of my old classmates, we are both graduates of this same school. Can't really call her a "graduate" though, she left the school on our last year to "chase her dream".
                 player Her dream?
                 im nyeh.jpg
                 acco Can we talk about anything other than that fool? I am still a little angry.
@@ -444,6 +441,252 @@ function writeEncounter(name) { //Plays the actual encounter.
             writeFunction("changeLocation(data.player.location)", "Finish");
 			break;
 		}
+        case "accountantDO": {
+			writeHTML(`
+				t Since your watch is telling you it's already evening and you can't think of anything to do, you decide to wait for accountantF in your office just like she asked. You sit down on your chair and stretch your arms a little, and just as you start trying to find something to distract yourself with you hear a knock on the door.
+                player Come in.
+                t She walks into your room without wasting another moment, just to stop in front of your desk.
+                player Why don't you take a seat?
+                acco I would rather standing, I have no plans on staying for too long anyway.
+                player Well? 
+                acco It is about the friend I told you about before, do you happen to know a prostitute named dropoutF?
+			`);
+            if(checkTrust("dropout") >= 10){
+                writeHTML(`
+				    player I do, actually, but what business could you even have with someone like her?
+                    t Her face lights up for a brief moment. 
+                    acco This is great news! Could you please take me to where she is? There is something I must talk to her about in person.
+                    player Can't you just ask her the address yourself?
+                    acco She won't tell me, I don't understand why but she just doesn't. I just have to give her a few things, please...
+                    t You sigh. 
+                    player Fine, <i>I hope this ends well</i>.
+                    trans accountantH; name Continue;
+                `);
+            }
+            else{
+                writeHTML(`
+				    player I don't, unfortunately, but what business could you even have with someone like her?
+                    acco Well I have my reasons, and since you can't help me with this one I'm afraid I can't really spend more time with you.
+                    t Even with that wording that doesn't even sound like a threat or anything, you can tell she's genuinely upset about it as well.
+                    player Well what are you going to do then?
+                    acco I guess I will wait for you to find her while also trying to do so myself? I am not sure.
+                    player Well... See you later then?
+                    acco Hopefully, bye.
+                    finish
+                `);
+            }
+			break;
+		}
+        case "accountantH": {
+			writeHTML(`
+				im car1.jpg
+                acco So this is the place? "Snowdrop Hotel", fair enough.
+                t You enter the building with her, the two workers don't seem to be around so you just help yourself upstairs and knock on her door.
+                player dropoutF! You there?
+			`);
+            if(checkTrust("dropout") == 100 && checkTrust("serious") >= 100){
+                writeHTML(`
+				    sp dropout; im images/none.png; HIDDENMy god those two useless goofballs..! Gimme a second hun!
+                    player Okay..?
+                    t You hear her talking with someone inside for a few seconds before the door eventually opens.
+                    im images/dropout/intro1.jpg
+                    dropout Welcome dear! Sorry for the inconvenience, I had to put on some-
+                `);
+            }
+            else{
+                writeHTML(`
+				    sp dropout; im images/none.png; HIDDENCouldn't those two be more useless.. I'm here hun!
+                    t She opens the door with a bright smile on her face.
+                    dropout Welcome dear! I'm happy you decided to pa-
+                `);
+            }
+            writeHTML(`
+				t All of her enthusiasm fades away before your eyes the moment she notices the friend you brought in.
+                dropout Oh great, hi accountantF...
+                acco Nice seeing you again, dropoutF.
+                t dropoutF gives you a mean look before welcoming you both in her room, it's just the same as you remember except for the maths textbook (the same one as you've seen other students holding) and a few pens.
+                dropout Well, accountantF? What was so important that you went so far as to get playerF to bring you here?
+                acco I got your documents, dropoutF. With these you should be able to apply for the program I told you about and return to school from grade four! You will have to attend school only one more year and then you will never have to do "this" again!
+                dropout And would you be so kind to tell me where I'm supposed to get the money for that, sweetheart?
+                t As you are trying to catch up with their conversation, accountantF pulls out an envelope out of her purse.
+                acco This should be enough, you can pay me back whenever you want.
+                t dropoutF looks down, and then in your eyes.
+                dropout Fine, I'll think about it. But I'd rather be left alone for now, all of this is too much to handle for me and-
+                acco Sure, C'mon playerF, let's go!
+                player ...Okay?
+                dropout ...
+                t The moment you two leave the room you can feel her tugging on your tie, literally dragging you outside. 
+                acco Excellent excellent excellent! It's all going so swimmingly I can hardly believe it!
+                player Excuse me but what the hell are you talking about? And why did I have to witness that conversation?
+                acco Oh.
+                im come.jpg
+                acco I thought it was clear enough? You will help me convince her to return to the school?
+                player And why should I?
+                t She shakes her head.
+                acco Do I really have to explain? If she returns to school she won't have to <font size= '-1'>sell her body</font> anymore.
+                player And?
+                acco Blast! You're really thickheaded.
+                t She takes a deep breath.
+                acco Sorry, what I am saying is if she returns to school and stops prostituting then that means you will be the only person to "have fun" with her, only you!<br>Additionally you will have my thanks, and I will make sure to show it in a way you love.
+                player I see, can you stop pulling my tie now? I can walk on my own.
+                acco Oh- I'm sorry.
+                t She starts her car as you sit next to her.
+                player So, what now?
+                acco I was thinking about giving you an example on how I show my gratitude.
+                player Sounds good to me, so we're going back to your home?
+                acco Actually...
+                trans accountant4; name Continue;
+            `);
+			break;
+		}
+        case "accountant4": {
+            passTime();
+			writeEvent(name);
+            setTrust("accountant", 60);
+            writeFunction("changeLocation(data.player.location)", "Finish");
+			break;
+		}
+        case "accountantV": {
+			writeHTML(`
+				t As usual, she is not where you expect her to be. You sit down and wait for her when you hear your phone go *plink* with a notification.
+                player <i>"Come downstairs, I'm in the computer room"? Sure.</i>
+                t You take your time while making your way to the computer room, it's not like you have to hurry everywhere after all. When you finally get there you find accountantF sitting in front of a computer giggling.
+                acco Hey playerF! Come look at this!
+                t You take a chair and sit next to her only to find a weird looking application named "Your name means" on the screen.
+                player And what is that supposed to be?
+                acco Apparently, this is an application that tells you what your name means, but it looks so weird and gives such funny answers that I think the intern working here coded it.
+                player Well that's interesting, what names did you try?
+                t She gestures at herself.
+                acco My own of course! I tried accountantF and look.
+                t She types her own name on the tiny text box that's not even centered properly on the screen and points at the result: "accountantF: I don't know what to name my child so I guess I will go with this". Just one look at her face is enough for you to join her laughter.
+                player Try mine next, I want to know what he said about me.
+                acco "playerF: pay me a visit sometime, emoticon heart(<3)". Huh?
+                player ...Yeah let's ignore that, how about principalF?
+                acco "principalF: someone nice enough to not kick me out of the school for pulling a prank like this, colon three(:3)". Looks like he did NOT want to test his luck here.
+                t Sure, this is not what you are here for, but it wouldn't hurt to have some fun with her.
+                player Try Daniel, I wonder what he did for that name.
+                acco "Daniel: An AMAZING person everyone on the earth should love and/or respect". I believe we found our culprit.
+                player I think the program is a little biased huh?
+                acco Seems fair to me, I am going to bow down before our benevolent lord Daniel and pay my respects if you don't have anything else to say.
+                player Just out of curiosity, I want you to try one last name.
+                acco Sure, go ahead.
+                trans skye; name heartsF;
+                trans tia; name neetF;
+                trans val; name ayeyeF;
+			`);
+            if(checkTrust("serious") > 0){
+                writeHTML(`
+				    trans aaron; name seriousF;
+                `);
+            }
+            if(checkTrust("intern") > 100){
+                writeHTML(`
+				    trans theo; name Theodore;
+                `);
+            }
+			break;
+		}
+        case "skye": {
+			writeHTML(`
+				player heartsF.
+                acco heartsF? Like heartsF heartsL?
+                player Yeah, I wonder what her name "means".
+                acco Okay, here goes. "heartsF: Stupid but in a hot way, annoying but fun." I had tried a bunch of random names and it usually gives out the answer as "Silly person who looked up a lame name", so he actually wrote this himself instead of defining it with a code.
+                player These two could be good friends you know.
+                acco No doubt, Ms. heartsL is a nice girl.
+                t She turns the computer off.
+                acco Well, I believe it's high time we made our way back to my home.
+                player Sounds fun.
+                acco I'm exhausted though, there won't be much happening today.
+                trans accountant5; name Continue;
+			`);
+			break;
+		}
+        case "tia": {
+			writeHTML(`
+				player neetF.
+                t You hear a soft yawn from across the room.
+                neet Hmm? 
+                player ...Forgot you could be here, just go back to your nap neetF.
+                t She shrugs and lays back down, leaving you two "alone" again.
+                acco ...Okay then, let's try it. "neetF: Hiya boss, have a good day! o slash(o/)"? 
+                player This was simple but weird.
+                acco My best bet is that she taught him how to code.
+                t She turns the computer off.
+                acco Well, I believe it's high time we made our way back to my home.
+                player Sounds fun.
+                acco I'm exhausted though, there won't be much happening today.
+                trans accountant5; name Continue;
+			`);
+			break;
+		}
+        case "val": {
+			writeHTML(`
+				player ayeyeF.
+                t She starts rambling as she types.
+                acco Ooooh this should be fun, she is one of the most attractive students on the board so I think our little developer will try to find a way to imp-
+                t She REALLY struggles to hold her laughter as she reads the definition appearing on the screen.
+                acco "ayeyeF: Loud".
+                player I don't think this is an attempt to impress.
+                acco Not at all, this is the only one word definition I've seen.
+                t She turns the computer off.
+                acco Well, I believe it's high time we made our way back to my home.
+                player Sounds fun.
+                acco I'm exhausted though, there won't be much happening today.
+                trans accountant5; name Continue;
+			`);
+			break;
+		}
+        case "aaron": {
+			writeHTML(`
+				player seriousF.
+                acco Oh dear, you do know they don't like each other at all, right?
+                player I think they do, theirs look more like a love-hate relationship where both sides would cry for days if the other one died.
+                acco If you say so... Let's see, seriousF, enter-<br>My god, this is a pretty long list of insults...
+                t And it really is, a list of insults ranging from "ugly", "broke" and "stupid" to "fucking asshole", "piece of shit" fill five whole rows on the screen.
+                acco Hey, at least he wrote "still cute tho, love ya Lucky Luke <3" at the end, that's something.
+                player I told you, though this is not what I expected.
+                acco It sounds like they would strangle each other to death but occasionally kiss while doing so.
+                player ...I don't think they would kiss but they would definitely call each other pretty.
+                t She turns the computer off.
+                acco Well, I believe it's high time we made our way back to my home.
+                player Sounds fun.
+                acco I'm exhausted though, there won't be much happening today.
+                trans accountant5; name Continue;
+			`);
+			break;
+		}
+        case "theo": {
+			writeHTML(`
+				player Theodore.
+                acco Don't think I recognize that name, care to elaborate?
+                player Don't think I will, just enter it.
+                acco I will have to oblige then. Let's see..<br>"Theodore: A big moron who somehow gives the warmest hugs and is both the nicest and meanest person on this earth" Huh?
+                player ...That's actually sweet of him.
+                acco You know that Theo, don't you?
+                player I do, but the same way I don't question other people for dropoutF's old name, you better not push internF for information about that.
+                acco I don't really care about that kind of info anyway, that would be more seriousF's gang's concern.
+                t She turns the computer off.
+                acco Well, I believe it's high time we made our way back to my home.
+                player Sounds fun.
+                acco I'm exhausted though, there won't be much happening today.
+                trans accountant5; name Continue;
+			`);
+			break;
+		}
+        case "accountant5": {
+            passTime();
+			writeEvent(name);
+            setTrust("accountant", 80);
+            writeFunction("changeLocation(data.player.location)", "Finish");
+			break;
+		}
+        case "": {
+			writeHTML(`
+				
+			`);
+			break;
+		}
         case "": {
 			writeHTML(`
 				
@@ -514,9 +757,9 @@ var eventArray = [
     {index: "accountant2a", name: "Experiment"},
     {index: "accountant2b", name: "Agreement"},
     {index: "accountant3", name: "Benefits"}, 
-    {index: "accountant4", name: ""},
-    {index: "accountant5", name: ""}, 
-    {index: "accountant6", name: ""},
+    {index: "accountant4", name: "Partnership"},
+    {index: "accountant5", name: "Dedication"}, 
+    {index: "accountant6", name: "Climax"},
 ];
 
 function writeEvent(name) { //Plays the actual event.
@@ -680,7 +923,7 @@ function writeEvent(name) { //Plays the actual event.
                 im 3f.jpg
                 accoa Mmmhh... I- I am sorry.
                 player Huh?
-                accoa You almost collapsed and I couldn't even raise a hand to try preventing it, I apologize.
+                accoa You almost collapsed and I couldn't even raise a hand to try and prevent it, I apologize.
                 player I didn't expect you to though.
                 accoa The bathroom is across the hall, make sure you don't take too long in there.
                 player Jeez, okay boss, whatever you say.
@@ -688,15 +931,136 @@ function writeEvent(name) { //Plays the actual event.
 			`);
 			break;
 		}
-        case "": {
+        case "accountant4": {
 			writeHTML(`
-				
-			`);
+                define acco = sp accountant;
+                define accoa = sp accountant; im images/accountant/accoa.jpg; altColor #959595;
+                t After a bit of driving, she stops the car on a remote part of the town. You can't see anyone on the either side of the road, looks like she's had this in her mind for a while given how confident she is sliding her panties down.
+				acco Looks safe enough for me, but you're the expert.
+                player Yeah, I don't see anyone on either side of the road. And personally I have never been to this side of the town, I'm just finding out that it exists.
+                acco I believe I deserve a round of applause then.
+                im 4a.jpg
+                acco ...Sure, that also works.
+                player I'm waiting for it to work.
+                t She looks clueless for a second, trying to make heads and tails out of what you just said. And when she finally understands it she doesn't lose another moment to take you in her mouth.
+                im 4b.jpg
+                player That's better, now tell me when did you first think of taking me here?
+                t With a pop, she pulls your dick out of her mouth to give an answer. Her warm breath on your throbbing member makes your whole body shiver.
+                acco About two days ago, I decided to ask a student (I believe you know who I am talking about) for a place like this, he was pretty cooperative when I offered him some nice meal in return.
+                player So you had this planned.
+                im 4c.jpg
+                acco Living without a plan is much like walking around without any clothes, sometimes hot, never professional.
+                t She lets out a giggle before taking you back in her mouth, still laughing at her own joke while bobbing her head softly.
+                player And what exactly is so "hot" about it?
+                acco In a sense, it's being ready for whatever comes your way. You didn't have a plan today, only a goal, and I was that goal.
+                t She strokes your cock a little with one hand, preparing herself for what she will say next.
+                acco And I believe that was very <i>hot</i>.
+                t She starts moving both her hand and her head faster, letting her tongue swirl around your shaft.
+                acco <i>And it would be a lot hotter if I could just get you to fill my mouth-</i>
+                player I-
+                t Normally you can usually let out an "I'm gonna cum" or at least "I'm gonna-" when you are about to finish, but given her unusual determination and the sudden change in her pace...
+                im 4d.jpg 
+                t Even that "I" hardly escaped your mouth.
+                acco <i>Just like this~</i>
+                im 4e.jpg
+                player Fohhh~
+                im 4f.jpg
+                acco Do I look good like this?
+                player Really...
+                acco Good, now is there any chance you brought a condom with yourself?
+                t ...
+                t You can tell two things, one is that she definitely didn't enjoy that "no" you gave as an answer.
+                im 4g.jpg
+                t And two, it still was not enough to stop her.
+                acco This was bound to happen sooner or later, I should've taken those birth control pills.
+                player I mean I wouldn't mind doing it another time if that is the case.
+                acco I don't think you could be considered our protected sex example here. For once I choose to do now and worry later. 
+                player Yeah I respect that but don't you think your car's backseats are a little too crammed for that?
+                im 4h.jpg
+                t She sighs.
+                acco When I bought the car, I didn't buy it with the idea of getting piped in the back. Yes, I just said piped, now quit stalling!
+                player Well looks like it's the only way to stop you from beating me up so...
+                im 4i.jpg
+                t You can feel her relax a little.
+                acco A-Ah.. I wasn't going to beat you up I was just too pent up to keep waiting with my back turned.
+                player That was a joke.
+                acco Oh.
+                im 4j.jpg
+                t Her getting louder is not the first thing you would want while doing it in public, but so far it seems okay with no one coming around to investigate.
+                acco C-Can't be quiet... Damnit!
+                im 4k.jpg
+                acco Ahhh~ Yeshhh... I know it's foolish but I'll say it.
+                im 4l.jpg
+                acco <b>Having you raw feels so much better~!</b>
+                t You let go of her arms and push her against the door, letting yourself enjoy her tits while she keeps yelping and trying to quiet herself with no hope.
+                im 4m.jpg
+                acco A-Are you sure about this? I can see the road and I believe anyone passing by could see me.
+                player It'll be okay, you know there is no one around.
+                t Even though you say that you speed up a little, you don't have all day until someone in the town finally decides to use this road. Suddenly you feel her tighten around you with her body shaking.
+                acco I-I see headlights!
+                im 4n.jpg
+                player It's just a car passing by, they won't stop to look at you.
+                acco Yeah but what if-
+                player You know what, I'm tired of this.
+                t You start pushing yourself inside her even rougher, making her yelp as she tries to keep her moans in.
+                player What happened to the do now worry later huh?
+                acco playerF...
+                t A second of silence before you feel her tighten around you even more.
+                acco <b>FILL ME UP RIGHT NOW!</b>
+                t You couldn't say no even if you wanted, so you oblige just as the other car is passing by.
+                im 4o.jpg
+                acco Yehhss~
+                t Her body starts shaking as the realization of what she just did sets in.
+                acco playerF...
+                player Yes, accountantF?
+                im 4p.jpg
+                acco Try not to spill anything on the seats will you~
+                t Easy for her to say...
+            `);
 			break;
 		}
-        case "": {
+        case "accountant5": {
 			writeHTML(`
-				
+				define acco = sp accountant;
+                define accoa = sp accountant; im images/accountant/accoa.jpg; altColor #959595;
+                player Are you sure just this much will be enough?
+                accoa You sound like there is a problem?
+                im 5a.jpg
+                accoa You can't really say you don't like this, can you?
+                t You'd have to have lost your mind to say something like that, even the warmth from her breathing alone is enough to send a shudder down your spine, but still.
+                player I'm not saying this is any bad, will you be satisfied with just this much when we've been doing way more since the beginning??
+                accoa I'm not trying to have more and more every time though? All I want is something quick so I can enjoy it without getting more tired.
+                t You clench the bedsheets in your hands when she slowly moves her tongue along your length.
+                accoa And if you are that concerned with my performance, I can tell you our next time will be much better than this, much more intense~<br>But right now...
+                im 5b.jpg
+                accoa I think this suits our partnership better~
+                t She's not wrong. Sure, you are greedy, but making it more and more intense all the time would make it almost like a goal rather than something you are doing for your own enjoyment. So you just close your eyes and let her have it her way.
+                accoa That's better, you look more relaxed now. <font size= '-1'>And even pretty, dare I say.</font>
+                player Was that a confession?
+                accoa <i>Maybe.</i>
+                t You smile and stop talking to let her do her job easier, with her head bobbing up and down on your cock, you feel like you won't last much longer after just a few minutes.
+                player accountantF...
+                accoa Hm?
+                im 5c.jpg
+                accoa Oh, I see. Just let it out then~
+                t She takes it out of her mouth to start licking the same moment you blow your load, she looks a little confused at first.
+                im 5d.jpg
+                accoa Didn't think you were that close, to be honest~ A close call.
+                player Mmh... Didn't think you'd take it out to be honest.
+                accoa I didn't feel like doing it today, you know. Watching it spray out was really...
+                im 5e.jpg
+                accoa ...Maybe for the first time in my life, I can't seem to find a word to describe what I'm trying to say.
+                player Hot?
+                accoa Not the word I'm looking for, but it was if I'm being honest. But I have a question.
+                player Yeah?
+                t She looks away shyly for a moment before continuing.
+                accoa Did you enjoy it?
+                player I did, why do you even ask?
+                accoa I haven't done it the way you wanted, so I was anxious you wouldn't enjoy it as much as I did.
+                t You bring your hand near her face to caress it gently, she looks a little nervous about it at first but doesn't try to stop you.
+                player Well it's as you said, we can take it slow sometimes as well. It was really good regardless.
+                im 5f.jpg
+                accoa Eeeeeeeeee~
 			`);
 			break;
 		}
@@ -728,14 +1092,26 @@ function writeEvent(name) { //Plays the actual event.
 }
 
 var phoneArray = [//Lists the potential text events the player can receive at the start of the day, depending on their trust.
-	{index: "empty", requirements: "?trust principal 10000;"},
+	{index: "accorequest", trust: 40,},
+    {index: "incomplete", trust: 80,},
 ]
 
 function writePhoneEvent(name) { //Plays the relevant phone event
 	phoneRight.scrollTop = 0;
 	switch (name) {
-		case "placeholder": {
-			//Write the event's text here using writePhoneSpeech, writePhoneImage, and writePhoneChoices
+		case "accorequest": {
+			//Write the even(t's text here using writePhoneSpeech, writePhoneImage, and writePhoneChoices
+            writePhoneSpeech("accountant", "", "Good morning playerF.");
+            writePhoneSpeech("accountant", "", "Can we meet in your office today?");
+            writePhoneSpeech("player", "", "Huh? Sure but why?");
+            writePhoneSpeech("accountant", "", "I have something I want to tell you privately, I am sure you would understand.");
+            writePhoneSpeech("player", "", "Fine, when should I expect you to come around?");
+            writePhoneSpeech("accountant", "", "Evening should be fine, see you later.");
+            writePhoneSpeech("player", "", "Okay, bye!");
+			break;
+		}
+        case "accorequest": {
+			writePhoneSpeech("accountant", "", "You have reached the current end for accountantF's content, but don't worry, more will come with the next update (hopefully, writing hasn't been as much fun as it used to be lately)! Hope you enjoyed it.");
 			break;
 		}
 		default: {

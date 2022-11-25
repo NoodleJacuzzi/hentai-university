@@ -409,6 +409,7 @@ var coreCharactersArray = [
 	{index: "starlet", fName: "Lana", lName: "Cummings", trust: 0, encountered: false, textEvent: "", met: false, color: "#FDDC95", author: "NoodleJacuzzi", artist: "Oreteki18kin", textHistory: "", unreadText: false, gender: "female",},
 	{index: "pornstar", fName: "Andrea", lName: "Cummings", trust: 0, encountered: false, textEvent: "", textHistory: "", met: false, color: "#454857", author: "NoodleJacuzzi", artist: "Oreteki18kin", gender: "female",},
 	{index: "gyatrio", fName: "Delinquent", lName: "Trio", trust: 0, encountered: false, textEvent: "", met: false, color: "#EA4448", author: "NoodleJacuzzi", artist: "Uo Denim", textHistory: "", unreadText: false, gender: "female",}
+	{index: "fiend", fName: "Abba", lName: "", trust: 0, encountered: false, textEvent: "", met: false, color: "#AE8492", author: "NoodleJacuzzi", artist: "Silver Radish", textHistory: "", unreadText: false, gender: "female",}
 ]
 
 var eggyLines = [
@@ -3491,9 +3492,9 @@ function generateWindow(type) {
 					</div>
 				`;
 			}
-			if (checkItem('Ghost AR') == true) {
+			if (checkItem('Demon Control') == true) {
 				document.getElementById('phoneSelectionMenu').innerHTML += `
-					<div class = "textBox" style="border 3px solid #FFFFFF" onclick = "ghostAR()">
+					<div class = "textBox" style="border 3px solid #FFFFFF" onclick = "fiendControl()">
 						<img class = "textThumb" src = "scripts/gamefiles/images/app.png">
 						<div class="textBoxContent">
 							<span style = "color: #FFFFFF;" class = "selectionMenuText">D. Control</span>
