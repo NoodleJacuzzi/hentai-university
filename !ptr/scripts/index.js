@@ -408,8 +408,8 @@ var coreCharactersArray = [
 	{index: "demon", fName: "Meph", lName: "", trust: 0, encountered: false, textEvent: "", met: false, color: "#9D5C3E", author: "NoodleJacuzzi", artist: "Gujira 4 Gou", textHistory: "", unreadText: false, gender: "male",},
 	{index: "starlet", fName: "Lana", lName: "Cummings", trust: 0, encountered: false, textEvent: "", met: false, color: "#FDDC95", author: "NoodleJacuzzi", artist: "Oreteki18kin", textHistory: "", unreadText: false, gender: "female",},
 	{index: "pornstar", fName: "Andrea", lName: "Cummings", trust: 0, encountered: false, textEvent: "", textHistory: "", met: false, color: "#454857", author: "NoodleJacuzzi", artist: "Oreteki18kin", gender: "female",},
-	{index: "gyatrio", fName: "Delinquent", lName: "Trio", trust: 0, encountered: false, textEvent: "", met: false, color: "#EA4448", author: "NoodleJacuzzi", artist: "Uo Denim", textHistory: "", unreadText: false, gender: "female",}
-	{index: "fiend", fName: "Abba", lName: "", trust: 0, encountered: false, textEvent: "", met: false, color: "#AE8492", author: "NoodleJacuzzi", artist: "Silver Radish", textHistory: "", unreadText: false, gender: "female",}
+	{index: "gyatrio", fName: "Delinquent", lName: "Trio", trust: 0, encountered: false, textEvent: "", met: false, color: "#EA4448", author: "NoodleJacuzzi", artist: "Uo Denim", textHistory: "", unreadText: false, gender: "female",},
+	{index: "fiend", fName: "Abba", lName: "", trust: 0, encountered: false, textEvent: "", met: false, color: "#AE8492", author: "NoodleJacuzzi", artist: "Silver Radish", textHistory: "", unreadText: false, gender: "female",},
 ]
 
 var eggyLines = [
