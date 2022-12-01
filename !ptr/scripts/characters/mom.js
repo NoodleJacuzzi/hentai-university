@@ -915,7 +915,16 @@ function writeEvent(name) { //Plays the actual event.
 		}
 		case "momBath": {
 			writeHTML(`
+				t You decide to take momF with you to the mikoL bathhouse. Hopefully the corruptive waters there will awaken something fun inside of her.
+				t ...
 				im 007.jpg
+				mom Alright, we're here.
+				player Damn, you look amazing.
+				mom Mmm... Just don't go too crazy, alright? The staff here definitely seems a lot more... <i>Open</i>, but I'm not some kind of weirdo exhibitionist. Just settle for looking until we get home, alright?
+				player If you say so.
+				mom Good. Now, the mom wanted to see me first. By the way, does the air here seem a bit... Thick?
+				player It's a bathhouse, momF.
+				mom Right, right. Probably nothing...
 				t ...
 				im 079.jpg
 				im 086.jpg
