@@ -932,17 +932,45 @@ function writeEvent(name) { //Plays the actual event.
 			writeHTML(`
 				t You decide to take purpleF and chubbyF with you to the mikoL bathhouse. Hopefully the corruptive waters there will awaken something fun inside of her.
 				t ...
-				im 022.jpg
-				im 027.jpg
-				t ...
 				t You relax in the pool, the warm waters soothe your weary soul.
 				t ... Or something like that.
 				player Hot water is nice, but it certainly does empty the head.
+				purple In here?
+				define purple = sp purple; im images/purple/purpleP.jpg;
+				define chubby = sp chubby; im images/chubby/chubbyP.jpg;
+				im 022.jpg
+				chubby Ah, I found him!
+				im 027.jpg
+				purple There you are! These attendants are really handsy, aren't they?
+				chubby I think itakoF was just excited to meet someone her own age. You two could be friends.
+				purple Yeah yeah, I think you and mikoF seemed a lot closer. So playerF, did you...?
+				player Yeah, they're with me.
+				purple Nice! That means no need to hold back, huh?
+				chubby Eh? Here? In public? But what if someone-<br>Ahh~!
+				t ...
 				im purpleBathRepeat.jpg
+				purple Cmon! Mom's tits feel great, right? Don't you wanna cum? Splurt aaaaall over her face? 
+				chubby W-why are you... Encouraging *him so much?
+				purple Because the sooner he blows his load on you, the sooner he'll be railing me! 
+				chubby Ehhhh...
+				player How selfless of you, purpleF. Alright, I won't make you wait long.
 				im 032.jpg
+				chubby Ohh...
+				purple Your breasts totally swallow up the whole thing! Cmon, help me squeeze!
+				chubby F-feels so good~
+				t The waters don't seem to be affecting them directly too much, they're probably already fully bathed in lust and corruption already.
 				im 033.jpg
+				chubby Aaaah~!
+				purple Whoa~!
+				t You spray what must be ropes of sperm across chubbyF's face as she squirms beneath you, orgasming entirely from the sensations from her tits alone.
+				purple Hehe... You still got some left for me, I hope...
+				player I do. How about your favorite position?
+				purple Hell yeah~!
+				t ...
 				im 029.jpg
+				t While the waters didn't have much of an affect this time, they certainly have gotten a lot darker today.
 				im 030.jpg
+				t And your two pets certanly don't seem to mind helping with that.
 			`);
 			break;
 		}

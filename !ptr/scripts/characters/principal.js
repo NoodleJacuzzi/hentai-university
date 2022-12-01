@@ -2698,20 +2698,74 @@ function writeEvent(name) { //Plays the actual event.
 				t As she sees you, principalF stops in her tracks. Her smile doesn't fade though, it's like her brain hit a sudden hitch.
 				secretary playerF, hi. principalF, you alright? The air here feels-
 				principal Fine. I'm just... fine. Let's get in the water, my head's starting to hurt.
-				
-				im 112.jpg;
+				im 112.jpg
+				secretary W-whoa... The water's tingly...
+				principal So, playerF, the attendants seems to know you by name. Do you come here a lot?
+				player I bathe regularly, if that's what your asking.
+				principal Not what I was asking, but good to know.
+				t The waters take a lot longer than normal to have any effect on the duo, but eventually even principalF's iron soul starts to waver.
+				principal My, it's quite warm in here...
+				secretary Hah... Hah...
+				t Of course, secretaryF starts to fall prey to the corruption a lot sooner, but principalF's mind is too muddled by the water's effects to notice her secretary start masturbating.
+				t Eventually...
+				principal That's not how you do it~!
+				secretary principalF!
+				t The mikoL waters, muddied with the corruption of your soul have influenced principalF's mind and body. For her, it appears the bath's effects have altered her understanding of feeling clean and pure. Rather than break down her naturally fastidious tendencies, they are being swept up, and their course altered...
+				principal playerF, you'll help, right?
 				im baths1.jpg
+				secretary principalF... Something's... Wrong!
+				player Yeah, something is... principalF's throwing off the corruption in the pool. She's soaking it in, and it seems like the water's getting clearer. If that's the case...
 				im baths2.jpg
+				principal Hah~!
+				player I'll have to muddy it up again!
+				secretary principalF, I... He's having sex with you! Th-this is-
+				principal Hah~! N-no, silly! We're just... Washing... Ngh~!
 				im baths3.jpg
+				principal Ouuh~! Nothing more satisfying than a deep cleanse! 
+				secretary No, this is-
+				principal You need cleaning too!
+				t Completely drunk on dark energy, principalF dunks secretaryF's head under the corrupted waters with a carefree smile.
+				secretary *gllllg*... *PHWAAAH*!
+				t Coughing, secretaryF looks completely dazed, not the least bit helped by the fact that you keep slamming hips with the woman atop her.
+				principal Ohh~! Right there, there's an itch... I just... Can't... Hoh~!
+				t You let out a deep groan as you empty your balls into principalF, before wading a few steps back.
 				im baths4.jpg
+				principal Oh my! I feel... So rejuvinated, somehow...
+				secretary Ghh... 
 				im baths5.jpg
+				secretary Oh~!
+				t Urged on by the pool of dark energy beneath you, you feel like your limits have been broken!
 				im baths6.jpg
+				t And while principalF gently plays with herself, unaware of what exactly you've done, you're thrusting balls deep into her friend and confidant.
 				im baths7.jpg
+				t And at last, in the end the waters are darker than when you started.
 				t ...
 				im principalBathRepeat.jpg;
+				principal Hah~! You were right not to be worried.
+				secretary I was? Ah, right. The shampoo is really thick here though.
+				principal That's the beauty of it, I think.
+				miko Hello~? Are you two almost finished in there~?
+				itako Don't stay too long~! 
+				principal Ah, we should get going!
+				t The three of you step out of the water on wobbling legs.
+				principal Mmm, I'm a bit to relaxed, ahaha.
+				secretary Let's get changed. This outfit's comfortable, but... Hmm...
 				im 109.jpg
+				principal Ah, there we go. Thank you again for the invitation, playerF. I had a wonderful time.
+				secretary Yeah. Although I swear I slipped in the water at some point.
+				t It seems their memories are muddled, or they're in denial and the corruptive power of the water is aiding them in keeping the memories under.
+				player No problem. I'm exhausted.
+				miko Oh! Are you all leaving? We actually have a resting room if you need it, it's recently built. We've been experimenting with misting to give a nice environment for the skin.
+				principal Oh my, misting? With springwater this quality, I'm sure that'd feel wonderful!
+				secretary Yeah, let's go!
+				player ... My body's gonna fall apart at this rate, but what the hell.
 				t ...
+				t Your trip to the misting room was nice and relaxing.
 				im 125.jpg
+				t At first. Then the effects of breathing in corruptive ichor began to set in again, and the room quickly became a frenzy of fucking.
+				miko Please come again! We'll clean them up for you!
+				itako Take care~! Come visit us next time, maybe we could have a stay in the misting room too.
+				t And as you're waved off by the owners, you feel the accomplishment of a job well done wash over you.
 			`);
 			break;
 		}
