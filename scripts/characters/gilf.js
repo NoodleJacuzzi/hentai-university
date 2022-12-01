@@ -64,7 +64,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 		}
 		case "encounter2": {
 			writeHTML(`
-				t The moment you open the app, your phone explodes in light, revealing the ghost you captured from before floating in the air.
+				t The moment you open your phone, it explodes in light, revealing the ghost you captured from before floating in the air.
 				im 002.jpg
 				gilf F-finally!
 				player Oh hey, I guess I caught a real ghost that time.

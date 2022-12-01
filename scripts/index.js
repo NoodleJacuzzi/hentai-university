@@ -303,7 +303,7 @@ var achievementArray = [
 	{index:"haze1", frame: "ultraRare", name: "", requirements: "?flag haze haze3AGallery; ?flag haze haze3BGallery; ?flag haze haze4AGallery;", description: "View all of hazeF's content.", image: "images/haze/hazePT.png",},
 	{index:"pizza1", frame: "ultraRare", name: "", requirements: "?flag pizza complete;", description: "Get pizzaF's ending. If you can't find her, check outside your apartment in the morning.", image: "images/pizza/pizzaPT.png",},
 	
-	{index:"sports", frame: "ultraRare", name: "", requirements: "?trust sports 150;", description: "Complete sportF's content. Don't forget to check your phone!", image: "images/sports/sportsPT.png",},
+	{index:"sports", frame: "ultraRare", name: "", requirements: "?trust sports 150;", description: "Complete sportsF's content. Don't forget to check your phone!", image: "images/sports/sportsPT.png",},
 	{index:"coach", frame: "ultraRare", name: "", requirements: "?trust coach 200;", description: "Complete coachF's content. Make sure your counseling score is high, check your phone, and hope that someday the volleyball team will have more content.", image: "images/coach/coachPT.png",},
 	
 	//index:"droupout-mod", frame: "ultraRare", name: "", requirements: "?trust dropout 100;", description: "", image: "images//PT.png",},
@@ -312,7 +312,7 @@ var achievementArray = [
 	{index:"succubus1", frame: "vaporRare", name: "", requirements: "?flag succubus newCorruption;", description: "Chat with succubusF with a high corruption stat after meeting a certain big-shot demon, and learn the secrets of corruption.", image: "images/succubus/demonPT.png",},
 	{index:"succubus2", frame: "vaporRare", name: "", requirements: "?flag succubus complete;", description: "With succubusF's help, become the demon ruler of your own personal hellish harem.", image: "images/succubus/succubusPT.png",},
 	{index:"succubus3", frame: "", name: "", requirements: "?flag succubus newCorruption;", description: "Purify succubusF at priestF's church by chatting at low corruption, then go out drinking together with your batty familiar.", image: "images/succubus/056a.jpg",},
-	{index:"succubus4", frame: "vaporRare", name: "", requirements: "?trust tomgirl 666; ?trust fitboi 666; trust nagatoro 666;", description: "With succubusF's power, corrupt tomgirlF, nagatoroF, and fitboiF.", image: "images/succubus/demonT.png",},
+	{index:"succubus4", frame: "vaporRare", name: "", requirements: "?trustMin tomgirl 665; ?trustMin fitboi 665; ?trustMin nagatoro 665;", description: "With succubusF's power, corrupt tomgirlF, nagatoroF, and fitboiF.", image: "images/succubus/demonT.png",},
 	{index:"demon1", frame: "ultraRare", name: "", requirements: "?flag demon complete;", description: "See the darkest ending in demonF's hotel.", image: "images/demon/darkPT.png",},
 	{index:"demon2", frame: "ultraRare", name: "", requirements: "?flag demon goodBoi;", description: "Check a certain prince of hell after succubusF takes over his hotel.", image: "images/demon/demonPT.png",},
 	{index:"tomgirl1", frame: "ultraRare", name: "", requirements: "?flag tomgirl complete;", description: "Obtain tomgirlF's ending.", image: "images/tomgirl/tomgirlPT.png",},
@@ -408,7 +408,9 @@ var coreCharactersArray = [
 	{index: "demon", fName: "Meph", lName: "", trust: 0, encountered: false, textEvent: "", met: false, color: "#9D5C3E", author: "NoodleJacuzzi", artist: "Gujira 4 Gou", textHistory: "", unreadText: false, gender: "male",},
 	{index: "starlet", fName: "Lana", lName: "Cummings", trust: 0, encountered: false, textEvent: "", met: false, color: "#FDDC95", author: "NoodleJacuzzi", artist: "Oreteki18kin", textHistory: "", unreadText: false, gender: "female",},
 	{index: "pornstar", fName: "Andrea", lName: "Cummings", trust: 0, encountered: false, textEvent: "", textHistory: "", met: false, color: "#454857", author: "NoodleJacuzzi", artist: "Oreteki18kin", gender: "female",},
-	{index: "gyatrio", fName: "Delinquent", lName: "Trio", trust: 0, encountered: false, textEvent: "", met: false, color: "#EA4448", author: "NoodleJacuzzi", artist: "Uo Denim", textHistory: "", unreadText: false, gender: "female",}
+	{index: "gyatrio", fName: "Delinquent", lName: "Trio", trust: 0, encountered: false, textEvent: "", met: false, color: "#EA4448", author: "NoodleJacuzzi", artist: "Uo Denim", textHistory: "", unreadText: false, gender: "female",},
+	{index: "fiend", fName: "Abba", lName: "", trust: 0, encountered: false, textEvent: "", met: false, color: "#AE8492", author: "NoodleJacuzzi", artist: "Silver Radish", textHistory: "", unreadText: false, gender: "female",},
+	{index: "spy", fName: "Sarah", lName: "Walker", trust: 0, encountered: false, textEvent: "", met: false, color: "#7B6170", author: "CryptoGreek", artist: "Anza Yuu", textHistory: "", unreadText: false,},
 ]
 
 var eggyLines = [
@@ -937,9 +939,14 @@ function printEncounterTabFollowup(name, scene, text, altImage, altName) {
 		var cancelTab = false;
 		//Check the list of printed encounters to prevent duplicates
 		for (encounterIndex = 0; encounterIndex < listOfPrintedEncounters.length; encounterIndex++) {
-			if (listOfPrintedEncounters[encounterIndex] == name && listOfPrintedEncounters[encounterIndex] != "principal") {
-				console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!Repeat offender detected! "+name+" has already been printed!!!!!! See here: "+listOfPrintedEncounters);
-				cancelTab = true;
+			if (listOfPrintedEncounters[encounterIndex] == name) {
+				if (listOfPrintedEncounters[encounterIndex] == "principal" && data.player.location.includes("sepia") == true) {
+					console.info("Repeat exemption for Victoria enabled for sepia location");
+				}
+				else {
+					console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!Repeat offender detected! "+name+" has already been printed!!!!!! See here: "+listOfPrintedEncounters);
+					cancelTab = true;
+				}
 			}
 		}
 		//Set name and image
@@ -1340,6 +1347,15 @@ function replaceCodenames(text) {
 				text = text.replace("*master", "master");
 				text = text.replace("*Master", "Master");
 				text = text.replace("*MASTER", "MASTER");
+				text = text.replace("*father", "father");
+				text = text.replace("*Father", "Father");
+				text = text.replace("*FATHER", "FATHER");
+				text = text.replace("*daddy", "daddy");
+				text = text.replace("*Daddy", "Daddy");
+				text = text.replace("*DADDY", "DADDY");
+				text = text.replace("*dad", "dad");
+				text = text.replace("*Dad", "Dad");
+				text = text.replace("*DAD", "DAD");
 				break;
 			}
 			case "woman": {
@@ -1382,6 +1398,15 @@ function replaceCodenames(text) {
 				text = text.replace("*master", "mistress");
 				text = text.replace("*Master", "Mistress");
 				text = text.replace("*MASTER", "Mistress");
+				text = text.replace("*father", "mother");
+				text = text.replace("*Father", "Mother");
+				text = text.replace("*FATHER", "MOTHER");
+				text = text.replace("*daddy", "mommy");
+				text = text.replace("*Daddy", "Mommy");
+				text = text.replace("*DADDY", "MOMMY");
+				text = text.replace("*dad", "mom");
+				text = text.replace("*Dad", "Mom");
+				text = text.replace("*DAD", "MOM");
 				break;
 			}
 		}
@@ -1966,7 +1991,7 @@ function writeHTML(text) {
 						var definition = {shortcut: definitionShortcut, result: definitionResult};
 						definitionArray.push(definition);
 					}
-					//console.log("Now writing definition statement, using shortcut "+definitionShortcut+" for result "+definitionResult+", overwrite value is "+overWrite);
+					console.log("Now writing definition statement, using shortcut "+definitionShortcut+" for result "+definitionResult+", overwrite value is "+overWrite);
 					break;
 				}
 				case "snippet": {
@@ -2027,7 +2052,6 @@ function writeHTML(text) {
 							lines[lineCounter].indexOf("im ") + 3, 
 							lines[lineCounter].indexOf("; ")
 						);
-						console.log("!!!"+image);
 						lines[lineCounter] = lines[lineCounter].replace(`im `+image+`; `, ``);
 					}
 					else {
@@ -2455,7 +2479,7 @@ function writeSpeech (name, img, text, altName, altColor) {
 		text = eggyLines[Math.floor(Math.random() * eggyLines.length)];
 		finalImg = "scripts/gamefiles/profiles/egg.jpg";
 	}
-	//console.log("Now printing "+finalName+" with the image "+finalImg+"");
+	console.log("Now printing "+finalName+" with the image "+finalImg+"");
 	//Output the speech in the assigned style.
 	switch (data.player.style) {
 		case "lobotomy": {
@@ -3480,9 +3504,19 @@ function generateWindow(type) {
 			if (checkItem('Ghost AR') == true) {
 				document.getElementById('phoneSelectionMenu').innerHTML += `
 					<div class = "textBox" style="border 3px solid #FFFFFF" onclick = "ghostAR()">
-						<img class = "textThumb" src = "images/ghosts/maudlin.png">
+						<img class = "textThumb" src = "images/ghosts/Maudlin.png">
 						<div class="textBoxContent">
 							<span style = "color: #FFFFFF;" class = "selectionMenuText">Ghost AR</span>
+						</div>
+					</div>
+				`;
+			}
+			if (checkItem('Demon Control') == true) {
+				document.getElementById('phoneSelectionMenu').innerHTML += `
+					<div class = "textBox" style="border 3px solid #FFFFFF" onclick = "fiendControl()">
+						<img class = "textThumb" src = "scripts/gamefiles/images/app.png">
+						<div class="textBoxContent">
+							<span style = "color: #FFFFFF;" class = "selectionMenuText">D. Control</span>
 						</div>
 					</div>
 				`;
@@ -3518,8 +3552,12 @@ function generateWindow(type) {
 					</div>
 				`;
 			}
-			if (data.player.currentScene != "") {
+			if (data.player.currentScene != "" && data.player.currentScene != "newDay") {
 				generateWindow("warning");
+			}
+			if (data.player.currentScene == "morning1") {
+				deleteWindow();
+				loadEncounter("gilf", "encounter2");
 			}
 			break;
 		}
@@ -3569,7 +3607,7 @@ function generateWindow(type) {
 				<div class = "logbookRight" id = "phoneRight">
 				</div>
 			`;
-				generateContacts();
+			generateContacts();
 			break;
 		}
 		case "inventory": {
@@ -3811,6 +3849,8 @@ function loadSlot(slot) {
 		}
 	}
 	deleteWindow();
+	document.getElementById('phoneButton').style.color = "#CCCCCC";
+	document.getElementById('logButton').style.color = "#CCCCCC";
 }
 
 function saveFile(){
@@ -4224,7 +4264,7 @@ function checkForAchievements() {
 }
 
 function generateNav(target) {
-	if (data.player.currentScene == "") {
+	if (data.player.currentScene == "" || data.player.currentScene == "newDay") {
 		deleteWindow();
 		generateWindow("logbook");
 		document.getElementById('logbookLeft').innerHTML = '';
@@ -4267,7 +4307,7 @@ function generateNav(target) {
 
 function loadAchievements() {
 	//generateWindow("logbook");
-	//document.getElementById('logButton').style.color = "#FFFFFF";
+	document.getElementById('logButton').style.color = "#CCCCCC";
 	var achievementsPrinted = 0;
 	var redColor = `linear-gradient(306deg, rgba(2,0,36,1) 0%, rgba(121, 9, 104,1) 13%, rgba(228, 119, 255,1) 100%);`;
 	var blueColor = `linear-gradient(306deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 9%, rgba(0,212,255,1) 100%);`;
@@ -4702,8 +4742,9 @@ function loadPhoneEvent(js, name) {
 
 function notification(name) {
 	writeText("Bzzt! You got a text from "+fName(name)+"!");
-	document.getElementById('phoneButton').innerHTML = "PHONE(*)";
-	document.getElementById('phoneButtonMobile').innerHTML = "PHONE(*)";
+	document.getElementById('phoneButton').style.color = "#0F0";
+	document.getElementById('phoneButton').innerHTML = "PHONE";
+	document.getElementById('phoneButtonMobile').innerHTML = "PHONE";
 }
 
 function writePhoneSpeech (name, img, text) {
@@ -4787,7 +4828,7 @@ function writePhoneChoices (text1, text2, text3) {
 
 function phoneChoice(n) {
 	document.getElementById('phoneRight').innerHTML = '';
-	data.story[data.player.lastText].textEvent = n;
+	data.story[data.player.lastText].textEvent += n;
 	writePhoneEvent(data.story[data.player.lastText].textEvent);
 }
 
@@ -4856,6 +4897,7 @@ function generateContacts() {
 	else {
 		document.getElementById('windowTitle').innerHTML = "PHONE";
 	}
+	document.getElementById('phoneButton').style.color = "#CCCCCC";
 	if (imagesDisabled != true) {
 		document.getElementById('phoneLeft').innerHTML += `<p class = "logbookSwitch" onclick = "phoneImages()">Saved Images</p>`;
 	}
@@ -5506,12 +5548,12 @@ function diagnostic() {
 		}
 		case "good boy": {
 			setSkill("corruption", 1);
-			writeSpecial("Your corruption has been lowered!.");
+			writeSpecial("Your corruption has been lowered!");
 			break;
 		}
 		case "bad boy": {
 			setSkill("corruption", 9);
-			writeSpecial("Your corruption has been lowered!.");
+			writeSpecial("Your corruption has been raised!");
 			break;
 		}
 		case "egg": {

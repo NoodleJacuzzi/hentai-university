@@ -715,7 +715,6 @@ function writeEvent(name) { //Plays the actual event.
 				t Her arms fall from around you neck as her eyes roll back, then flutter closed. Cumming as hard as a firecracker, she's out like a light now.
 				t You pull out and a squirt of cum rushes from her cunt. You'll leave her to clean herself up when she wakes back up. As for you, you clean your dick off with her hair before getting dressed.
 			`);
-			writePhoneImage("images/mama/160.jpg", "Art by Enoshima Iki");
 			break;
 		}
 		case "mamaBbcCumWearing": {
@@ -809,7 +808,6 @@ function writeEvent(name) { //Plays the actual event.
 				sp player; Now... You go home, just like that... I'll be around to play with you again.
 				t She doesn't respond, her conscious mind on vacation right now. Barely able to move, she still tries to crawl towards you even as you leave. She's insatiable, but at least you left her with some snacks for tonight. Maybe they'll be enough for her to get off by herself, or maybe they'll just leave her more frustrated and ready for your next visit.
 			`);
-			writePhoneImage("images/mama/229.jpg", "Art by Enoshima Iki");
 			break;
 		}
 		case "mamaBbcMarriage": {

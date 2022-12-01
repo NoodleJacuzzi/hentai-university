@@ -930,7 +930,7 @@ function writeEvent(name) { //Plays the actual event.
 				miko Oh, I'm feeling a little jealous already~
 				im 169a.jpg
 				itako Cumming~! My butt is cumming~!
-				t An orgasm that dwarfs her earlier one, a true, mind-shakong anal orgasm sweeps over her. The first of many of course, this kind of talent needs to be nutured if itakoF is to grow into a proper buttslut.
+				t An orgasm that dwarfs her earlier one, a true, mind-shaking anal orgasm sweeps over her. The first of many of course, this kind of talent needs to be nutured if itakoF is to grow into a proper buttslut.
 				im 170a.jpg
 				miko Oh my~! *He's pumped you so full of cum, I'm not sure you'll ever stop leaking... 
 				t By now all that's left of her daughter is a fuck-drunk delirious mess, but that doesn't seem to dissuade mikoF at all, rather she's beaming with motherly pride. 

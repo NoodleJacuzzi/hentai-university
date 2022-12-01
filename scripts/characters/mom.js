@@ -302,6 +302,9 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeFunction("writeEncounter('momdateRestaurant')", "Go to a restaurant");
 			writeFunction("writeEncounter('momdateHypno')", "Try out hypnosis");
 			writeFunction("writeEncounter('momdateBeach')", "Go to the beach");
+			writeHTML(`
+				trans momBath; ?flag miko brothel; !flag mom bath; Invite momF to the mikoL bathhouse
+			`);
 			//writeFunction("writeEncounter('momdateStayIn')", "Stay in with momF");
 			writeFunction("changeLocation(data.player.location)", "Go back");
 			break;
@@ -453,6 +456,32 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeFunction("loadEncounter('system', 'credits')", "The End");
 			break;
 		}
+		case "momBath": {
+			writeEvent(name);
+			addFlag("mom", "bath");
+			passTime();
+			writeHTML(`
+				finish
+			`);
+			break;
+		}
+		case "momBathRepeat": {
+			writeHTML(`
+				im 007.jpg
+				t ...
+				im 079.jpg
+				im 086.jpg
+				im 087.jpg
+				im 088.jpg
+				im 091.jpg
+				im 093.jpg
+				t ...
+				im momBathRepeat.jpg
+				finish
+			`);
+			passTime();
+			break;
+		}
 	}
 }
 
@@ -468,6 +497,7 @@ var eventArray = [ //Lists the events of the character for unlocking and replayi
 	{index: "momdateBeach Cont", name: "Date - A Day on the Beach 2",},
 	{index: "momdateNight", name: "Date - Midnight Meeting",},
 	{index: "momdateStayIn", name: "Date - Lazy Weekend",},
+	{index: "momBath", name: "Bathhouse Waters - Youthful Energy"},
 ];
 
 function writeEvent(name) { //Plays the actual event.
@@ -880,6 +910,56 @@ function writeEvent(name) { //Plays the actual event.
 				player When you wake up, you're going to feel good. Happy. And you'll appreciate yourself just as much as I do, got it?
 				mom Mhmm...
 				t You gently pat her head as she drifts off to sleep in the afterglow of a lovely night.
+			`);
+			break;
+		}
+		case "momBath": {
+			writeHTML(`
+				t You decide to take momF with you to the mikoL bathhouse. Hopefully the corruptive waters there will awaken something fun inside of her.
+				t ...
+				im 007.jpg
+				mom Alright, we're here.
+				player Damn, you look amazing.
+				mom Mmm... Just don't go too crazy, alright? The staff here definitely seems a lot more... <i>Open</i>, but I'm not some kind of weirdo exhibitionist. Just settle for looking until we get home, alright?
+				player If you say so.
+				mom Good. Now, the mom wanted to see me first. By the way, does the air here seem a bit... Thick?
+				player It's a bathhouse, momF.
+				mom Right, right. Probably nothing...
+				t ...
+				t You relax in the pool, the warm waters soothe your weary soul.
+				t ... Or something like that.
+				player Hot water is nice, but it certainly does empty the head.
+				im 079.jpg
+				mom Heeeey~!
+				t Bursting through the room in an outfit that would catch eyes even at a fetish-wear convention, momF strides into the bathing area with cheeks practically glowing red.
+				t The mikoL waters, muddied with the corruption of your soul have influenced momF's mind and body. For her, it appears the bath's effects have essentially replicated the effects of a powerful alcohol. mikoF and itakoF probably didn't have too hard a time convincing her to wear that gettup.
+				mom Wooo~! Why the long face? Jealous the attendant had some faaaancy duds waiting for me? Hah! Hey, gimme a place to sit!
+				t You gesture towards all the open space around you.
+				mom Gah, you're so fucking dense! Haha! You're lucky you're such a cutie~
+				t A dark heat pulses through her body and puts a wobble in her walk, not that her thick body needed the help, but the corruption's effect is clearly ramping up her libido to the absolute maximum.
+				mom Haha~<br>Now... Cock! Gimme! Cmon, we gotta clean thoroughly!
+				im 086.jpg
+				mom Hooooh~<br>That's the spot. 
+				t Sweat sheens all across her body.
+				mom Damn... Fuckin's a good companion to bein' drunk... I-
+				im 087.jpg
+				mom Haaaha~! Stooop~!
+				t Completely free of inhibitions, the corruptive effects of the pool are giving her all the best elements of a buzz as you thrust from below.
+				t And of course, beneath this fertility goddess of a woman, soaking in liquid lust, you find yourself ready to burst.
+				im 088.jpg
+				mom Hohhhh... Warm...
+				t Her eyes lid as she soaks in the moment, although it doesn't last long.
+				mom ... Hey.
+				t She grasps your hands and interlocks her fingers with yours.
+				im 093.jpg
+				mom You aren't done yet.
+				t It's clear she's not asking a question, and she starts bouncing her hips up and down once again.
+				t ...
+				im momBathRepeat.jpg
+				mom Honestly, I'm not sure what I was thinking... It was so risky...
+				player Bathing together isn't against the rules here.
+				mom Still! I need to keep my libido in check. I hope the attendants don't notice...
+				player Somehow I think they'll be fine.
 			`);
 			break;
 		}

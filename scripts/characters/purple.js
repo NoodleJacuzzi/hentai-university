@@ -404,6 +404,9 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeSpeech("purple", "", "Welcome back, *master! Mom's in the kitchen. Could I ask her to make you something, or are you here to relief yourself?");
 			writeSpeech("player", "", "You don't need to hold yourself back today, I came here to...");
 			writeFunction("writeEncounter('routeAQuickieSetup1')", "Get off");
+			writeHTML(`
+				trans purpleBath; ?flag miko brothel; !flag purple bath; Invite purpleF and chubbyF to the mikoL bathhouse
+			`);
 			writeSpeech("player", "", "<i>The normalization has progressed pretty far. I'm not likely to stumble onto a pair that fall this deep again. Maybe I should take a few months and explore this?</i>");
 			writeFunction("writeEncounter('routeAEnding1')", "Consider the possibilities");
 			writeFunction("changeLocation(data.player.location)", "Go back");
@@ -534,6 +537,30 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeFunction("loadEncounter('scarf', 'failure')", "The End");
 			break;
 		}
+		case "purpleBath": {
+			writeEvent(name);
+			addFlag("purple", "bath");
+			passTime();
+			writeHTML(`
+				finish
+			`);
+			break;
+		}
+		case "purpleBathRepeat": {
+			writeHTML(`
+				im 022.jpg
+				im 027.jpg
+				t ...
+				im purpleBathRepeat.jpg
+				im 032.jpg
+				im 033.jpg
+				im 029.jpg
+				im 030.jpg
+				finish
+			`);
+			passTime();
+			break;
+		}
 	}
 }
 
@@ -542,6 +569,7 @@ var eventArray = [ //Lists the events of the character for unlocking and replayi
 	{index: "purple2", name: "Daughter's Payment 2"},
 	{index: "purple3", name: "Family Bonding"},
 	{index: "purpleBranching", name: "Text Chat"},
+	{index: "purpleBath", name: "Bathhouse Waters - Family Vacation"},
 ];
 
 function writeEvent(name) { //Plays the actual event.
@@ -898,6 +926,52 @@ function writeEvent(name) { //Plays the actual event.
 			writeSpeech("purple", "", "Fuck us, duh!");
 			writeText("The pair of them finally learned how to share you, inside and outside the bedroom. They really seem to enjoy daily life nowadays, even the days where you aren't spending all your time dicking them. You still do 'counseling' at the university, but these two are getting to be a serious handful.");
 			writeBig("images/purple/ending5.jpg", "Art by Oreteki18kin");
+			break;
+		}
+		case "purpleBath": {
+			writeHTML(`
+				t You decide to take purpleF and chubbyF with you to the mikoL bathhouse. Hopefully the corruptive waters there will awaken something fun inside of her.
+				t ...
+				t You relax in the pool, the warm waters soothe your weary soul.
+				t ... Or something like that.
+				player Hot water is nice, but it certainly does empty the head.
+				purple In here?
+				define purple = sp purple; im images/purple/purpleP.jpg;
+				define chubby = sp chubby; im images/chubby/chubbyP.jpg;
+				im 022.jpg
+				chubby Ah, I found him!
+				im 027.jpg
+				purple There you are! These attendants are really handsy, aren't they?
+				chubby I think itakoF was just excited to meet someone her own age. You two could be friends.
+				purple Yeah yeah, I think you and mikoF seemed a lot closer. So playerF, did you...?
+				player Yeah, they're with me.
+				purple Nice! That means no need to hold back, huh?
+				chubby Eh? Here? In public? But what if someone-<br>Ahh~!
+				t ...
+				im purpleBathRepeat.jpg
+				purple Cmon! Mom's tits feel great, right? Don't you wanna cum? Splurt aaaaall over her face? 
+				chubby W-why are you... Encouraging *him so much?
+				purple Because the sooner he blows his load on you, the sooner he'll be railing me! 
+				chubby Ehhhh...
+				player How selfless of you, purpleF. Alright, I won't make you wait long.
+				im 032.jpg
+				chubby Ohh...
+				purple Your breasts totally swallow up the whole thing! Cmon, help me squeeze!
+				chubby F-feels so good~
+				t The waters don't seem to be affecting them directly too much, they're probably already fully bathed in lust and corruption already.
+				im 033.jpg
+				chubby Aaaah~!
+				purple Whoa~!
+				t You spray what must be ropes of sperm across chubbyF's face as she squirms beneath you, orgasming entirely from the sensations from her tits alone.
+				purple Hehe... You still got some left for me, I hope...
+				player I do. How about your favorite position?
+				purple Hell yeah~!
+				t ...
+				im 029.jpg
+				t While the waters didn't have much of an affect this time, they certainly have gotten a lot darker today.
+				im 030.jpg
+				t And your two pets certanly don't seem to mind helping with that.
+			`);
 			break;
 		}
 	}
