@@ -460,6 +460,9 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeEvent(name);
 			addFlag("mom", "bath");
 			passTime();
+			writeHTML(`
+				finish
+			`);
 			break;
 		}
 		case "momBathRepeat": {
@@ -470,12 +473,11 @@ function writeEncounter(name) { //Plays the actual encounter.
 				im 086.jpg
 				im 087.jpg
 				im 088.jpg
-				im 089.jpg
-				im 090.jpg
 				im 091.jpg
 				im 093.jpg
 				t ...
-				im momBathsRepeat.jpg
+				im momBathRepeat.jpg
+				finish
 			`);
 			passTime();
 			break;
@@ -919,12 +921,10 @@ function writeEvent(name) { //Plays the actual event.
 				im 086.jpg
 				im 087.jpg
 				im 088.jpg
-				im 089.jpg
-				im 090.jpg
 				im 091.jpg
 				im 093.jpg
 				t ...
-				im momBathsRepeat.jpg
+				im momBathRepeat.jpg
 			`);
 			break;
 		}

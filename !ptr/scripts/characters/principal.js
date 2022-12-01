@@ -2279,6 +2279,9 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeEvent(name);
 			addFlag("principal", "bath");
 			passTime();
+			writeHTML(`
+				finish
+			`);
 			break;
 		}
 		case "principalBathRepeat": {
@@ -2295,10 +2298,11 @@ function writeEncounter(name) { //Plays the actual encounter.
 				im baths6.jpg
 				im baths7.jpg
 				t ...
-				im principalBathsRepeat.jpg;
+				im principalBathRepeat.jpg;
 				im 109.jpg
 				t ...
 				im 125.jpg
+				finish
 			`);
 			passTime();
 			break;
@@ -2682,7 +2686,7 @@ function writeEvent(name) { //Plays the actual event.
 				im baths6.jpg
 				im baths7.jpg
 				t ...
-				im principalBathsRepeat.jpg;
+				im principalBathRepeat.jpg;
 				im 109.jpg
 				t ...
 				im 125.jpg

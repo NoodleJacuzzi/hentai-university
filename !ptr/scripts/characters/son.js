@@ -80,7 +80,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 				im images/son/baths1.jpg
 				im images/son/baths2.jpg
 				
-				im images/son/sonBathsRepeat.jpg
+				im images/son/sonBathRepeat.jpg
 				
 				im images/son/baths4.jpg
 				
@@ -534,7 +534,7 @@ function writeEvent(name) { //Plays the actual event.
 				player Hmm?
 				t Unnatural energy flows through his frame, completely disolving his ego and anxiety beneath a wake of loving happiness.
 				son *Daddy! Kiss!
-				im images/son/sonBathsRepeat.jpg
+				im images/son/sonBathRepeat.jpg
 				t Normally far too bratty and snappy to even consider calling you that, the walls around his mind can't match up to pure, concentrated corruption and lust.
 				im images/son/baths4.jpg
 				son Mmm~! Cumming! 

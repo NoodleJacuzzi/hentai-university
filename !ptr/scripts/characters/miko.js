@@ -531,12 +531,12 @@ function openWardrobe() {
 					src="images/principal/principalPT.png" 
 					onclick="writeText('Find and invite principalF to the bathhouse for a new scene!')" 
 					style="filter:brightness(100%);">
-					<figcaption style = "text-align: center;">Find and invite `+replaceCodenames("principalF")+`  to the bathhouse for a new scene!</figcaption>
+					<figcaption style = "text-align: center;">Find and invite `+replaceCodenames("principalF")+` to the bathhouse for a new scene!</figcaption>
 				</figure>
 			`;
 		}
 		else {
-			writeWardrobeOption("principalBathsRepeat", "principal");
+			writeWardrobeOption("principalBathRepeat", "principal");
 		}
 	}
 	else {
@@ -558,12 +558,12 @@ function openWardrobe() {
 					src="images/mom/momPT.png" 
 					onclick="writeText('Find and invite momF to the bathhouse for a new scene!')" 
 					style="filter:brightness(100%);">
-					<figcaption style = "text-align: center;">Find and invite `+replaceCodenames("momF")+`  to the bathhouse for a new scene!</figcaption>
+					<figcaption style = "text-align: center;">Find and invite `+replaceCodenames("momF")+` to the bathhouse for a new scene!</figcaption>
 				</figure>
 			`;
 		}
 		else {
-			writeWardrobeOption("momBathsRepeat", "mom");
+			writeWardrobeOption("momBathRepeat", "mom");
 		}
 	}
 	else {
@@ -585,12 +585,12 @@ function openWardrobe() {
 					src="images/purple/purplePT.png" 
 					onclick="writeText('Find and invite purpleF to the bathhouse for a new scene!')" 
 					style="filter:brightness(100%);">
-					<figcaption style = "text-align: center;">Find and invite `+replaceCodenames("purpleF")+`  to the bathhouse for a new scene!</figcaption>
+					<figcaption style = "text-align: center;">Find and invite `+replaceCodenames("purpleF")+` to the bathhouse for a new scene!</figcaption>
 				</figure>
 			`;
 		}
 		else {
-			writeWardrobeOption("purpleBathsRepeat", "purple");
+			writeWardrobeOption("purpleBathRepeat", "purple");
 		}
 	}
 	else {
@@ -613,12 +613,12 @@ function openWardrobe() {
 						src="images/papi/papiPT.png" 
 						onclick="writeText('Find and invite papiF to the bathhouse for a new scene!')" 
 						style="filter:brightness(100%);">
-						<figcaption style = "text-align: center;">Find and invite `+replaceCodenames("papiF")+`  to the bathhouse for a new scene!</figcaption>
+						<figcaption style = "text-align: center;">Find and invite `+replaceCodenames("papiF")+` to the bathhouse for a new scene!</figcaption>
 					</figure>
 				`;
 			}
 			else {
-				writeWardrobeOption("papiBathsRepeat", "papi");
+				writeWardrobeOption("papiBathRepeat", "papi");
 			}
 		}
 		else {
@@ -645,7 +645,7 @@ function openWardrobe() {
 				`;
 			}
 			else {
-				writeWardrobeOption("sonBathsRepeat", "son");
+				writeWardrobeOption("sonBathRepeat", "son");
 			}
 		}
 		else {

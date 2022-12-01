@@ -541,6 +541,9 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeEvent(name);
 			addFlag("purple", "bath");
 			passTime();
+			writeHTML(`
+				finish
+			`);
 			break;
 		}
 		case "purpleBathRepeat": {
@@ -548,11 +551,12 @@ function writeEncounter(name) { //Plays the actual encounter.
 				im 022.jpg
 				im 027.jpg
 				t ...
-				im purpleBathsRepeat.jpg
+				im purpleBathRepeat.jpg
 				im 032.jpg
 				im 033.jpg
 				im 029.jpg
 				im 030.jpg
+				finish
 			`);
 			passTime();
 			break;
@@ -929,7 +933,7 @@ function writeEvent(name) { //Plays the actual event.
 				im 022.jpg
 				im 027.jpg
 				t ...
-				im purpleBathsRepeat.jpg
+				im purpleBathRepeat.jpg
 				im 032.jpg
 				im 033.jpg
 				im 029.jpg
