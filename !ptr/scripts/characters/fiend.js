@@ -46,6 +46,86 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeFunction("changeLocation(data.player.location)", "Finish");
 			break;
 		}
+		case "fiendCunnilingus": {
+			writeEvent(name);
+			writeHTML(`
+				finish
+			`);
+			passTime();
+			break;
+		}
+		case "fiendTitfuck": {
+			writeEvent(name);
+			writeHTML(`
+				finish
+			`);
+			passTime();
+			break;
+		}
+		case "fiendBlowjob": {
+			writeEvent(name);
+			writeHTML(`
+				finish
+			`);
+			passTime();
+			break;
+		}
+		case "fiendSex": {
+			writeEvent(name);
+			writeHTML(`
+				finish
+			`);
+			passTime();
+			break;
+		}
+		case "fiendServitude": {
+			writeEvent(name);
+			writeHTML(`
+				finish
+			`);
+			passTime();
+			break;
+		}
+		case "fiendCunnilingusRepeat": {
+			writeEvent(name);
+			writeHTML(`
+				finish
+			`);
+			passTime();
+			break;
+		}
+		case "fiendTitfuckRepeat": {
+			writeEvent(name);
+			writeHTML(`
+				finish
+			`);
+			passTime();
+			break;
+		}
+		case "fiendBlowjobRepeat": {
+			writeEvent(name);
+			writeHTML(`
+				finish
+			`);
+			passTime();
+			break;
+		}
+		case "fiendSexRepeat": {
+			writeEvent(name);
+			writeHTML(`
+				finish
+			`);
+			passTime();
+			break;
+		}
+		case "fiendServitudeRepeat": {
+			writeEvent(name);
+			writeHTML(`
+				finish
+			`);
+			passTime();
+			break;
+		}
 		default: {
 			writeSpeech("player", "", "Error! You must've called the wrong encounter. Error code: Failed to write encounter ("+name+") in "+character.index+".js");
 			break;
@@ -54,14 +134,42 @@ function writeEncounter(name) { //Plays the actual encounter.
 }
 
 var eventArray = [
-	{index: "placeholder", name: "Event Name"},
+	{index: "fiendCunnilingus", name: "Eat a Hearty Meal"},
+	{index: "fiendTitfuck", name: "Puff Up Your Chest"},
+	{index: "fiendBlowjob", name: "Polish Your Chest"},
+	{index: "fiendSex", name: "Charge into Battle"},
+	{index: "fiendServitude", name: "Hail to the Queen"},
 ];
 
 function writeEvent(name) { //Plays the actual event.
 	document.getElementById('output').innerHTML = '';
 	wrapper.scrollTop = 0;
 	switch (name) {
-		case "placeholder": {
+		case "fiendCunnilingus": {
+			writeHTML(`
+				
+			`);
+			break;
+		}
+		case "fiendTitfuck": {
+			writeHTML(`
+				
+			`);
+			break;
+		}
+		case "fiendBlowjob": {
+			writeHTML(`
+				
+			`);
+			break;
+		}
+		case "fiendSex": {
+			writeHTML(`
+				
+			`);
+			break;
+		}
+		case "fiendServitude": {
 			writeHTML(`
 				
 			`);

@@ -641,7 +641,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 				papi R-right!
 				trans newChatChange; Ask how have things changed around here
 				trans newChatFuture; Ask the two what their plans for the future are
-				trans newChatBath; ?flag miko brothel; !flag papi bath; Invite papiF to the mikoL bathhouse
+				trans newChatBath; ?flag miko brothel; Invite papiF to the mikoL bathhouse
 				trans newChatClub; ?trustMin nagatoro 102; !flag son club; Invite sonF to the crossdressing club
 				trans newChatCorrupt; ?trustMax papi 665; ?flag succubus newCorruption; Corrupt papiF and sonF 
 				trans finalQuo; Go Back
@@ -683,6 +683,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 				papi B-but...! 
 				player I wouldn't leave either of you alone. If I have to take one of you, I'll take...
 				trans papiBath; Take papiF
+				trans sonBath; Take sonF
 				trans papiNewChatSelect; Go Back
 			`);
 			break;
@@ -692,6 +693,70 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeEvent(name);
 			passTime();
 			writeHTML(`finish`);
+			break;
+		}
+		case "sonBath": {
+			addFlag("son", "bath");
+			writeEvent(name);
+			passTime();
+			writeHTML(`finish`);
+			break;
+		}
+		case "papiBathRepeat": {
+			writeHTML(`
+				define papi = sp papi; im images/papi/bath.jpg;
+				
+				im images/papi/163a.jpg
+				im images/papi/164a.jpg
+				
+				im images/papi/169.jpg
+				
+				im images/papi/170.jpg
+				
+				im images/papi/172.jpg
+				
+				im images/papi/173.jpg
+				
+				im images/papi/174a.jpg
+				
+			`);
+			passTime();
+			break;
+		}
+		case "sonBathRepeat": {
+			writeHTML(`
+				define son = sp son; im images/son/bath.jpg;
+				t You decide to take sonF with you to the mikoL bathhouse. Hopefully the corruptive waters there will awaken something fun inside of him.
+				t ...
+				t You relax in the pool, the warm waters soothe your weary soul.
+				player Hot water is nice, but it certainly does empty the head.
+				son Gyah!
+				im images/son/baths1.jpg
+				son First the attendants, now you, why is everyone here so handsy?!
+				player The attendants are loyal to me, just like your mom.
+				son Hey! Mommy is loyal to me, not-
+				im images/son/baths2.jpg
+				son Houuu~!
+				player Maybe, but we both know what <i>you're</i> loyal to.
+				t The mikoL waters, muddied with the corruption of your soul have influenced sonF's mind and body. For him, it appears the bath's effects have manifested in an overwhelming sort of comfort, even with his leg lifted and his asshole being plowed, you can see he's starting to visibly relax.
+				son Hoh... Hoh... *Daddy...
+				player Hmm?
+				t Unnatural energy flows through his frame, completely disolving his ego and anxiety beneath a wake of loving happiness.
+				son *Daddy! Kiss!
+				im images/son/sonBathsRepeat.jpg
+				t Normally far too bratty and snappy to even consider calling you that, the walls around his mind can't match up to pure, concentrated corruption and lust.
+				im images/son/baths4.jpg
+				son Mmm~! Cumming! 
+				t With his entire body totally relaxed, you can thrust as hard and fast as you please without worry of hurting him. Soft, pliable, and completely yours from head to toe your slutty bottom partner meekly wiggles his tongue against yours as you slam your dick in and out of his greedy asshole with abandon.
+				im images/son/baths5.jpg
+				son HOOUUU~!
+				player Good boy~
+				t And as he sprays from the raw magic of corruption-fueled anal sex, the waters of the bathhouse grow more and more dark with your lust.
+				son Hah... *Daddy... *Daddy's load feels so warm...
+				miko Hello~? Are you two almost finished in there~?
+				itako Need us to wash your back?
+			`);
+			passTime();
 			break;
 		}
 		case "newChatClub": {
@@ -1044,6 +1109,7 @@ var eventArray = [
 	{index: "papi-sonBonding4", name: "Family Bonding pt 3"},
 	{index: "papi-sonCorruption", name: "Family Bonding pt 3"},
 	{index: "papiBath", name: "Bathhouse Waters - Single Mother"},
+	{index: "sonBath", name: "Bathhouse Waters - Mama's Boy"},
 ];
 
 function writeEvent(name) { //Plays the actual event.
@@ -1581,7 +1647,8 @@ function writeEvent(name) { //Plays the actual event.
 				t You decide to take papiF with you to the mikoL bathhouse. Hopefully the corruptive waters there will awaken something fun inside of her.
 				t ...
 				t You relax in the pool, the warm waters soothe your weary soul.
-				t ... Or something like that. Hot water is nice, but it certainly does empty your head.
+				t ... Or something like that.
+				player Hot water is nice, but it certainly does empty the head.
 				papi I'm coming in...
 				im images/papi/163a.jpg
 				papi The attendants here are... Very friendly.
@@ -1611,6 +1678,41 @@ function writeEvent(name) { //Plays the actual event.
 				papi Hah... Hawt... Shtill sho... Hawt~
 				miko Hello~? Are you two almost finished in there~?
 				itako Don't stay too long~! 
+			`);
+			break;
+		}
+		case "sonBath": {
+			writeHTML(`
+				define son = sp son; im images/son/bath.jpg;
+				t You decide to take sonF with you to the mikoL bathhouse. Hopefully the corruptive waters there will awaken something fun inside of him.
+				t ...
+				t You relax in the pool, the warm waters soothe your weary soul.
+				player Hot water is nice, but it certainly does empty the head.
+				son Gyah!
+				im images/son/baths1.jpg
+				son First the attendants, now you, why is everyone here so handsy?!
+				player The attendants are loyal to me, just like your mom.
+				son Hey! Mommy is loyal to me, not-
+				im images/son/baths2.jpg
+				son Houuu~!
+				player Maybe, but we both know what <i>you're</i> loyal to.
+				t The mikoL waters, muddied with the corruption of your soul have influenced sonF's mind and body. For him, it appears the bath's effects have manifested in an overwhelming sort of comfort, even with his leg lifted and his asshole being plowed, you can see he's starting to visibly relax.
+				son Hoh... Hoh... *Daddy...
+				player Hmm?
+				t Unnatural energy flows through his frame, completely disolving his ego and anxiety beneath a wake of loving happiness.
+				son *Daddy! Kiss!
+				im images/son/sonBathsRepeat.jpg
+				t Normally far too bratty and snappy to even consider calling you that, the walls around his mind can't match up to pure, concentrated corruption and lust.
+				im images/son/baths4.jpg
+				son Mmm~! Cumming! 
+				t With his entire body totally relaxed, you can thrust as hard and fast as you please without worry of hurting him. Soft, pliable, and completely yours from head to toe your slutty bottom partner meekly wiggles his tongue against yours as you slam your dick in and out of his greedy asshole with abandon.
+				im images/son/baths5.jpg
+				son HOOUUU~!
+				player Good boy~
+				t And as he sprays from the raw magic of corruption-fueled anal sex, the waters of the bathhouse grow more and more dark with your lust.
+				son Hah... *Daddy... *Daddy's load feels so warm...
+				miko Hello~? Are you two almost finished in there~?
+				itako Need us to wash your back?
 			`);
 			break;
 		}

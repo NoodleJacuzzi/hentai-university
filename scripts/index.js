@@ -1340,6 +1340,15 @@ function replaceCodenames(text) {
 				text = text.replace("*master", "master");
 				text = text.replace("*Master", "Master");
 				text = text.replace("*MASTER", "MASTER");
+				text = text.replace("*father", "father");
+				text = text.replace("*Father", "Father");
+				text = text.replace("*FATHER", "FATHER");
+				text = text.replace("*daddy", "daddy");
+				text = text.replace("*Daddy", "Daddy");
+				text = text.replace("*DADDY", "DADDY");
+				text = text.replace("*dad", "dad");
+				text = text.replace("*Dad", "Dad");
+				text = text.replace("*DAD", "DAD");
 				break;
 			}
 			case "woman": {
@@ -1382,6 +1391,15 @@ function replaceCodenames(text) {
 				text = text.replace("*master", "mistress");
 				text = text.replace("*Master", "Mistress");
 				text = text.replace("*MASTER", "Mistress");
+				text = text.replace("*father", "mother");
+				text = text.replace("*Father", "Mother");
+				text = text.replace("*FATHER", "MOTHER");
+				text = text.replace("*daddy", "mommy");
+				text = text.replace("*Daddy", "Mommy");
+				text = text.replace("*DADDY", "MOMMY");
+				text = text.replace("*dad", "mom");
+				text = text.replace("*Dad", "Mom");
+				text = text.replace("*DAD", "MOM");
 				break;
 			}
 		}

@@ -608,6 +608,7 @@ var eventArray = [
 	{index: "nurseAnal", name: "Anal Potion"},
 	{index: "nurseheartHeatA1", name: "Heart Heat Potion (First Draft)"},
 	{index: "nurseImperfectYouth", name: "Youth Potion (First Draft)"},
+	{index: "nurseBath", name: "Bathhouse Waters - Exploration"},
 ];
 
 function writeEvent(name) { //Plays the actual event.

@@ -404,6 +404,9 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeSpeech("purple", "", "Welcome back, *master! Mom's in the kitchen. Could I ask her to make you something, or are you here to relief yourself?");
 			writeSpeech("player", "", "You don't need to hold yourself back today, I came here to...");
 			writeFunction("writeEncounter('routeAQuickieSetup1')", "Get off");
+			writeHTML(`
+				trans purpleBath; ?flag miko brothel; !flag purple bath; Invite purpleF and chubbyF to the mikoL bathhouse
+			`);
 			writeSpeech("player", "", "<i>The normalization has progressed pretty far. I'm not likely to stumble onto a pair that fall this deep again. Maybe I should take a few months and explore this?</i>");
 			writeFunction("writeEncounter('routeAEnding1')", "Consider the possibilities");
 			writeFunction("changeLocation(data.player.location)", "Go back");
@@ -534,6 +537,26 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeFunction("loadEncounter('scarf', 'failure')", "The End");
 			break;
 		}
+		case "purpleBath": {
+			writeEvent(name);
+			addFlag("purple", "bath");
+			passTime();
+			break;
+		}
+		case "purpleBathRepeat": {
+			writeHTML(`
+				im 022.jpg
+				im 027.jpg
+				t ...
+				im purpleBathsRepeat.jpg
+				im 032.jpg
+				im 033.jpg
+				im 029.jpg
+				im 030.jpg
+			`);
+			passTime();
+			break;
+		}
 	}
 }
 
@@ -542,6 +565,7 @@ var eventArray = [ //Lists the events of the character for unlocking and replayi
 	{index: "purple2", name: "Daughter's Payment 2"},
 	{index: "purple3", name: "Family Bonding"},
 	{index: "purpleBranching", name: "Text Chat"},
+	{index: "purpleBath", name: "Bathhouse Waters - Family Vacation"},
 ];
 
 function writeEvent(name) { //Plays the actual event.
@@ -898,6 +922,19 @@ function writeEvent(name) { //Plays the actual event.
 			writeSpeech("purple", "", "Fuck us, duh!");
 			writeText("The pair of them finally learned how to share you, inside and outside the bedroom. They really seem to enjoy daily life nowadays, even the days where you aren't spending all your time dicking them. You still do 'counseling' at the university, but these two are getting to be a serious handful.");
 			writeBig("images/purple/ending5.jpg", "Art by Oreteki18kin");
+			break;
+		}
+		case "purpleBath": {
+			writeHTML(`
+				im 022.jpg
+				im 027.jpg
+				t ...
+				im purpleBathsRepeat.jpg
+				im 032.jpg
+				im 033.jpg
+				im 029.jpg
+				im 030.jpg
+			`);
 			break;
 		}
 	}

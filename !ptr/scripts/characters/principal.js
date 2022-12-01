@@ -487,6 +487,9 @@ function writeEncounter(name) { //Plays the actual encounter.
 				else {
 					writeSpecial("You've corrupted "+numberCorrupted+" out of 7 of the PTSA members.");
 				}
+				writeHTML(`
+					trans principalBath; ?flag miko brothel; !flag principal bath; Invite principalF to the mikoL bathhouse
+				`);
 			}
 			if (checkFlag("secretary", "trouble") == true && checkFlag("secretary", "help") != true) {
 				writeFunction("writeEncounter('secretaryDiscussion')", "Talk about secretaryF");
@@ -1026,7 +1029,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 				t Following principalF and secretaryF inside may not be the most honest move, but social people do this all the time, right? Catching up with friends, they call it.
 				t In any case...
 				im 109.jpg
-				principal playerF! My, you certainly get around. Already found this lovely place, so soon after moving into town?
+				principal playerF! My, you certainly get around. I've been scouring the town for months for the best relaxation spots, but you've already found this lovely place so soon after moving into town?
 				secretary Hello!
 				principal So, what brings you here?
 			`);
@@ -2272,6 +2275,34 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeFunction("loadEncounter('system', 'credits')", "The End");
 			break;
 		}
+		case "principalBath": {
+			writeEvent(name);
+			addFlag("principal", "bath");
+			passTime();
+			break;
+		}
+		case "principalBathRepeat": {
+			writeHTML(`
+				im 109.jpg
+				t ...
+				im 110.jpg
+				im 112.jpg;
+				im baths1.jpg
+				im baths2.jpg
+				im baths3.jpg
+				im baths4.jpg
+				im baths5.jpg
+				im baths6.jpg
+				im baths7.jpg
+				t ...
+				im principalBathsRepeat.jpg;
+				im 109.jpg
+				t ...
+				im 125.jpg
+			`);
+			passTime();
+			break;
+		}
 	}
 	unencounter('principal');
 }
@@ -2287,6 +2318,7 @@ var eventArray = [ //Lists the events of the character for unlocking and replayi
 	{index: "principalMolested1", name: "Physical Confrontation 1"},
 	{index: "principalMolested2", name: "Physical Confrontation 1"},
 	{index: "principalTeaching1", name: "Teaching Time"},
+	{index: "principalBath", name: "Bathhouse Waters - Free and Clean"},
 ];
 
 function writeEvent(name) { //Plays the actual event.
@@ -2633,6 +2665,27 @@ function writeEvent(name) { //Plays the actual event.
 				president Ah, apologies, we were distracted.
 				scarf Yes, you did very well nurseF.
 				mama C-can we get back to making progress with principalF now?
+			`);
+			break;
+		}
+		case "principalBath": {
+			writeHTML(`
+				im 109.jpg
+				t ...
+				im 110.jpg
+				im 112.jpg;
+				im baths1.jpg
+				im baths2.jpg
+				im baths3.jpg
+				im baths4.jpg
+				im baths5.jpg
+				im baths6.jpg
+				im baths7.jpg
+				t ...
+				im principalBathsRepeat.jpg;
+				im 109.jpg
+				t ...
+				im 125.jpg
 			`);
 			break;
 		}

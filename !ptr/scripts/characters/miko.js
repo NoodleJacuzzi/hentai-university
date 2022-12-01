@@ -523,7 +523,7 @@ function openWardrobe() {
 	else {
 		writeWardrobeOption("itakoSolo2");
 	}
-	if (checkTrust("principal") > 40) {
+	if (checkFlag("principal", "council") == true) {
 		if (checkFlag("principal", "bath") != true) {
 			document.getElementById('wardrobeGrid').innerHTML += `
 				<figure>
@@ -599,33 +599,6 @@ function openWardrobe() {
 				<img class="bigPicture" 
 				src="images/purple/purplePT.png" 
 				onclick="writeText('Find and invite purpleF to the bathhouse for a new scene!')" 
-				style="filter:brightness(0%);">
-				<figcaption style = "text-align: center;">You need to find and win the trust of this person to bring them to the bathhouse.</figcaption>
-			</figure>
-		`;
-	}
-	if (checkTrust("nurse") > 4) {
-		if (checkFlag("nurse", "bath") != true) {
-			document.getElementById('wardrobeGrid').innerHTML += `
-				<figure>
-					<img class="bigPicture" 
-					src="images/nurse/nursePT.png" 
-					onclick="writeText('Find and invite nurseF to the bathhouse for a new scene!')" 
-					style="filter:brightness(100%);">
-					<figcaption style = "text-align: center;">Find and invite `+replaceCodenames("nurseF")+`  to the bathhouse for a new scene!</figcaption>
-				</figure>
-			`;
-		}
-		else {
-			writeWardrobeOption("nurseBathsRepeat", "nurse");
-		}
-	}
-	else {
-		document.getElementById('wardrobeGrid').innerHTML += `
-			<figure>
-				<img class="bigPicture" 
-				src="images/nurse/nursePT.png" 
-				onclick="writeText('Find and invite nurseF to the bathhouse for a new scene!')" 
 				style="filter:brightness(0%);">
 				<figcaption style = "text-align: center;">You need to find and win the trust of this person to bring them to the bathhouse.</figcaption>
 			</figure>

@@ -302,6 +302,9 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeFunction("writeEncounter('momdateRestaurant')", "Go to a restaurant");
 			writeFunction("writeEncounter('momdateHypno')", "Try out hypnosis");
 			writeFunction("writeEncounter('momdateBeach')", "Go to the beach");
+			writeHTML(`
+				trans momBath; ?flag miko brothel; !flag mom bath; Invite momF to the mikoL bathhouse
+			`);
 			//writeFunction("writeEncounter('momdateStayIn')", "Stay in with momF");
 			writeFunction("changeLocation(data.player.location)", "Go back");
 			break;
@@ -453,8 +456,28 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeFunction("loadEncounter('system', 'credits')", "The End");
 			break;
 		}
-		case "momBathsRepeat": {
-			writeHTML(`t Test`);
+		case "momBath": {
+			writeEvent(name);
+			addFlag("mom", "bath");
+			passTime();
+			break;
+		}
+		case "momBathRepeat": {
+			writeHTML(`
+				im 007.jpg
+				t ...
+				im 079.jpg
+				im 086.jpg
+				im 087.jpg
+				im 088.jpg
+				im 089.jpg
+				im 090.jpg
+				im 091.jpg
+				im 093.jpg
+				t ...
+				im momBathsRepeat.jpg
+			`);
+			passTime();
 			break;
 		}
 	}
@@ -472,6 +495,7 @@ var eventArray = [ //Lists the events of the character for unlocking and replayi
 	{index: "momdateBeach Cont", name: "Date - A Day on the Beach 2",},
 	{index: "momdateNight", name: "Date - Midnight Meeting",},
 	{index: "momdateStayIn", name: "Date - Lazy Weekend",},
+	{index: "momBath", name: "Bathhouse Waters - Youthful Energy"},
 ];
 
 function writeEvent(name) { //Plays the actual event.
@@ -884,6 +908,23 @@ function writeEvent(name) { //Plays the actual event.
 				player When you wake up, you're going to feel good. Happy. And you'll appreciate yourself just as much as I do, got it?
 				mom Mhmm...
 				t You gently pat her head as she drifts off to sleep in the afterglow of a lovely night.
+			`);
+			break;
+		}
+		case "momBath": {
+			writeHTML(`
+				im 007.jpg
+				t ...
+				im 079.jpg
+				im 086.jpg
+				im 087.jpg
+				im 088.jpg
+				im 089.jpg
+				im 090.jpg
+				im 091.jpg
+				im 093.jpg
+				t ...
+				im momBathsRepeat.jpg
 			`);
 			break;
 		}
