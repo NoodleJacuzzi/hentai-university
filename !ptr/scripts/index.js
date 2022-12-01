@@ -410,6 +410,7 @@ var coreCharactersArray = [
 	{index: "pornstar", fName: "Andrea", lName: "Cummings", trust: 0, encountered: false, textEvent: "", textHistory: "", met: false, color: "#454857", author: "NoodleJacuzzi", artist: "Oreteki18kin", gender: "female",},
 	{index: "gyatrio", fName: "Delinquent", lName: "Trio", trust: 0, encountered: false, textEvent: "", met: false, color: "#EA4448", author: "NoodleJacuzzi", artist: "Uo Denim", textHistory: "", unreadText: false, gender: "female",},
 	{index: "fiend", fName: "Abba", lName: "", trust: 0, encountered: false, textEvent: "", met: false, color: "#AE8492", author: "NoodleJacuzzi", artist: "Silver Radish", textHistory: "", unreadText: false, gender: "female",},
+	{index: "spy", fName: "Sarah", lName: "Walker", trust: 0, encountered: false, textEvent: "", met: false, color: "#7B6170", author: "CryptoGreek", artist: "Anza Yuu", textHistory: "", unreadText: false,},
 ]
 
 var eggyLines = [
@@ -5529,12 +5530,12 @@ function diagnostic() {
 		}
 		case "good boy": {
 			setSkill("corruption", 1);
-			writeSpecial("Your corruption has been lowered!.");
+			writeSpecial("Your corruption has been lowered!");
 			break;
 		}
 		case "bad boy": {
 			setSkill("corruption", 9);
-			writeSpecial("Your corruption has been lowered!.");
+			writeSpecial("Your corruption has been raised!");
 			break;
 		}
 		case "egg": {
