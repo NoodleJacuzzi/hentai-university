@@ -85,7 +85,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 				im images/son/baths4.jpg
 				
 				im images/son/baths5.jpg
-				
+				finish
 			`);
 			passTime();
 			break;

@@ -2674,9 +2674,31 @@ function writeEvent(name) { //Plays the actual event.
 		}
 		case "principalBath": {
 			writeHTML(`
-				im 109.jpg
+				t You decide to take principalF with you to the mikoL bathhouse. Hopefully the corruptive waters there will awaken something fun inside of her.
 				t ...
-				im 110.jpg
+				im 109.jpg
+				principal My... The mikoL bathhouse certainly has changed...
+				secretary Huh? It seems the same as when we went here the last time. And the time before.
+				player Seems normal to me.
+				principal Well, I'm not saying it's bad, just different. I've toured every kind of spa in the city, I have a feel for these things.<br>Regardless, thank you for the invitation, playerF.
+				secretary Yeah! Hope you have a nice bath! Hey, the girl, itakoF, she wanted to see us, right?
+				principal Ehhh... I hope she won't be in the pool with us. I'm not fond of bathing in crowds. Oh! Be sure to wash thoroughly before entering!
+				t As the two jabber on, mikoF pulls you aside to your own private waiting room.
+				t ...
+				t You relax in the pool, the warm waters soothe your weary soul.
+				t ... Or something like that.
+				player Hot water is nice, but it certainly does empty the head.
+				principal Finally~!
+				t The doors slide open.
+				im 110.jpg;
+				define principal = sp principal; im images/principal/principalP.jpg;
+				define secretary = sp secretary; im images/secretary/secretaryP.jpg;
+				secretary You were s-saying earlier things felt different, I'm starting to agree... These outfits are-
+				principal Perfect! I've never worn anything that felt quite so clean and breezy! I think I'll-
+				t As she sees you, principalF stops in her tracks. Her smile doesn't fade though, it's like her brain hit a sudden hitch.
+				secretary playerF, hi. principalF, you alright? The air here feels-
+				principal Fine. I'm just... fine. Let's get in the water, my head's starting to hurt.
+				
 				im 112.jpg;
 				im baths1.jpg
 				im baths2.jpg

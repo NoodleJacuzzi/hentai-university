@@ -930,9 +930,14 @@ function writeEvent(name) { //Plays the actual event.
 		}
 		case "purpleBath": {
 			writeHTML(`
+				t You decide to take purpleF and chubbyF with you to the mikoL bathhouse. Hopefully the corruptive waters there will awaken something fun inside of her.
+				t ...
 				im 022.jpg
 				im 027.jpg
 				t ...
+				t You relax in the pool, the warm waters soothe your weary soul.
+				t ... Or something like that.
+				player Hot water is nice, but it certainly does empty the head.
 				im purpleBathRepeat.jpg
 				im 032.jpg
 				im 033.jpg

@@ -907,7 +907,6 @@ function writeEvent(name) { //Plays the actual event.
 				im 013b.jpg
 				black Ehehe... Step on me... Cum in my hair... Slap me in the face with your amazing cock...
 				t You feel a like tug on your body with each of his words. For a brief moment, he was powerful enough to command you, and he wasted it completely on getting off.
-				player 
 				black Hiii~<br>I can... I can see why the master fell for you...
 				player You... You really are hopeless, you aren't like succubusF at all...
 				black Mmm... Anyone can change, *sir, anyone can dream of becoming something greater...<br>But I think it's more fun down here, floating in the dregs, covered in cum~
@@ -933,7 +932,7 @@ function writeEvent(name) { //Plays the actual event.
 				t His pupils dilate and his face goes red.
 				black Hahh... H-here it... Gums... Shplurty... Hiiii~!
 				t He can't even form words as his whole body shakes, he just screams the air in his lungs out as his mind and body are wracked by the direct injection of a hellish pleasure drug. 
-				in 033b.jpg
+				im 033b.jpg
 				black HAAAAAH~!!! AAAAAAH~!
 				t His spasming is barely even recognizable as an orgasm. His muscles twitch like he's being electrocuted, his hips thrust uselessly in the air like he's a humping animal.
 				t Blind with indescribable sensation he sprays clear cum across the floor. 

@@ -926,7 +926,11 @@ function writeEvent(name) { //Plays the actual event.
 				player It's a bathhouse, momF.
 				mom Right, right. Probably nothing...
 				t ...
+				t You relax in the pool, the warm waters soothe your weary soul.
+				t ... Or something like that.
+				player Hot water is nice, but it certainly does empty the head.
 				im 079.jpg
+				
 				im 086.jpg
 				im 087.jpg
 				im 088.jpg

@@ -46,6 +46,10 @@ function writeEncounter(scene) {
 			if (checkFlag("succubus", "hotelGood") == true) {
 				loadEncounter("succubus", "hotelGoodFinish");
 			}
+			if (checkFlag("succubus", "hotelGood") != true && checkFlag("succubus", "hotelGood") != true) {
+				writeText("You've encountered a bug! Somehow, you entered the hotel without triggering the hotel flags. Click this button to go home, and tell noodle what happened!");
+				writeFunction("changeLocation('playerHouse')", "Go home")
+			}
 			break;
 		}
 		case "start" : {
