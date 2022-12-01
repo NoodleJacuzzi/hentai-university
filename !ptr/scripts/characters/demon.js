@@ -19,7 +19,8 @@ var encounterArray = [//Lists encounters as they appear on the map. Nonrepeatabl
 	{index: "demonShopping", name: "A familiar face is here", location: 'shoppingDistrict', time: "MorningEvening", itemReq: "", trustMin: 100, trustMax: 100, type: "tab", top: 0, left: 0, day: "both", altName: "", altImage: "",},
 	{index: "demonPaint", name: "A familiar face is here again", location: 'shoppingDistrict', time: "MorningEvening", itemReq: "", trustMin: 101, trustMax: 101, type: "tab", top: 0, left: 0, day: "both", altName: "", altImage: "",},
 	{index: "demonStart", name: "You should be able to find your way to demon's hotel from here.", location: 'streets', time: "MorningEvening", itemReq: "", trustMin: 102, trustMax: 102, type: "tab", top: 0, left: 0, day: "both", altName: "", altImage: "",},
-	{index: "demonQuo", name: "You should be able to find your way to demon's hotel from here.", location: 'streets', time: "MorningEvening", itemReq: "", trustMin: 103, trustMax: 106, type: "tab", top: 0, left: 0, day: "both", altName: "", altImage: "",},
+	{index: "demonQuo", name: "You should be able to find your way to demon's hotel from here.", location: 'streets', time: "MorningEvening", itemReq: "", trustMin: 103, trustMax: 105, type: "tab", top: 0, left: 0, day: "both", altName: "", altImage: "",},
+	{index: "demonNewQuo", name: "You should be able to find your way to demon's hotel from here.", location: 'streets', time: "MorningEvening", itemReq: "", trustMin: 106, trustMax: 106, type: "tab", top: 0, left: 0, day: "both", altName: "", altImage: "",},
 	{index: "demonHotelGood", name: "Search for demon", requirements: "?flag succubus hotelGood;", altName: "", altImage: "",},
 	{index: "demonHotelBad", name: "Ask about demon", requirements: "?flag demon hotelBad; !flag demon bad;", altName: "", altImage: "",},
 	{index: "blackHotelBad", name: "Ask about the receptionist", requirements: "?flag demon hotelBad; !flag demon black;", altName: "'Stupid Bitch'", altImage: "dark.jpg",},
@@ -217,6 +218,41 @@ function writeEncounter(name) { //Plays the actual encounter.
 			if (checkTrust("demon") == 104) {
 				raiseTrust('demon', 1);
 			}
+			break;
+		}
+		case "blackQuo": {
+			writeHTML(`
+				black You need something of me? My, well, I certainly can't provide anything that a prince of hell couldn't, but I'll do my best. What did you need?
+				trans blackChatChange; Ask what's changed since your first encounter with demonF
+				trans blackChatAmbition; Ask why he and the other succubi are still here and loyal to demonF
+				trans blackOffer; !flag demon black1; Proposition the succubus (male)
+				trans black2; ?flag demon black1; !flag demon black2; Proposition the succubus (male) and try something new
+				trans black2Repeat; ?flag demon black2; Proposition the succubus (male) again
+			`);
+			writeFunction("writeEncounter('cancel')", "Go back");
+			break;
+		}
+		case "demonNewQuo": {
+			writeHTML(`
+				black Oh, welcome back! The master told me to be expecting you. Shall I escort you up again?
+				trans demonSelect; Head up to demonF
+				trans blackQuo; Spend time with 'Stupid Bitch' instead
+			`);
+			writeFunction("writeEncounter('cancel')", "Go back");
+			break;
+		}
+		case "demonSelect": {
+			writeHTML(`
+				black Very well, follow me.
+				...
+				t A short elevator ride later you're on the top floor. The black haired succubus waves you off as you leave, looking very relaxed and content as you go.
+				t You push open the door to demonF's room, it's the usual mess...
+				demon Mmm, welcome back. Here to abuse this little slab of fuckmeat on the town, or have you... Reconsidered?
+			`);
+			writeFunction("writeEncounter('dateAqua')", "Go on a date to the local aquarium");
+			writeFunction("writeEncounter('dateForest')", "Go for a walk in the forest");
+			writeFunction("writeEncounter('accept')", "Agree to demonF's deal");
+			writeFunction("writeEncounter('cancel')", "Go back");
 			break;
 		}
 		case "dateAqua": {
@@ -460,6 +496,86 @@ function writeEncounter(name) { //Plays the actual encounter.
 			`);
 			writeFunction("loadEncounter('system', 'credits')", "The End");
 			addFlag("demon", "complete");
+			break;
+		}
+		case "blackChatChange": {
+			writeHTML(`
+				player So, the working conditions here any better?
+				black Hmm. Since you told the master to improve our conditions here, days have certainly been less exciting. Our daily quotas have been paused. Many of our employees are still desperate to serve though. I think it's only a matter of time before a string of sexual assaults spreads through the city.
+				player ...
+				black I'm kidding, of course. Maybe ordinary demons would go on the prowl, but nobody here could muster up the will to be so forwards. Aside from the master, of course.<br>At worst, you might here rumors of more exhibitionists walking the street.
+				trans blackQuo; Go back
+			`);
+			break;
+		}
+		case "blackChatAmbition": {
+			writeHTML(`
+				player After what happened with demonF, what are you still doing working here? I took him down a lot more than just a peg. Surely he can't be holding onto your leash all that tightly now that he's fixated on cumming away his wealth.
+				black *Sir, I've lost a lot of things since I started working here. The first thing I lost though, aside from what remained of my dignity, was any trace of ambition. If I were given all of the prince's energy right now, I can assure you I would use it purely for masturbation.
+				t He says, with a completely honest smile.
+				black When I was human I would agonize over even the smallest choices. Where I'd go, who I'd associate with, and immortality only worsens that.<br>Working here takes those choices away. I do as my master commands. No need for thoughts. For me, submission is as natural and comforting as a warm blanket, and the prince of hell promises an eternity with all the pleasure and drugs I need to stop thinking.
+				player Hmm...
+				trans blackQuo; Go back
+			`);
+			break;
+		}
+		case "blackOffer": {
+			writeHTML(`
+				black You'd like to spend the night with me?
+				player I dunno how this place works. Is there a cost?
+				black There is a charge, but no one here has ever actually enforced it. Asking for money is merely a way to relax humans who thing a free night with us is too good to be true. So what I'm saying is, I'm all yours if you'd like.
+				player You demons really know how to make a free deal feel like it'll be expensive.
+				black Hehe... Since I have no quota, I will have to warm you, I don't much care for a normal night of passion. I have quite the personal collection of demonic drugs, both meant for humans and for my kind.<br>If you'd like to spend the night as a guest, I'll give you a warning since you're the prince's consort...
+				t He leans towards you, running his fingers across your chest.
+				black Don't get addicted. The rule of the hotel is that addiction is king. If you become hooked, you won't find your fix anywhere except another night here. When the hotel sinks its claws into you, you become the prince's property, even if you're his favorite.
+				trans black1; Spend the night with the receptionist
+				trans blackQuo; Nevermind
+			`);
+			break;
+		}
+		case "black1": {
+			writeEvent(name)
+			writeHTML(`finish`);
+			addFlag("demon", name);
+			passTime();
+			break;
+		}
+		case "black2": {
+			writeEvent(name)
+			writeHTML(`finish`);
+			addFlag("demon", name);
+			passTime();
+			break;
+		}
+		case "black2Repeat": {
+			writeHTML(`
+				black Again? My, you really can't get enough of me. Well, I can't get enough of playing with Baal oil. Did you know it's impossible to develop a tolerance to?
+				t ...
+				player Ghh~!
+				im 031b.jpg
+				black Mmph-<br>Ah~<br>My oh my, *sir, you're lasting longer this time. Surely you aren't trying to avoid giving me my reward? Hmm... Well, denial is its own form of pleasure, I suppose... 
+				t But you can't last forever, not between his lips, not against his inhumanly flexible tongue.
+				player Fine! I'm... S-satisfied!
+				black *Mphh*... *Mwah*! Oh thank you, th-...
+				im 032b.jpg
+				t His pupils dilate and his face goes red.
+				black Hahh... H-here it... Gums... Shplurty... Hiiii~!
+				t Again, he can't even form words as his whole body shakes, he just screams the air in his lungs out as his mind and body are wracked by the direct injection of a hellish pleasure drug. 
+				in 089.jpg
+				black HAAAAAH~!!! AAAAAAH~!
+				t He was right, he hasn't built up a tolerance at all. His reaction as the drug floods his body with unnatural chemicals, completely incapacitating him with pleasure, is just as pathetic as before.
+				t Blind with indescribable sensation he sprays clear cum across the floor, and just like last ime all you can do to try and help is remove the toy and wait.
+				t ...
+				im 033b.jpg
+				black Haaauu... Gahh...
+				player Seriously, what's fucked up in your head that you'd take this stuff just to get kff?
+				t He doesn't respond, his ass winking, his dangling limp dick leaking, drool still running from his mouth.
+				player Try not to fall asleep in that position, you might wake up with a sore neck.
+				t It's getting late, so you have to head home. You've left people quivering messes before, so this should be no different.
+				t ... Right?
+				finish
+			`);
+			passTime();
 			break;
 		}
 		default: {
@@ -750,6 +866,89 @@ function writeEvent(name) { //Plays the actual event.
 				t You stumble back as his body is still being wracked with aftershocks, cum is leaking from his less-than-modest dick in a solid clear stream. He twitches and breathes erratically, only able to communicate one thing; You'll need to carry him out of the woods.
 				...
 				t Luckily the forest is surrounded on all sides by civilization. As your reputation is protected by the wig and his reputation isn't worth shit, you make your way back to his hotel without incident, even if you get a lot of shocked looks along the way.
+			`);
+			break;
+		}
+		case "black1": {
+			writeHTML(`
+				black Wonderful! Let's go to my room. Now, how to start... Perhaps a drop of Gommorah? Some Malphas incense? Essence of Greed?<br>Actually, for our first night... Have you ever heard of the 'splurt game'?
+				t ...
+				t His room is quite bare. Dozens of sex toys neatly organized on shelves, and at least a dozen bottles filled with some kind of inky black tar that seems to bubble and froth, but only when you look at it.
+				t He opens a drawer full of empty bottles and rummages around before pulling out a glass vessel containing a glowing white essence.
+				black Here it is... Pure demonic energy. I caught some of the prince's emissions that fateful night. 
+				player Isn't that super valuable to you?
+				black Indeed. This is so concentrated I could probably ascend past the rank of succubus, or buy my own freedom.
+				t *POP*
+				t The glass stopper pulled off, he chugs it down in one smooth motion!
+				black Oooh~! Pure power! Ehehehe~! Time to play~!
+				im 020b.jpg
+				black The rules are simple, we each gamble. My energy against your stinky, lovely jizz. Anyone who splurts is the loser!
+				player I think I remember succubusF talking about this... Being addicted to gambling and failing-
+				im 021b.jpg
+				black Heeey~! Give me a chance~! You really think I'd lose to the big bad human with potential freedom on the line?
+				player ...
+				im 022b.jpg
+				t The moment of insertion signals the loser already. 
+				black HAAAAAH~! YEEESSH! 
+				t Penetrating the turbo-sub's bitch-hole, you can actually feel the overstuffed prostate squish against your length. It's so overfilled with demonic power that just the lightest touch causes jelly to splurt from Stupid Bitch's flaccid dicklette.
+				black Ouuuuuh~! This is it! All the drugs in the world, nothing makes me cum harder than being trampled on, feeling worthless!
+				t Your mind starts to cloud over, his demonic fluids spread through your body and overwrite common sense.
+				black Yes! Harder! And please... Say my name!
+				player Ugh...
+				black <span style="color:pink;">SAY MY NAME!</span>
+				im 025b.jpg
+				t Feeling your hand move on its own, you give a hard, degrading slap to his ass...
+				player Stupid... Bitch! Stupid fucking whore!
+				black Yesss~! Ahaha~! More power than I've ever had in my life, and I use it to make a human treat me like trash~!<br>Ooooh~! I can't stop cumming! My lifeline is turning into a smelly stain on my bedsheets~! 
+				t Warmth pulses through your body and the edges of your vision start turning red. You're humping like a beast in rut as everything blurs together. Brief flashes of self awareness pull you back into your own mind...
+				im 026b.jpg
+				t But right away you're back in a frenzied trance. It's like treading water in an ocean of pleasure, each wave that passes over you makes you want to give in and start sinking.
+				t ...
+				im 013b.jpg
+				black Ehehe... Step on me... Cum in my hair... Slap me in the face with your amazing cock...
+				t You feel a like tug on your body with each of his words. For a brief moment, he was powerful enough to command you, and he wasted it completely on getting off.
+				player 
+				black Hiii~<br>I can... I can see why the master fell for you...
+				player You... You really are hopeless, you aren't like succubusF at all...
+				black Mmm... Anyone can change, *sir, anyone can dream of becoming something greater...<br>But I think it's more fun down here, floating in the dregs, covered in cum~
+				t Exhausted and woozy, you stumble out of the room, and the hotel. 
+			`);
+			break;
+		}
+		case "black2": {
+			writeHTML(`
+				black Hmm? You'd like to spend another night? Well, I think we have a vacancy~
+				t ...
+				player Ghh~!
+				im 031b.jpg
+				black Mmph-<br>Ah~<br>Is it enough, *sir? The rules are simple, if you're satisfied with the blowjob, just say the word and my 'reward' inside the vibrator will be injected right into my waiting little slut-hole~
+				player Khh-
+				t And that reward just so happens to be a drug strong enough that it'd completely fry every neuron in a human'sll brain. He might be a demon, but could you really do something like-
+				black Hmm hmm, too slow~
+				t Stupid Bitch envelopes you with his mouth again. His sloppy deepthroating technique, his complete disregard for his own breathing, all of it puts him on a level above any human whore.
+				t Your hips quiver as you feel your cum being sucked right out of your body, but he doesn't relent or slow down. Sensitivity already above max, you relent.
+				player Fine! I'm... S-satisfied!
+				black *Mphh*... *Mwah*! V-very... Very gooo...
+				im 032b.jpg
+				t His pupils dilate and his face goes red.
+				black Hahh... H-here it... Gums... Shplurty... Hiiii~!
+				t He can't even form words as his whole body shakes, he just screams the air in his lungs out as his mind and body are wracked by the direct injection of a hellish pleasure drug. 
+				in 033b.jpg
+				black HAAAAAH~!!! AAAAAAH~!
+				t His spasming is barely even recognizable as an orgasm. His muscles twitch like he's being electrocuted, his hips thrust uselessly in the air like he's a humping animal.
+				t Blind with indescribable sensation he sprays clear cum across the floor. 
+				player Damn... Demon life is no joke...
+				t Despite knowing it won't matter, you do him the service of removing the toy and staying to watch to make sure he's okay.
+				t ...
+				im 039b.jpg
+				black Haaauu... Gahh...
+				player Seriously, how long has it been... Are you alright?
+				t He doesn't respond, his ass winking, his dangling limp dick leaking, drool still running from his mouth.
+				player Well, it's not like I could get any help for you. succubusF would say you're a lost cause, demonF would probably start kicking you while laughing hysterically...
+				black Ghhhh~
+				player You heard that at least, so I guess you're alright. Get well soon?
+				t It's getting late, so you have to head home. You've left people quivering messes before, so this should be no different.
+				t ... Right?
 			`);
 			break;
 		}

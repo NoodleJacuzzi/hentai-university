@@ -423,10 +423,6 @@ function writeEncounter(name) { //Plays the actual encounter.
 					miko Or did you bring a guest? Either way...
 				`);
 				writeDual("miko", "", "itako", "", "We recommend a nice, long soak!");
-				writeHTML(`
-					t You've completed mikoF and itakoF's available content!
-					t In the future you'll be able to bring other girls to the bathhouse for scenes and cash, but that didn't make it into v19, sorry! 
-				`);
 			}
 			openWardrobe();
 			writeFunction("writeEncounter('cancel')", "Go back");
@@ -478,24 +474,20 @@ function writeEncounter(name) { //Plays the actual encounter.
 	}
 }
 
-function writeWardrobeOption(wardrobeImage) {
-	if (wardrobeImage.includes("Locked")==false) {
-		document.getElementById('wardrobeGrid').innerHTML += `
-			<img class="bigPicture" id="`+wardrobeImage+`" src="images/miko/`+wardrobeImage+`.jpg" 
-			onclick="writeEncounter('`+wardrobeImage+`')",
-			onmouseover="wardrobeMouseOver('`+wardrobeImage+`')"
-			onmouseout="wardrobeMouseOut('`+wardrobeImage+`')"
-			style="filter:brightness(50%);">
-		`;
+function writeWardrobeOption(wardrobeImage, target) {
+	var targetText = `writeEncounter('`;
+	var targetImage = `images/miko/`
+	if (target != null) {
+		targetText = `loadEncounter('`+target+`', '`;
+		var targetImage = `images/`+target+`/`
 	}
-	else {
-		document.getElementById('wardrobeGrid').innerHTML += `
-			<img class="bigPicture" id="`+wardrobeImage+`" src="images/miko/unknown.png" title="Tsk tsk, play with the outfits we have before you get greedy for more!"
-			onmouseover="wardrobeMouseOver('`+wardrobeImage+`')"
-			onmouseout="wardrobeMouseOut('`+wardrobeImage+`')"
-			style="filter:brightness(50%);">
-		`;
-	}
+	document.getElementById('wardrobeGrid').innerHTML += `
+		<img class="bigPicture" id="`+wardrobeImage+`" src="`+targetImage+wardrobeImage+`.jpg" 
+		onclick="`+targetText+wardrobeImage+`')",
+		onmouseover="wardrobeMouseOver('`+wardrobeImage+`')"
+		onmouseout="wardrobeMouseOut('`+wardrobeImage+`')"
+		style="filter:brightness(50%);">
+	`;
 }
 
 function wardrobeMouseOver(wardrobeImage) {
@@ -530,6 +522,170 @@ function openWardrobe() {
 	}
 	else {
 		writeWardrobeOption("itakoSolo2");
+	}
+	if (checkTrust("principal") > 40) {
+		if (checkFlag("principal", "bath") != true) {
+			document.getElementById('wardrobeGrid').innerHTML += `
+				<figure>
+					<img class="bigPicture" 
+					src="images/principal/principalPT.png" 
+					onclick="writeText('Find and invite principalF to the bathhouse for a new scene!')" 
+					style="filter:brightness(100%);">
+					<figcaption style = "text-align: center;">Find and invite `+replaceCodenames("principalF")+`  to the bathhouse for a new scene!</figcaption>
+				</figure>
+			`;
+		}
+		else {
+			writeWardrobeOption("principalBathsRepeat", "principal");
+		}
+	}
+	else {
+		document.getElementById('wardrobeGrid').innerHTML += `
+			<figure>
+				<img class="bigPicture" 
+				src="images/principal/principalPT.png" 
+				onclick="writeText('Find and invite principalF to the bathhouse for a new scene!')" 
+				style="filter:brightness(0%);">
+				<figcaption style = "text-align: center;">You need to find and win the trust of this person to bring them to the bathhouse.</figcaption>
+			</figure>
+		`;
+	}
+	if (checkTrust("mom") > 99) {
+		if (checkFlag("mom", "bath") != true) {
+			document.getElementById('wardrobeGrid').innerHTML += `
+				<figure>
+					<img class="bigPicture" 
+					src="images/mom/momPT.png" 
+					onclick="writeText('Find and invite momF to the bathhouse for a new scene!')" 
+					style="filter:brightness(100%);">
+					<figcaption style = "text-align: center;">Find and invite `+replaceCodenames("momF")+`  to the bathhouse for a new scene!</figcaption>
+				</figure>
+			`;
+		}
+		else {
+			writeWardrobeOption("momBathsRepeat", "mom");
+		}
+	}
+	else {
+		document.getElementById('wardrobeGrid').innerHTML += `
+			<figure>
+				<img class="bigPicture" 
+				src="images/mom/momPT.png" 
+				onclick="writeText('Find and invite momF to the bathhouse for a new scene!')" 
+				style="filter:brightness(0%);">
+				<figcaption style = "text-align: center;">You need to find and win the trust of this person to bring them to the bathhouse.</figcaption>
+			</figure>
+		`;
+	}
+	if (checkTrust("purple") > 99) {
+		if (checkFlag("purple", "bath") != true) {
+			document.getElementById('wardrobeGrid').innerHTML += `
+				<figure>
+					<img class="bigPicture" 
+					src="images/purple/purplePT.png" 
+					onclick="writeText('Find and invite purpleF to the bathhouse for a new scene!')" 
+					style="filter:brightness(100%);">
+					<figcaption style = "text-align: center;">Find and invite `+replaceCodenames("purpleF")+`  to the bathhouse for a new scene!</figcaption>
+				</figure>
+			`;
+		}
+		else {
+			writeWardrobeOption("purpleBathsRepeat", "purple");
+		}
+	}
+	else {
+		document.getElementById('wardrobeGrid').innerHTML += `
+			<figure>
+				<img class="bigPicture" 
+				src="images/purple/purplePT.png" 
+				onclick="writeText('Find and invite purpleF to the bathhouse for a new scene!')" 
+				style="filter:brightness(0%);">
+				<figcaption style = "text-align: center;">You need to find and win the trust of this person to bring them to the bathhouse.</figcaption>
+			</figure>
+		`;
+	}
+	if (checkTrust("nurse") > 4) {
+		if (checkFlag("nurse", "bath") != true) {
+			document.getElementById('wardrobeGrid').innerHTML += `
+				<figure>
+					<img class="bigPicture" 
+					src="images/nurse/nursePT.png" 
+					onclick="writeText('Find and invite nurseF to the bathhouse for a new scene!')" 
+					style="filter:brightness(100%);">
+					<figcaption style = "text-align: center;">Find and invite `+replaceCodenames("nurseF")+`  to the bathhouse for a new scene!</figcaption>
+				</figure>
+			`;
+		}
+		else {
+			writeWardrobeOption("nurseBathsRepeat", "nurse");
+		}
+	}
+	else {
+		document.getElementById('wardrobeGrid').innerHTML += `
+			<figure>
+				<img class="bigPicture" 
+				src="images/nurse/nursePT.png" 
+				onclick="writeText('Find and invite nurseF to the bathhouse for a new scene!')" 
+				style="filter:brightness(0%);">
+				<figcaption style = "text-align: center;">You need to find and win the trust of this person to bring them to the bathhouse.</figcaption>
+			</figure>
+		`;
+	}
+	if (data.player.carnivore != true) {
+		if (checkTrust("papi") > 100) {
+			if (checkFlag("papi", "bath") != true) {
+				document.getElementById('wardrobeGrid').innerHTML += `
+					<figure>
+						<img class="bigPicture" 
+						src="images/papi/papiPT.png" 
+						onclick="writeText('Find and invite papiF to the bathhouse for a new scene!')" 
+						style="filter:brightness(100%);">
+						<figcaption style = "text-align: center;">Find and invite `+replaceCodenames("papiF")+`  to the bathhouse for a new scene!</figcaption>
+					</figure>
+				`;
+			}
+			else {
+				writeWardrobeOption("papiBathsRepeat", "papi");
+			}
+		}
+		else {
+			document.getElementById('wardrobeGrid').innerHTML += `
+				<figure>
+					<img class="bigPicture" 
+					src="images/papi/papiPT.png" 
+					onclick="writeText('Find and invite papiF to the bathhouse for a new scene!')" 
+					style="filter:brightness(0%);">
+					<figcaption style = "text-align: center;">You need to find and win the trust of this person to bring them to the bathhouse.</figcaption>
+				</figure>
+			`;
+		}
+		if (checkTrust("papi") > 100) {
+			if (checkFlag("son", "bath") != true) {
+				document.getElementById('wardrobeGrid').innerHTML += `
+					<figure>
+						<img class="bigPicture" 
+						src="images/son/sonPT.png" 
+						onclick="writeText('Find and invite sonF to the bathhouse for a new scene!')" 
+						style="filter:brightness(100%);">
+						<figcaption style = "text-align: center;">Find and invite `+replaceCodenames("sonF")+`  to the bathhouse for a new scene!</figcaption>
+					</figure>
+				`;
+			}
+			else {
+				writeWardrobeOption("sonBathsRepeat", "son");
+			}
+		}
+		else {
+			document.getElementById('wardrobeGrid').innerHTML += `
+				<figure>
+					<img class="bigPicture" 
+					src="images/son/sonPT.png" 
+					onclick="writeText('Find and invite sonF to the bathhouse for a new scene!')" 
+					style="filter:brightness(0%);">
+					<figcaption style = "text-align: center;">You need to find and win the trust of this person to bring them to the bathhouse.</figcaption>
+				</figure>
+			`;
+		}
 	}
 }
 

@@ -453,6 +453,10 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeFunction("loadEncounter('system', 'credits')", "The End");
 			break;
 		}
+		case "momBathsRepeat": {
+			writeHTML(`t Test`);
+			break;
+		}
 	}
 }
 
