@@ -1110,7 +1110,7 @@ function writePhoneEvent(name) { //Plays the relevant phone event
             writePhoneSpeech("player", "", "Okay, bye!");
 			break;
 		}
-        case "accorequest": {
+        case "incomplete": {
 			writePhoneSpeech("accountant", "", "You have reached the current end for accountantF's content, but don't worry, more will come with the next update (hopefully, writing hasn't been as much fun as it used to be lately)! Hope you enjoyed it.");
 			break;
 		}

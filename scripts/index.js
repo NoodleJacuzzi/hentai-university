@@ -509,7 +509,6 @@ function startup() {
 		loadEvent('system', 'start');
 	}
 	//Establish basic shortcuts for writeHTML();
-	basicDefinitions();
 	//Check if the noodle jacuzzi index has been visited
 	if(localStorage.getItem('indexVisited')) {
 		addFlag("mom", "noodleJacuzzi");
@@ -517,6 +516,7 @@ function startup() {
 	//Check if the player has any new achievements (mostly for testing new ones)
 	checkForAchievements();
 	loadCoreCharacters();
+	basicDefinitions();
 }
 
 function basicDefinitions() {
