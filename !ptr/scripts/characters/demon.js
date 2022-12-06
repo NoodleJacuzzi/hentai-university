@@ -561,7 +561,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 				t His pupils dilate and his face goes red.
 				black Hahh... H-here it... Gums... Shplurty... Hiiii~!
 				t Again, he can't even form words as his whole body shakes, he just screams the air in his lungs out as his mind and body are wracked by the direct injection of a hellish pleasure drug. 
-				in 089.jpg
+				im 089.jpg
 				black HAAAAAH~!!! AAAAAAH~!
 				t He was right, he hasn't built up a tolerance at all. His reaction as the drug floods his body with unnatural chemicals, completely incapacitating him with pleasure, is just as pathetic as before.
 				t Blind with indescribable sensation he sprays clear cum across the floor, and just like last ime all you can do to try and help is remove the toy and wait.
