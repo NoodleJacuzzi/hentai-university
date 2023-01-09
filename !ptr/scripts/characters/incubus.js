@@ -223,6 +223,9 @@ function writeEncounter(name) { //Plays the actual encounter.
 					else {
 						sale("rimjobRepeat", 40, "images/incubus/rim5.jpg", "Rimjob (REPEAT)<br>Analingus, asslicking, playing the rusty trombone<br>High virility customers only, masculine or boyish bodies preferred");
 					}
+					if (checkFlag('incubus', 'fiend') == false) {
+						sale("fiend", 40, "images/fiend/rim1.jpg", "Rimjob<br>Analingus, asslicking, playing the rusty trombone<br>High virility customers only, masculine or boyish bodies preferred");
+					}
 				}
 			}
 			else {

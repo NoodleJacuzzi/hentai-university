@@ -296,7 +296,7 @@ var achievementArray = [
 	{index:"principal3", frame: "ultraRare", name: "", requirements: "?flag principal endingBlackmail;", description: "Gather the support of every PTSA member and directly blackmail principalF with presidentF's help. Keep meeting with presidentF and secretaryF if you're stuck!", image: "images/pink/pinkPT.png",},
 	
 	{index:"kuro1", frame: "ultraRare", name: "", requirements: "?flag kuro complete;", description: "Obtain kuroF's ending If you're having trouble, remember check your phone and level up hacking once or twice.", image: "images/kuro/kuroPT.png",},
-	{index:"kuro2", frame: "", name: "", requirements: "?flag kuro OralFixation;", description: "Hear about kuroF's embarrassing story involving nikkiF and her oral fixation.", image: "images/kuro/9-1.jpg",},
+	//index:"kuro2", frame: "", name: "", requirements: "?flag kuro OralFixation;", description: "Hear about kuroF's embarrassing story involving nikkiF and her oral fixation.", image: "images/kuro/9-1.jpg",},
 	{index:"maid1", frame: "ultraRare", name: "", requirements: "?flag maid complete;", description: "Obtain maidF and mistressF's ending. If you pursue maidF first, dialogue with both her and mistressF will change.", image: "images/maid/maidPT.png",},
 	{index:"mistress1", frame: "ultraRare", name: "", requirements: "?flag mistress complete;", description: "Obtain maidF and mistressF's ending. If you pursue mistressF first, dialogue with both her and maidF will change", image: "images/mistress/mistressPT.png",},
 	{index:"nikki", frame: "ultraRare", name: "", requirements: "?flag nikki complete;", description: "Get nikkiF's ending.", image: "images/nikki/nikkiPT.png",},

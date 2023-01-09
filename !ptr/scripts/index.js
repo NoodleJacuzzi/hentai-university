@@ -296,7 +296,7 @@ var achievementArray = [
 	{index:"principal3", frame: "ultraRare", name: "", requirements: "?flag principal endingBlackmail;", description: "Gather the support of every PTSA member and directly blackmail principalF with presidentF's help. Keep meeting with presidentF and secretaryF if you're stuck!", image: "images/pink/pinkPT.png",},
 	
 	{index:"kuro1", frame: "ultraRare", name: "", requirements: "?flag kuro complete;", description: "Obtain kuroF's ending If you're having trouble, remember check your phone and level up hacking once or twice.", image: "images/kuro/kuroPT.png",},
-	{index:"kuro2", frame: "", name: "", requirements: "?flag kuro OralFixation;", description: "Hear about kuroF's embarrassing story involving nikkiF and her oral fixation.", image: "images/kuro/9-1.jpg",},
+	//index:"kuro2", frame: "", name: "", requirements: "?flag kuro OralFixation;", description: "Hear about kuroF's embarrassing story involving nikkiF and her oral fixation.", image: "images/kuro/9-1.jpg",},
 	{index:"maid1", frame: "ultraRare", name: "", requirements: "?flag maid complete;", description: "Obtain maidF and mistressF's ending. If you pursue maidF first, dialogue with both her and mistressF will change.", image: "images/maid/maidPT.png",},
 	{index:"mistress1", frame: "ultraRare", name: "", requirements: "?flag mistress complete;", description: "Obtain maidF and mistressF's ending. If you pursue mistressF first, dialogue with both her and maidF will change", image: "images/mistress/mistressPT.png",},
 	{index:"nikki", frame: "ultraRare", name: "", requirements: "?flag nikki complete;", description: "Get nikkiF's ending.", image: "images/nikki/nikkiPT.png",},
@@ -410,7 +410,9 @@ var coreCharactersArray = [
 	{index: "pornstar", fName: "Andrea", lName: "Cummings", trust: 0, encountered: false, textEvent: "", textHistory: "", met: false, color: "#454857", author: "NoodleJacuzzi", artist: "Oreteki18kin", gender: "female",},
 	{index: "gyatrio", fName: "Delinquent", lName: "Trio", trust: 0, encountered: false, textEvent: "", met: false, color: "#EA4448", author: "NoodleJacuzzi", artist: "Uo Denim", textHistory: "", unreadText: false, gender: "female",},
 	{index: "fiend", fName: "Abba", lName: "", trust: 0, encountered: false, textEvent: "", met: false, color: "#AE8492", author: "NoodleJacuzzi", artist: "Silver Radish", textHistory: "", unreadText: false, gender: "female",},
-	{index: "spy", fName: "Sarah", lName: "Walker", trust: 0, encountered: false, textEvent: "", met: false, color: "#7B6170", author: "CryptoGreek", artist: "Anza Yuu", textHistory: "", unreadText: false,},
+	{index: "spy", fName: "Sarah", lName: "Walker", trust: 0, encountered: false, textEvent: "", met: false, color: "#7B6170", author: "CryptoGreek", artist: "Anza Yuu", textHistory: "", unreadText: false, gender: "female",},
+	{index: "fiend", fName: "Abba", lName: "", trust: 0, encountered: false, textEvent: "", met: false, color: "#AE8492", author: "NoodleJacuzzi", artist: "Silver Radish", textHistory: "", unreadText: false, gender: "female",},
+	{index: "wife", fName: "Ophelia", lName: "Rose", trust: 0, encountered: false, textEvent: "", met: false, color: "#EF96CE", author: "NoodleJacuzzi", artist: "Silver Radish", textHistory: "", unreadText: false, gender: "male",},
 ]
 
 var eggyLines = [

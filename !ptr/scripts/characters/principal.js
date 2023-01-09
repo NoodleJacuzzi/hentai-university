@@ -2151,7 +2151,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 				pornstar You like being degraded, don't you? I could see it in your eyes from the moment you walked in.
 				secretary ...
 				pornstar And I bet you can't wait until principalF arrives. You want to see our stud here plunge his cock into her and shower her womb with his cum.<br>Here, let's get a closer look.
-				im 094.jpg
+				im 093.jpg
 				pornstar Well well, the would-be whore is soaked. How do you feel?
 				secretary ... Good...
 				pornstar Louder!
