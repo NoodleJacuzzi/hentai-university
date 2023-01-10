@@ -82,7 +82,7 @@ var encounterArray = [//Lists encounters as they appear on the map. Nonrepeatabl
 	{index: "intro2", name: "You could visit the landlord's house", requirements: "?trust wife 1; ?location apartmentOutside;", altName: "", altImage: "",},
 	{index: "detectiveQuo", name: "You could visit the landlord's house", requirements: "?trustMin wife 2; ?trustMax wife 4; ?location apartmentOutside;", altName: "", altImage: "",},
 	{index: "tranceQuo", name: "You could visit the landlord's house", requirements: "?trust wife 5; ?location apartmentOutside;", altName: "", altImage: "",},
-	{index: "fetishQuo", name: "You could visit wifeF", requirements: "?trustMin wife 60; ?location apartmentOutside;", altName: "", altImage: "",},
+	{index: "fetishQuo", name: "You could visit wife", requirements: "?trustMin wife 6; ?location apartmentOutside;", altName: "", altImage: "",},
 ];
 		writeHTML(`
 			define landlord = sp Landlord; im images/wife/landlord.jpg;
@@ -444,7 +444,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 						trans cancel; Go back
 					`);
 				break;
-				case 8:
+				case 9:
 					writeHTML(`
 						wife Mmm, welcome back~!
 						t <b>wifeF's current content is finished, but feel free to view and replay all the potential reconditioning scenes:</b>
@@ -462,10 +462,105 @@ function writeEncounter(name) { //Plays the actual encounter.
 			`);
 			break;
 		}
-		case "massageReturn": {
+		case "wifeMorning": {
+			data.player.currentScene = "newDay";
 			writeHTML(`
-				
-			`);
+				define secret = sp ???; im images/wife/secret.jpg;
+				t You drift off to sleep, a pleasant day behind you...
+				t <b>Meanwhile</b>...
+				t ...
+				t *KNOCK* *KNOCK* *KNOCK*
+				wife Coming~!<br>Hel-
+				secret Hello again, wifeF~<br>I certainly hope you waited like a good girl while I was gone.
+				wife Ah... I, er...
+				secret Hmm? I was expecting you'd be a little more excited. I rarely make housecalls, but after how I left you last time...
+				wife Well, I... I ran out of lotion, and I might have...
+				secret Hmm~<br>Did you find some more prey? Here, let's get you a quick dose and then head back to the parlor, it's a little more... Spacious, than it was before~
+				wife W-wait, I... Um...
+				secret Just take a deeeep breath, because I've finally perfected the recipe~
+				wife Eep~!
+				t ...
+			`)
+			checkForPhone();
+			if (data.player.day == 100) {
+				writeSpecial("You've played 100 days, amazing! Thank you very much for playing so far, please be sure to back up your save though! You can do this by saving to a text string, or by saving to a .noodle file in the save menu!");
+			}
+			document.getElementById('output').innerHTML += `
+				<div class="playerRoom">
+					<img class="backgroundPicture" src="images/locations/newDayMorning.jpg" usemap="#roomMap">
+				</div>
+			`;
+			if (checkFlag("mom", "megaEasy") == true) {
+				printLocationButton(
+					"Get out of bed", 
+					40, 
+					40, 
+					"map", 
+				);
+			}
+			else {
+				printLocationButton(
+					"Get out of bed", 
+					40, 
+					40, 
+					"playerHouse", 
+				);
+			}
+			if (checkFlag("mom", "megaEasy") != true) {
+				var illegalLocations = "map, casino, beach, hotel, playerHouse";
+				var morningLocation = "";
+				var eveningLocation = "";
+				for (locationIndex = 0; locationIndex < locationArray.length; locationIndex++) {
+					if (locationArray[locationIndex].index == savedLocations.morning) {
+						morningLocation = locationArray[locationIndex].name;
+					}
+					if (locationArray[locationIndex].index == savedLocations.evening) {
+						eveningLocation = locationArray[locationIndex].name;
+					}
+				}
+				if (savedLocations.morning != "" && illegalLocations.includes(savedLocations.morning) != true) {
+					writeFunction("changeLocation('"+savedLocations.morning+"')", "Shortcut: "+morningLocation);
+				}
+				if (savedLocations.evening != "" && illegalLocations.includes(savedLocations.evening) != true && savedLocations.evening != savedLocations.morning) {
+					writeFunction("changeLocation('"+savedLocations.evening+"')", "Shortcut: "+eveningLocation);
+				}
+				savedLocations.morning = "";
+				savedLocations.evening = "";
+			}
+			if (data.player.day % 5 === 0) {
+				var paybaby = 10 + data.player.counseling;
+				writeSpecial("It's payday! $10 has been wired to your account.");
+				if (data.player.counseling > 0) {
+					writeSpecial("You've received an extra $" + data.player.counseling + " for being so skilled, you sly dog!");
+				}
+				if (checkFlag('starlet', 'porno') == true) {
+					paybaby += 20;
+					writeSpecial("You recieved an extra $20 from your appearance in porn!");
+				}
+				data.player.money += paybaby;
+			}
+			if (checkTrust('principal') == 40) {
+				if (data.player.carnivore != true) {
+					raiseTrust('principal', 1);
+				}
+			}
+			var failureToRead = false;
+			for (z = 0; z < data.story.length; z++) {
+				if (data.story[z].unreadText ==true) {
+					if (data.story[z].textEvent.includes("eward") != true) {
+						failureToRead = true;
+					}
+				}
+			}
+			if (failureToRead == true) {
+				reminderFontSize += 50;
+				writeText("<span style='font-size: "+reminderFontSize+"%'>You have one or more unread text messages!</span>");
+				document.getElementById('phoneButton').style.color = "#0F0";
+			}
+			else {
+				reminderFontSize = 100;
+			}
+			setTrust("wife", 9);
 			break;
 		}
 		case "wifeFrotting": {
@@ -548,7 +643,14 @@ function writeEncounter(name) { //Plays the actual encounter.
 }
 
 var eventArray = [
-	{index: "placeholder", name: "Event Name"},
+	{index: "wifeFrotting", name: "Bad Porn Acting"},
+	{index: "wifeHandjob", name: "Coping Mechanism"},
+	{index: "wifeSex", name: "Wake Me Up with a Bang"},
+	{index: "wifeRimGiving", name: "Playing the Trumpet"},
+	{index: "wifeRimRecieving", name: "Getting your Trumpet Played"},
+	{index: "wifeRiskyHandy", name: "Risky Handy"},
+	{index: "wifeRiskySex", name: "Risky Sex"},
+	{index: "wifeFetishBypass", name: "The Hard Way"},
 ];
 
 function writeEvent(name) { //Plays the actual event.

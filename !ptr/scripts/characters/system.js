@@ -324,6 +324,9 @@ function writeEncounter(scene) {
 			if (data.player.day == 100) {
 				specialEvent = ""; 
 			}
+			if (checkTrust("wife") == 8) {
+				specialEvent = "wifeCliffhanger"; 
+			}
 			switch (specialEvent) {
 				case "breakfast": 
 					loadEncounter('succubus', 'breakfast');
@@ -345,6 +348,9 @@ function writeEncounter(scene) {
 				break;
 				case "shecream": 
 					loadEncounter('fitboi', 'fitboiMorning');
+				break;
+				case "wifeCliffhanger": 
+					loadEncounter('wife', 'wifeMorning');
 				break;
 				case "mods": 
 					writeBig("scripts/gamefiles/images/v20.png");
