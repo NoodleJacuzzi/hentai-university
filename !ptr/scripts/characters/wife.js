@@ -902,15 +902,32 @@ function writeEvent(name) { //Plays the actual event.
 		}
 		case "wifeRiskySex": {
 			writeHTML(`
-				t <b>UNFINISHED SCENE: NO DIALOGUE</b>
+				player Lubed up... Not that you really need it. You ready?
 				im 118.jpg
+				wife Haahh~<br>P-public sex~ The whole world will see me....
+				player Not if you can manage any self-control.<br>... So, yeah, they probably will. But for now...
 				im 119.jpg
+				wife HOUUUGH~!
+				player I'll strike while the iron, or ass, is hot~!
+				wife Hooh fuck~! My ass~!
 				im 120.jpg
+				wife Mmmmph~!
+				player I'm surprised you're actually trying to hold back, you're clenching onto my dick like you're trying to break it.
 				im 121.jpg
+				wife Ghh... The p-plan... Was for <i>risky</i> sex... I'm not ready to...
 				im 122.jpg
+				wife To lose my dignity in p-public for... For real...<br>So k-keep it s-slow... Or...
 				im 123.jpg
+				wife Hoooough~! I can't take it anymore! Fuck me, rail me, beat my bitch-button senseless~!
+				player Cmon, spray~! I'll fuck every last drop of cum out of your body!
 				im 124.jpg
+				wife NGGHHHH~!
 				im 125.jpg
+				wife Hah... Hah... It's over... I really went too far this time... I'm done for.
+				player Oh no you aren't, not until you're a heap on the floor.
+				wife Oh god... So then my only hope... Is that my voice gives out?
+				player No, your only hope is that I put you into a fuck-coma before anybody notices you.
+				wife Ouuu...
 				t ...
 				player Alright wifeF... Just let everything go, and focus on nothing but my voice.
 				wife Nothing... But your voice...
@@ -931,22 +948,47 @@ function writeEvent(name) { //Plays the actual event.
 		}
 		case "wifeFetishBypass": {
 			writeHTML(`
-				t <b>UNFINISHED SCENE: NO DIALOGUE</b>
+				wife Mppph~!
+				player What's that? I can't understand you through the gag. Is the vibration too intense? Hmm...
 				im 127.jpg
+				player Stay perfectly still if the vibration's too much, and wag your dick if it's not enough stimulation.
+				t And of course, with a set of hole-ruining anal-beads sliding into her ass one by one, and a vibrating wand directly on her abused nipple she can't keep her body from...
+				t Wagging her dick "yes".
+				player Loud and clear! No worries, now that these are... All the way in, I can grab this.
 				im 128.jpg
+				wife Mmmm~!
+				player Relax! I'm not such a monster that I'd have you fuck this sleeve...
+				wife Phhhhm~!
+				player Because that's not nearly enough for you!
 				im 129.jpg
+				t As you press the head of the vibrating wand directly against the head of her dick, all she can doo is struggle against her bondage and flail as best she can.
+				t The blindfold only accentuates the brutal sensation, striping away her sight and amplifying everything else, until.
 				im 130.jpg
+				t She chomps at the gag so hard you'd swear it could break, as her cumming dick blasts the hardest load of wifeF's life. Her entire body seizes up, every muscle that can go rigid does.
 				im 131.jpg
+				t And when it ends, there's no relief. The want is back on her nipple, the beads still compressing her pulsing prostate.
 				im 132.jpg
+				t And <i>now</i> you begin stroking the sleeve. The sensitivity of her post-orgasmic body is through the roof, so naturally...
 				im 133.jpg
+				t Right back to her cock, stroking fast enough that despite having just cum her orgasm is inevitable.
 				im 134.jpg
+				t No deluge of sperm, but the sensation is just as intense, her mind is clearly fried as her body spasms hard enough to push out the anal beads, which are just another layer of pleasure on a mind learning a new meaning to "pure white".
 				im 135.jpg
-				im 136.jpg
-				im 137.jpg
+				t Her heart is racing and her breathing is so ragged it sounds like she's drowning on air, but there's no relief, not now, not until she's been completely broken.
 				t ...
+				player Wakey wakey, still concious?
+				im 136.jpg
+				t The blindfold off and head propped up, you can see her eyes are crossed and she doesn't notice you're speaking, but her body is still shaking with each vibration of the wand, so...
+				player The lights must still be on in there somewhere. Back to work, I suppose.
+				t At this point each orgasm is firing blanks, she's been pushed, no, shoved miles beyond her limits.
+				player Hey, on the plus side, you might be able to actually go a day without masturbating after this!
+				t ...
+				player Can you hear me?
+				im 137.jpg
+				wife Gyeeeh~
 				player Alright wifeF... Just let everything go, and focus on nothing but my voice.
-				wife Nothing... But your voice...
-				t And for the first time, you have her completely in a trance of your making, entirely under your control.
+				wife Nuh... Vwah...
+				t For the first time, you have her completely in a trance of your making, entirely under your control.
 				t You take a moment to relax and bask in your victory. As for using her for sexual relief, she's already a perfectly compatible partner, so you focus on instilling loyalty into her.
 				t And as for curtailing her incredible sex drive...
 				player ... I can deal with that later. Maybe. For now...
@@ -954,10 +996,12 @@ function writeEvent(name) { //Plays the actual event.
 				t *SNAP*!
 				wife Gyah~!
 				player Morning.
-				wife G-good morning? I... Hoh... I feel tired...
-				player That's to be expected, we spent a few hours fucking.
-				wife Mmm, that explains why I feel so satisfied...<br>Will you be staying much longer, *master?
-				player Nice.
+				wife G-good morning? I... Hoh... Oh god... My whole body...
+				player That's to be expected, you notice it's dark out?
+				wife I... I can still feel it tingling...
+				player You need sleep. The work's done, relax.
+ 				wife Okay... Will you be heading home yourself, *master?
+				player Heh. Yeah, I think I will.
 			`);
 			break;
 		}
