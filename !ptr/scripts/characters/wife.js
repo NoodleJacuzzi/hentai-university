@@ -402,7 +402,24 @@ function writeEncounter(name) { //Plays the actual encounter.
 					writeHTML(`
 						wife Mmm, welcome back~! We have the house all to ourselves today~<br>Will we be trying hypnosis again?
 						player No, we'll be doing something different. 
-						
+						wife Aww...
+						t She seems disappointed, but you quickly dispell that by taking a step towards her and stealing the situation's momentum.
+						player I am going to <i>break</i> you.
+						im 030.jpg
+						wife Oh my~! You're quite forward today...
+						player So we've got two options, the way I see it. I need you to exhaust yourself, and the best way to do that is for you to finally get all this pent-up sexual energy out of your system.
+						wife Hmm, I imagine one of those options will take all day, not that I really mind~
+						player Yep. I could brute force you. You've got the stamina of a racehorse, but I'm ready for the challenge.
+						t That makes her lick her lips, her knees are quivering a little.
+						player But the other plan involves playing directly into your fetishes. You'll tire yourself out more quickly if the sexual fantasies do the work for me.
+						wife Hmm~<br>I certainly don't mind that idea either~!
+						player Lay it on me then. Lets find out those kinks. We've all got instinctual responses, so go ahead and list some fantasies and I'll focus on the ones that have the most effect.
+						wife A list of what turns me on, hmm~<br>Ara ara~<br>Where do I even begin...
+						t ...
+						wife And then you'd clamp me down, locking me tightly before calling in the animals-
+						player Stop, stop, we've been at this for half an hour, and you're clearly done listing things we can legally do. Let's see...<br>You were fixated on rimming the most of what you mentioned, although you clearly didn't care which end you were on...
+						im 030.jpg
+						t To take control of wifeF, you could try playing into her rimming fetish to tire her out:
 						trans wifeRimGiving; Stimulate her ass
 						trans wifeRimRecieving; Have her rim you
 						t Alternatively, you could spend all day brute forcing through her conditioning:
@@ -413,8 +430,13 @@ function writeEncounter(name) { //Plays the actual encounter.
 				case 7:
 					writeHTML(`
 						wife Mmm, welcome back~! We have the house all to ourselves again~
-						player <i>If I'm right, just a little more should be enough to break her down enough to condition her properly...</i><br>Alright, same deal as last time. Let's see what 
-						
+						player <i>If I'm right, just a little more should be enough to break her down enough to condition her properly...</i><br>Alright, same deal as last time.
+						t You take a step towards her, although this time it's clear she's a lot more immediately receptive to your approach.
+						player Go ahead and let it all out. Try to keep it legal. Ethical too, preferably. Let's see if anything hits you 
+						im 031.jpg
+						wife Mmm, well, to be honest it's a short list this time...<br>The thought of being caught last time just... <i>broke</i> me. I ruined my sheets so badly last night, it took <i>hours</i> to pull myself away from licking up my mess...
+						player I thought you'd say something like that...
+						t To take control of wifeF, you could try playing into her exhibitionism fetish to tire her out:
 						trans wifeRiskyHandy; Stimulate her dick in a risky situation
 						trans wifeRiskySex; Fuck her ass in a risky situation
 						t Alternatively, you could spend all day brute forcing through what's left of her conditioning:
@@ -514,7 +536,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 				setTrust("wife", 8);
 			}
 			writeEvent(name);
-			passTime();
+			data.player.time = "Night";
 			writeHTML(`finish`);
 			break;
 		}
@@ -628,6 +650,7 @@ function writeEvent(name) { //Plays the actual event.
 		}
 		case "wifeSex": {
 			writeHTML(`
+				t Ultimately, while she's laying back and keeping still, she isn't relaxed, and her trance is more dependent on the lotion than your command.
 				im 100.jpg
 				im 101.jpg
 				im 102.jpg
@@ -639,36 +662,71 @@ function writeEvent(name) { //Plays the actual event.
 				im 108.jpg
 				im 109.jpg
 				im 110.jpg
+				
+				
 			`);
 			break;
 		}
 		case "wifeRimGiving": {
 			writeHTML(`
-				
+				im 079.jpg
+				im 080.jpg
+				im 081.jpg
+				im 082.jpg
+				im 083.jpg
+				im 084.jpg
 			`);
 			break;
 		}
 		case "wifeRimRecieving": {
 			writeHTML(`
-				
+				im 063.jpg
+				im 064.jpg
+				im 065.jpg
+				im 066.jpg
+				im 067.jpg
+				im 068.jpg
+				im 069.jpg
 			`);
 			break;
 		}
 		case "wifeRiskyHandy": {
 			writeHTML(`
-				
+				im 113.jpg
+				im 114.jpg
+				im 115.jpg
+				im 116.jpg
+				im 117.jpg
+				im 118.jpg
 			`);
 			break;
 		}
 		case "wifeRiskySex": {
 			writeHTML(`
-				
+				im 118.jpg
+				im 119.jpg
+				im 120.jpg
+				im 121.jpg
+				im 122.jpg
+				im 123.jpg
+				im 124.jpg
+				im 125.jpg
 			`);
 			break;
 		}
 		case "wifeFetishBypass": {
 			writeHTML(`
-				
+				im 127.jpg
+				im 128.jpg
+				im 129.jpg
+				im 130.jpg
+				im 131.jpg
+				im 132.jpg
+				im 133.jpg
+				im 134.jpg
+				im 135.jpg
+				im 136.jpg
+				im 137.jpg
 			`);
 			break;
 		}
