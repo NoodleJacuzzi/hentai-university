@@ -80,10 +80,13 @@ var newItems = [
 var encounterArray = [//Lists encounters as they appear on the map. Nonrepeatable, only one per day per character by default.
 	{index: "intro1", name: "Someone taps you on the shoulder", requirements: "?trust wife 0; ?location apartmentOutside;", altName: "???", altImage: "none",},
 	{index: "intro2", name: "You could visit the landlord's house", requirements: "?trust wife 1; ?location apartmentOutside;", altName: "", altImage: "",},
-	{index: "detectiveQuo", name: "You could visit the landlord's house", requirements: "?trust wife 2; ?location apartmentOutside;", altName: "", altImage: "",},
-	{index: "tranceQuo", name: "You could visit the landlord's house", requirements: "?trust wife 3; ?location apartmentOutside;", altName: "", altImage: "",},
-	{index: "fetishQuo", name: "You could visit wifeF", requirements: "?trust wife 4; ?location apartmentOutside;", altName: "", altImage: "",},
+	{index: "detectiveQuo", name: "You could visit the landlord's house", requirements: "?trustMin wife 2; ?trustMax wife 4; ?location apartmentOutside;", altName: "", altImage: "",},
+	{index: "tranceQuo", name: "You could visit the landlord's house", requirements: "?trust wife 5; ?location apartmentOutside;", altName: "", altImage: "",},
+	{index: "fetishQuo", name: "You could visit wifeF", requirements: "?trustMin wife 60; ?location apartmentOutside;", altName: "", altImage: "",},
 ];
+		writeHTML(`
+			define landlord = sp Landlord; im images/wife/landlord.jpg;
+		`);
 
 function writeEncounter(name) { //Plays the actual encounter.
 	document.getElementById('output').innerHTML = '';
@@ -144,6 +147,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 				finish
 			`);
 			setTrust("wife", 1);
+			passTime();
 			break;
 		}
 		case "intro2": {
@@ -181,22 +185,29 @@ function writeEncounter(name) { //Plays the actual encounter.
 		}
 		case "detectiveQuo": {
 			writeHTML(`
-				player Alright, no more shenanigans. Today, I get answers!
-				t You stride up to the landlord's door and give it a few hard raps. After a short bit, it opens.
-				landlord ... playerF! Did you need more money?
-				player No. Well...<br>No! Not right now. I'm here for answers, and-
-				landlord Ah, no problem then, what can I help you with?
-				player ...<i>Right, calm down playerF. It's not like he's the cause of all this. And if he is, really I'm the cause. Any maybe the solution?</i>
-				landlord ... Hello?
+				player ?trust wife 2; Alright, no more shenanigans. Today, I get answers!
+				t ?trust wife 2; You stride up to the landlord's door and give it a few hard raps. After a short bit, it opens.
+				landlord ?trust wife 2; ... playerF! Did you need more money?
+				player ?trust wife 2; No. Well...<br>No! Not right now. I'm here for answers, and-
+				landlord ?trust wife 2; Ah, no problem then, what can I help you with?
+				player ?trust wife 2; ...<i>Right, calm down playerF. It's not like he's the cause of all this. And if he is, really I'm the cause. Any maybe the solution?</i>
+				landlord ?trust wife 2; ... Hello?
 				
-				landlord playerF! Back so soon? How can I-
-				player Business, landman. You aren't attractive enough for smalltalk.
-				landlord Hah, that's what they all say!
-				player ... I refuse to pity you. Anyways!
+				landlord !trust wife 2; playerF! Back so soon? How can I-
+				player !trust wife 2; Business, landman. You aren't attractive enough for smalltalk.
+				landlord !trust wife 2; Hah, that's what they all say!
+				player !trust wife 2; ... I refuse to pity you. Anyways!
+				
+				trans detectiveLandlord; Investigate the landlord !flag wife detectiveLandlord;
+				trans detectiveWife; Investigate wifeF !flag wife wifeHandjob;
+				trans detectiveHouse; Investigate the house for clues !flag wife detectiveHouse;
+				
 			`);
 			break;
 		}
 		case "detectiveLandlord": {
+			addFlag("wife", name);
+			raiseTrust("wife", 1);
 			writeHTML(`
 				t You take a sit down with the landlord and get straight to the important matters.
 				player ... Your wife's nice.
@@ -219,10 +230,13 @@ function writeEncounter(name) { //Plays the actual encounter.
 				player ... You threw away these pesky emotions of guilt a long time ago, playerF. Remember the saying...
 			`);
 			writeSpecial("You 'earned' $20!");
+			data.player.money += 20;
+			updateMenu();
 			writeHTML(`
 				player When you find a twenty under a doormat, you take it.
 				finish
 			`)
+			passTime();
 			break;
 		}
 		case "detectiveWife": {
@@ -238,7 +252,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 				player Go check on the other residents or something, maybe the paint's peeling.
 				landlord Good idea! Hmm, papiF asked me to stop coming over after I said her son was really cute... Like, god, he's so-
 				player I would really like to not hear your voice anymore.
-				lordlord You got it bud~!
+				landlord You got it bud~!
 				wife Hello? Honey? Where-
 				im 028.jpg
 				wife M-my, what can I help you with? I'm afraid you caught me at kind of a bad time...
@@ -266,6 +280,8 @@ function writeEncounter(name) { //Plays the actual encounter.
 				wife I <i>really</i> cannot possibly focus knowing you've got such a fat, delicious fucking cock down there... It's only natural, right?
 				player This is going nowhere...
 				wife Oh! I'm sorry, I really am! 
+				t You take a deep breath, and decide to try...
+				trans wifeHandjob; A different approach
 			`);
 			break;
 		}
@@ -294,40 +310,72 @@ function writeEncounter(name) { //Plays the actual encounter.
 				player Nothing more in here, at least this gives me some answers.<br>... And a lot more questions. Man, I didn't sign up for mysteries, I came to this town to bang...
 				finish
 			`);
+			addFlag("wife", name);
+			raiseTrust("wife", 1);
+			passTime();
 			break;
 		}
 		case "tranceQuo": {
 			writeHTML(`
 				wife Oh my, hello again~
 				player Hey, no more games. I wanna try something.
-				wife Mmm, my husband's away, so I'm absolutely available for some experimentation...
-				player Hypnosis.
-				wife ... Hm?
-				player I want to-
-				wife Yes! Yes, absolutely! Oh, I've seen so many... Oh, yes, let's get started, I'm so excited!
-				player Eh... That might make it harder, actually.
-				wife Even better~
-				player ... Whatever.<br><i>Alright, she's definitely under someone's control, probably. If I can find the trigger I can put her in a trance easily...
+				wife Mmm, my husband's away, so I'm absolutely available for some experimentation... !flag wife tranceCode; !flag trancePendant;
+				player Hypnosis. !flag wife tranceCode; !flag trancePendant;
+				wife ... Hm? !flag wife tranceCode; !flag trancePendant;
+				player I want to- !flag wife tranceCode; !flag trancePendant;
+				wife Yes! Yes, absolutely! Oh, I've seen so many... Oh, yes, let's get started, I'm so excited! !flag wife tranceCode; !flag trancePendant;
+				player Eh... That might make it harder, actually. !flag wife tranceCode; !flag trancePendant;
+				wife Even better~ !flag wife tranceCode; !flag trancePendant;
+				player ... Whatever.<br><i>Alright, she's definitely under someone's control, probably. If I can find the trigger I can put her in a trance easily...</i>
+				trans tranceCode; !flag wife tranceCode; Try finding a codeword or trigger phrase
+				trans trancePendant; !flag wife trancePendant; Try using your pendant
+				trans tranceOil; Try using the lotion bottle
 			`);
 			break;
 		}
 		case "tranceCode": {
+			addFlag("wife", name);
 			writeHTML(`
-				
+				player Alright, just sit back and relax.
+				wife Ooh, we're off to a good start already~
+				t ...
+				t A while later, and no results.
+				wife Hmhm~ I think it might be working~
 				player <i>No good, she's so completely porn-addled that even if these were the triggers, she's desensitised to them. Which means it wasn't verbal, or the codeword's not something I can stumble into.</i> 
+				t You sigh.
+				player I'll have to try something else. I'll be back.
+				wife Aww... Well, next time it'll work for sure!
+				finish
 			`);
+			passTime()
 			break;
 		}
 		case "trancePendant": {
+			addFlag("wife", name);
 			writeHTML(`
-				
+				player Alright, just sit back and relax.
+				wife Ooh, we're off to a good start already~
+				t ...
+				t A while later, and no results.
+				wife Hmhm~ Swing, swing, I'm definitely under already~
 				player <i>No good, she can't focus on the pendant, and she's way too excited to go under. I don't think whoever put her in a trance first was using a pendant...</i>
+				t You sigh.
+				player I'll have to try something else. I'll be back.
+				wife Aww... Well, next time it'll work for sure!
+				finish
 			`);
+			passTime()
 			break;
 		}
 		case "tranceOil": {
 			writeHTML(`
-				
+				player Alright, just sit back and relax.
+				wife Ooh, I can tell this will be fun~
+				player Right right right, just try not to control yourself. Close your eyes, now take a whiff of this.
+				t She obeys as you wave the lotion bottle under her nose.
+				player Alright, now take a deep... wifeF?
+				wife ...
+				t She doesn't respond, her eyes flutter and her pupils are rolled back, she leans back down and seems docile.
 				player <i>So, they trained her to go under to the scent of the lotion... Wait, actually...<br></i>Who do you obey?
 				wife Oh... I'll do whatever you want...
 				player Who am I?
@@ -363,40 +411,61 @@ function writeEncounter(name) { //Plays the actual encounter.
 		case "wifeFrotting": {
 			writeEvent(name);
 			passTime();
+			setTrust("wife", 2);
 			writeHTML(`finish`);
 			break;
 		}
 		case "wifeHandjob": {
 			writeEvent(name);
 			passTime();
+			addFlag("wife", name);
+			raiseTrust("wife", 1);
 			writeHTML(`finish`);
 			break;
 		}
 		case "wifeSex": {
 			writeEvent(name);
 			passTime();
+			removeFlag("wife", "tranceCode")
+			removeFlag("wife", "trancePendant")
+			removeFlag("wife", "detectiveHouse")
+			removeFlag("wife", "detectiveLandlord")
+			removeFlag("wife", "wifeHandjob")
+			raiseTrust("wife", 1);
 			writeHTML(`finish`);
 			break;
 		}
 		case "wifeRimGiving": {
+			if (checkTrust("wife") == 6) {
+				raiseTrust("wife", 1);
+			}
 			writeEvent(name);
 			passTime();
 			writeHTML(`finish`);
 			break;
 		}
 		case "wifeRimRecieving": {
+			if (checkTrust("wife") == 6) {
+				raiseTrust("wife", 1);
+			}
 			writeEvent(name);
 			passTime();
 			writeHTML(`finish`);
 			break;
 		}
 		case "wifeRiskyHandy": {
+			if (checkTrust("wife") == 7) {
+				raiseTrust("wife", 1);
+			}
 			writeEvent(name);
 			passTime();
 			writeHTML(`finish`);
 			break;
 		}
 		case "wifeRiskySex": {
+			if (checkTrust("wife") == 7) {
+				raiseTrust("wife", 1);
+			}
 			writeEvent(name);
 			passTime();
 			writeHTML(`finish`);
@@ -512,7 +581,17 @@ function writeEvent(name) { //Plays the actual event.
 		}
 		case "wifeSex": {
 			writeHTML(`
-				
+				im 100.jpg
+				im 101.jpg
+				im 102.jpg
+				im 103.jpg
+				im 104.jpg
+				im 105.jpg
+				im 106.jpg
+				im 107.jpg
+				im 108.jpg
+				im 109.jpg
+				im 110.jpg
 			`);
 			break;
 		}
@@ -568,7 +647,7 @@ function writeEvent(name) { //Plays the actual event.
 }
 
 var phoneArray = [//Lists the potential text events the player can receive at the start of the day, depending on their trust.
-	{index: "reward", requirements: "?trust wife 5;"},
+	{index: "reward", requirements: "?trust wife 8;"},
 ]
 
 function writePhoneEvent(name) { //Plays the relevant phone event
