@@ -401,7 +401,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 				case 6:
 					writeHTML(`
 						wife Mmm, welcome back~! We have the house all to ourselves today~<br>Will we be trying hypnosis again?
-						player No, we'll be doing something different. 
+						player You're back to a full tank already...<br>No, we'll be doing something different. 
 						wife Aww...
 						t She seems disappointed, but you quickly dispell that by taking a step towards her and stealing the situation's momentum.
 						player I am going to <i>break</i> you.
@@ -434,7 +434,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 						t You take a step towards her, although this time it's clear she's a lot more immediately receptive to your approach.
 						player Go ahead and let it all out. Try to keep it legal. Ethical too, preferably. Let's see if anything hits you 
 						im 031.jpg
-						wife Mmm, well, to be honest it's a short list this time...<br>The thought of being caught last time just... <i>broke</i> me. I ruined my sheets so badly last night, it took <i>hours</i> to pull myself away from licking up my mess...
+						wife Mmm, well, to be honest it's a short list this time, a dream I had last night...<br>The thought of being caught  just... <i>broke</i> me. I ruined my sheets so badly last night, it took <i>hours</i> to pull myself away from licking up my mess...
 						player I thought you'd say something like that...
 						t To take control of wifeF, you could try playing into her exhibitionism fetish to tire her out:
 						trans wifeRiskyHandy; Stimulate her dick in a risky situation
@@ -776,7 +776,7 @@ function writeEvent(name) { //Plays the actual event.
 				wife Gh... Just... Don't worry... About...<br>I'll make due...
 				t Struggling for words, she simply gives in and hangs up abruptly.
 				im 107.jpg
-				wife HOOOOOUH~! FUCK~! My ffffuckhole... Won't stop cumming~!
+				wife HOOOOOUH~! FUCK~! My ffffuckhole... Won't stop cumming~!<br>You're making me squirt like a total biiiiitch~!!!
 				im 108.jpg
 				im 109.jpg
 				wife Hiii~!<br>Y-you... I feel ruined, in the best way possible...
@@ -798,40 +798,111 @@ function writeEvent(name) { //Plays the actual event.
 		}
 		case "wifeRimGiving": {
 			writeHTML(`
-				im 079.jpg
-				im 080.jpg
-				im 081.jpg
-				im 082.jpg
-				im 083.jpg
-				im 084.jpg
+				t Too many times now, somehow wifeF's sexual stamina has matched yours.
+				wife F-faster~! Deeper~! I feel like I'm melting~!
+				t This time though, she's pure putty.
+				im 063.jpg
+				wife Haaaah~!
+				t Each time Mrs. Anal Whore's voice raises an octave you make sure to grab her by the hips, there's no escaping you.
+				im 064.jpg
+				wife Ngggh~! I'll get addicted~! There's no way not to get addicted to this~!
+				im 065.jpg
+				wife Wanna cum~! Fuckmeat wants to... To...!
+				im 066.jpg
+				t Even only half-hard as a result of the she-cream lotion, fluid splurts through the air. Absorbed in wordless bliss the novelty of being turned into a proper ass-slut from just your tongue isn't losing its appeal.
+				t And while she could absolutely cum hands-free from this, no doubt, the onahole is an extra measure meant to ensure each orgasm is as overstimulating and mind-melting as possible.
+				im 067.jpg
+				wife Houh... Oh... God...<br>P-please, I need more of that...
+				player Hhh... How long until your husband returns?
+				im 068.jpg
+				wife Eh? I think he should be back soon. That won't stop us, will it?
+				player I guess not. Now, you ready?
+				wife Mmm... Force a "yes" out of me~!
+				t ...
+				im 069.jpg
+				t Exhausting wifeF is a tough task, but as her growing weakness to anal is exploited and explored, you eventually make short work of her willpower.
+				t And in her fuck-addled state, she's more receptive to the idea of becoming your permanent pet. 
+				player Focus on the sound of my voice...
+				wife Ngghh...
+				player Hmm, almost there, huh? Should be just a little more.
 			`);
 			break;
 		}
 		case "wifeRimRecieving": {
 			writeHTML(`
-				im 063.jpg
-				im 064.jpg
-				im 065.jpg
-				im 066.jpg
-				im 067.jpg
-				im 068.jpg
-				im 069.jpg
+				t Too many times now, somehow wifeF's sexual stamina has matched yours. Granted, she had the upper hand during the handjob, but this time, even though she's in just as much of an advantageous position...
+				im 079.jpg
+				wife Hooh... You taste amazing...
+				t You get the impression she's somehow enjoying this even more than you. Each time she runs her tongue along the rim of your ass she shakes her hips impatiently, flopping her half-hard dick against her thighs.
+				player You enjoying... Nghh... Serving as my ass-eating little whore?
+				im 080.jpg
+				wife Mhmhmmm, YES~! I've never felt so fulfilled~! I'd wake up with your ass in my face every morning if I could~!
+				player Hah... Then go wild, prove yoursel-!
+				im 081.jpg
+				t No hesitation, a full-tongue french-kiss with your asshole, with so much passion it's like this is a form of masturbation for her.
+				t And as she begins to moan desperately into your ass, it's clear this <i>is</i> her latest form of masturbation.
+				im 082.jpg
+				t Her voice shakes and her legs quiver as she begins to squirt from her dick hands-free.
+				im 083.jpg
+				wife Hyuuu... I'm so fucked up~
+				im 084.jpg
+				wife Mmm, I'm taking another taste now, make sure to tell me when you cum between my tits, kay~?
+				t ...
+				t Outlasting wifeF is a tough task, but as her growing weakness to anal and denigrating herself is exploited and explored, you eventually make short work of her willpower.
+				t And in her fuck-addled state, she's more receptive to the idea of becoming your permanent pet. 
+				player Focus on the sound of my voice...
+				wife Ngghh...
+				player Hmm, almost there, huh? Should be just a little more.
 			`);
 			break;
 		}
 		case "wifeRiskyHandy": {
 			writeHTML(`
+				landlord Alright, I'll see you later~!
+				wife Take care~! S-stay... Safe~!
+				landlord Are you alright? Uh, should I come back up? You sound-
+				wife I'm-!
 				im 113.jpg
+				wife Perfectly fine darling~! It feels amazing~!<br>Er, I mean, I feel amazing~! Just-
 				im 114.jpg
+				wife Ngggh~!
+				t Even compared to the last time, she's breaking down easily. Her legs are shaking like they're about to give out, but you've only just started. Her seemingly limitless sexual stamina is burning out like a candle under a flamethrower.
+				landlord Alright, if you're sure~!
 				im 115.jpg
+				wife Haaaaah~<br>Th-this is blisss~
+				player No heed paid as her husband leaves, this little masturbation-addict is clearly only <i>really</i> in love with cumming.
+				wife Hehe~ Have I been bad? I-
 				im 116.jpg
+				wife Ghhg... He's gone... I guess I... Can...
 				im 117.jpg
+				wife Hooough~! Cumming~! I'm spraying dickmilk while everyone can see my o-face~!
+				t And there's more where that came from. Just like last time, the goal is complete overstimulation.
+				t Stroking her dick, attacking her balls, hitting her ass's weak point, by the time you're done with her, she'll be...
 				im 118.jpg
+				wife Hahhh... I'm... I'm broken from the waist down~
+				player Shake that ass, get the blood pumping, we aren't done until you fall face-first into that mess you sprayed onto the wall.
+				wife Haaaaah~
+				t ...
+				player Alright wifeF... Just let everything go, and focus on nothing but my voice.
+				wife Nothing... But your voice...
+				t And for the first time, you have her completely in a trance of your making, entirely under your control.
+				t You take a moment to relax and bask in your victory. As for using her for sexual relief, she's already a perfectly compatible partner, so you focus on instilling loyalty into her.
+				t And as for curtailing her incredible sex drive...
+				player ... I can deal with that later. Maybe. For now...
+				t ...
+				t *SNAP*!
+				wife Gyah~!
+				player Morning.
+				wife G-good morning? I... Hoh... I feel tired...
+				player That's to be expected, we spent a few hours fucking.
+				wife Mmm, that explains why I feel so satisfied...<br>Will you be staying much longer, *master?
+				player Nice.
 			`);
 			break;
 		}
 		case "wifeRiskySex": {
 			writeHTML(`
+				t <b>UNFINISHED SCENE: NO DIALOGUE</b>
 				im 118.jpg
 				im 119.jpg
 				im 120.jpg
@@ -840,11 +911,27 @@ function writeEvent(name) { //Plays the actual event.
 				im 123.jpg
 				im 124.jpg
 				im 125.jpg
+				t ...
+				player Alright wifeF... Just let everything go, and focus on nothing but my voice.
+				wife Nothing... But your voice...
+				t And for the first time, you have her completely in a trance of your making, entirely under your control.
+				t You take a moment to relax and bask in your victory. As for using her for sexual relief, she's already a perfectly compatible partner, so you focus on instilling loyalty into her.
+				t And as for curtailing her incredible sex drive...
+				player ... I can deal with that later. Maybe. For now...
+				t ...
+				t *SNAP*!
+				wife Gyah~!
+				player Morning.
+				wife G-good morning? I... Hoh... I feel tired...
+				player That's to be expected, we spent a few hours fucking.
+				wife Mmm, that explains why I feel so satisfied...<br>Will you be staying much longer, *master?
+				player Nice.
 			`);
 			break;
 		}
 		case "wifeFetishBypass": {
 			writeHTML(`
+				t <b>UNFINISHED SCENE: NO DIALOGUE</b>
 				im 127.jpg
 				im 128.jpg
 				im 129.jpg
@@ -856,6 +943,21 @@ function writeEvent(name) { //Plays the actual event.
 				im 135.jpg
 				im 136.jpg
 				im 137.jpg
+				t ...
+				player Alright wifeF... Just let everything go, and focus on nothing but my voice.
+				wife Nothing... But your voice...
+				t And for the first time, you have her completely in a trance of your making, entirely under your control.
+				t You take a moment to relax and bask in your victory. As for using her for sexual relief, she's already a perfectly compatible partner, so you focus on instilling loyalty into her.
+				t And as for curtailing her incredible sex drive...
+				player ... I can deal with that later. Maybe. For now...
+				t ...
+				t *SNAP*!
+				wife Gyah~!
+				player Morning.
+				wife G-good morning? I... Hoh... I feel tired...
+				player That's to be expected, we spent a few hours fucking.
+				wife Mmm, that explains why I feel so satisfied...<br>Will you be staying much longer, *master?
+				player Nice.
 			`);
 			break;
 		}
