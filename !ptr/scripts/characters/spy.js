@@ -22,7 +22,7 @@ var encounterArray = [//Lists encounters as they appear on the map. Nonrepeatabl
 	{index: "spyEncounter04", name: "spy is leaning against the wall this time. She's gotten better at whistling, too.", requirements: "?trust spy 50; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
 	{index: "spyEncounter05", name: "This time, she's looking surprisingly normal - no whistling. She does seem to be staring out at the middle-distance, though...", requirements: "?trust spy 55; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
 	{index: "spyEncounter06", name: "spy is standing near your door, a pen and notepad in hand. Seems like she's ready for an interview.", requirements: "?trust spy 20; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
-	{index: "spyEncounter07", name: "spy is leaning against the wall, looking at her notepad with a perplexed expression.", requirements: "?trust spy 21; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
+	{index: "spyEncounter07", name: "", requirements: "?trust principal 10000; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
 	{index: "spyEncounter08", name: "", requirements: "?trust principal 10000; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
 	{index: "spyEncounter09", name: "", requirements: "?trust principal 10000; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
 ];

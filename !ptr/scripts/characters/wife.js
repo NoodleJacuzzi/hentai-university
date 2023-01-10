@@ -319,14 +319,14 @@ function writeEncounter(name) { //Plays the actual encounter.
 			writeHTML(`
 				wife Oh my, hello again~
 				player Hey, no more games. I wanna try something.
-				wife Mmm, my husband's away, so I'm absolutely available for some experimentation... !flag wife tranceCode; !flag trancePendant;
+				wife Mmm, my husband's away, so I'm absolutely available for some experimentation...
 				player Hypnosis. !flag wife tranceCode; !flag trancePendant;
 				wife ... Hm? !flag wife tranceCode; !flag trancePendant;
 				player I want to- !flag wife tranceCode; !flag trancePendant;
 				wife Yes! Yes, absolutely! Oh, I've seen so many... Oh, yes, let's get started, I'm so excited! !flag wife tranceCode; !flag trancePendant;
 				player Eh... That might make it harder, actually. !flag wife tranceCode; !flag trancePendant;
 				wife Even better~ !flag wife tranceCode; !flag trancePendant;
-				player ... Whatever.<br><i>Alright, she's definitely under someone's control, probably. If I can find the trigger I can put her in a trance easily...</i>
+				player ... Right.<br><i>Alright, she's definitely under someone's control, probably. If I can find the trigger I can put her in a trance easily...</i>
 				trans tranceCode; !flag wife tranceCode; Try finding a codeword or trigger phrase
 				trans trancePendant; !flag wife trancePendant; Try using your pendant
 				trans tranceOil; Try using the lotion bottle
@@ -397,6 +397,44 @@ function writeEncounter(name) { //Plays the actual encounter.
 			break;
 		}
 		case "fetishQuo": {
+			switch (checkTrust("wife")) {
+				case 6:
+					writeHTML(`
+						wife Mmm, welcome back~! We have the house all to ourselves today~<br>Will we be trying hypnosis again?
+						player No, we'll be doing something different. 
+						
+						trans wifeRimGiving; Stimulate her ass
+						trans wifeRimRecieving; Have her rim you
+						t Alternatively, you could spend all day brute forcing through her conditioning:
+						trans wifeFetishBypass; Orgasm Torture in Bondage
+						trans cancel; Go back
+					`);
+				break;
+				case 7:
+					writeHTML(`
+						wife Mmm, welcome back~! We have the house all to ourselves again~
+						player <i>If I'm right, just a little more should be enough to break her down enough to condition her properly...</i><br>Alright, same deal as last time. Let's see what 
+						
+						trans wifeRiskyHandy; Stimulate her dick in a risky situation
+						trans wifeRiskySex; Fuck her ass in a risky situation
+						t Alternatively, you could spend all day brute forcing through what's left of her conditioning:
+						trans wifeFetishBypass; Orgasm Torture in Bondage
+						trans cancel; Go back
+					`);
+				break;
+				case 8:
+					writeHTML(`
+						wife Mmm, welcome back~!
+						t <b>wifeF's current content is finished, but feel free to view and replay all the potential reconditioning scenes:</b>
+						trans wifeRimGiving; Stimulate her ass
+						trans wifeRimRecieving; Have her rim you
+						trans wifeRiskyHandy; Stimulate her dick in a risky situation
+						trans wifeRiskySex; Fuck her ass in a risky situation
+						trans wifeFetishBypass; Orgasm Torture in Bondage
+						trans cancel; Go back
+					`);
+				break;
+			}
 			writeHTML(`
 				
 			`);
@@ -465,6 +503,15 @@ function writeEncounter(name) { //Plays the actual encounter.
 		case "wifeRiskySex": {
 			if (checkTrust("wife") == 7) {
 				raiseTrust("wife", 1);
+			}
+			writeEvent(name);
+			passTime();
+			writeHTML(`finish`);
+			break;
+		}
+		case "wifeFetishBypass": {
+			if (checkTrust("wife") < 8) {
+				setTrust("wife", 8);
 			}
 			writeEvent(name);
 			passTime();
