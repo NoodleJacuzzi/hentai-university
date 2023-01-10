@@ -752,20 +752,47 @@ function writeEvent(name) { //Plays the actual event.
 		}
 		case "wifeSex": {
 			writeHTML(`
+				wife Hah... Hah... I need it~
 				t Ultimately, while she's laying back and keeping still, she isn't relaxed, and her trance is more dependent on the lotion than your command.
+				player Calm down, I can't make you mine until you relax.
+				wife I'm trying~<br>B-but...
 				im 100.jpg
+				wife Hah...<br>I feel like I'll go crazy if I don't get ravaged by that cock of yours... A-
+				t *RING* *RING*
 				im 101.jpg
+				wife Ah, that's...
+				player Poor timing on his end. Just ig-
 				im 102.jpg
+				wife Hello? Ah, darling.
+				player <i>She just answered it without a thought...</i>
+				wife Yes, I'm still home, all alone of course. I'd <i>really</i> love some company, but-
 				im 103.jpg
+				wife Hoouh~! Ah~! I, well, just doing some exercises! HAve to stay fit, after all!
 				im 104.jpg
+				wife Hnn, yes~! That's perfff... Perfectly fine, darling~<br>Really, it's a shame you're... Missing out!
 				im 105.jpg
+				wife Just... Ah, getting stretched! Yoga, of course!<br>Ah, I meant I'm stretching~! Haha~!
 				im 106.jpg
+				wife Gh... Just... Don't worry... About...<br>I'll make due...
+				t Struggling for words, she simply gives in and hangs up abruptly.
 				im 107.jpg
+				wife HOOOOOUH~! FUCK~! My ffffuckhole... Won't stop cumming~!
 				im 108.jpg
 				im 109.jpg
+				wife Hiii~!<br>Y-you... I feel ruined, in the best way possible...
+				player I see you're fully out of your trance...
+				wife Hm? I have no idea what you mean~<br>We're just getting started though, right?
+				player I'll last as long as it takes...
+				t ...
 				im 110.jpg
-				
-				
+				wife Oh... My...
+				player *Huff*... Had enough yet?
+				wife Can't... Cum... Anymore...
+				player That's what I like to hear... Except...
+				t You try to stand, and fail. A couple more attempts and you're on wobbly legs, but tall and victorious.
+				t Meanwhile wifeF shudders in the afterglow, too exhausted even to come up with any more dirty talk.
+				player Alright... Take a deep breath and...<br>Fuck it, I need rest...<br>Clean up once you come back down to earth... 
+				t You stumble back as she half-drunkenly mumbles back at you. A plan's starting to form in your head, but you need rest, desperately.
 			`);
 			break;
 		}
