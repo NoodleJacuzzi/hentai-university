@@ -470,7 +470,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 				t <b>Meanwhile</b>...
 				t ...
 				t *KNOCK* *KNOCK* *KNOCK*
-				wife Coming~!<br>Hel-
+				wife Coming~! Oof, still wobbly...<br>Hello, what can-
 				secret Hello again, wifeF~<br>I certainly hope you waited like a good girl while I was gone.
 				wife Ah... I, er...
 				secret Hmm? I was expecting you'd be a little more excited. I rarely make housecalls, but after how I left you last time...
@@ -1027,7 +1027,7 @@ function writeEvent(name) { //Plays the actual event.
 }
 
 var phoneArray = [//Lists the potential text events the player can receive at the start of the day, depending on their trust.
-	{index: "reward", requirements: "?trust wife 8;"},
+	{index: "reward", requirements: "?trust wife 9;"},
 ]
 
 function writePhoneEvent(name) { //Plays the relevant phone event
