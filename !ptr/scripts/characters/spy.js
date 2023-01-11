@@ -26,7 +26,7 @@ var encounterArray = [//Lists encounters as they appear on the map. Nonrepeatabl
 	{index: "spyEncounter08", name: "spy doesn't seem to be here today...", requirements: "?trust spy 30; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
 	{index: "spyEncounter08", name: "spy doesn't seem to be here today...", requirements: "?trust spy 35; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
 	{index: "spyEncounter09", name: "Your phone is ringing, and caller ID says it's spy.", requirements: "?trust spy 35; ?location playerHouse; ?time Night;", altName: "", altImage: "",},
-	{index: "spyEncounter10", name: "spy is standing near your office, humming happily while waiting.", requirements: "?trust spy 40; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
+	{index: "spyEncounter10", name: "spy is standing near your office, humming happily while waiting.", requirements: "?trust spy 41; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
 	{index: "spyEncounter11", name: "spy is once again near your office, scrolling through her phone.", requirements: "?trust spy 100; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
 ];
 
@@ -427,7 +427,7 @@ function writeEncounter(name) { //Plays the actual encounter.
 				player Come here.
 				t There's a demure squeak from her as she leans into you, and you take control to guide her to the bed.
 			`);
-			setTrust("spy", 40);
+			setTrust("spy", 41);
 			writeFunction("writeEncounter('spyEv04')", "Continue");
 			break;
 		}
@@ -1074,7 +1074,8 @@ function writePhoneEvent(name) { //Plays the relevant phone event
 	phoneRight.scrollTop = 0;
 	switch (name) {
 		case "spyPhone01": {
-			setTrust("spy", 35);
+			if(checkTrust('spy') < 35)
+				setTrust("spy", 35);
 			writePhoneSpeech("spy","","Not gonna be at school for now, going to be looking into some things, will message when they're resolved");
 			writePhoneSpeech("spy","","Don't think that means the interviews are done with tho");
 			writePhoneSpeech("spy","","I'll have more questions for you later, so prepare yourself");
