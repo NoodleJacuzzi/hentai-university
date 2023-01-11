@@ -22,9 +22,12 @@ var encounterArray = [//Lists encounters as they appear on the map. Nonrepeatabl
 	{index: "spyEncounter04", name: "spy is leaning against the wall this time. She's gotten better at whistling, too.", requirements: "?trust spy 50; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
 	{index: "spyEncounter05", name: "This time, she's looking surprisingly normal - no whistling. She does seem to be staring out at the middle-distance, though...", requirements: "?trust spy 55; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
 	{index: "spyEncounter06", name: "spy is standing near your door, a pen and notepad in hand. Seems like she's ready for an interview.", requirements: "?trust spy 20; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
-	{index: "spyEncounter07", name: "", requirements: "?trust principal 10000; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
-	{index: "spyEncounter08", name: "", requirements: "?trust principal 10000; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
-	{index: "spyEncounter09", name: "", requirements: "?trust principal 10000; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
+	{index: "spyEncounter07", name: "spy is leaning against the wall, looking at her notepad with a perplexed expression.", requirements: "?trust spy 21; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
+	{index: "spyEncounter08", name: "spy doesn't seem to be here today...", requirements: "?trust spy 30; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
+	{index: "spyEncounter08", name: "spy doesn't seem to be here today...", requirements: "?trust spy 35; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
+	{index: "spyEncounter09", name: "Your phone is ringing, and caller ID says it's spy.", requirements: "?trust spy 35; ?location playerHouse; ?time Night;", altName: "", altImage: "",},
+	{index: "spyEncounter10", name: "spy is standing near your office, humming happily while waiting.", requirements: "?trust spy 40; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
+	{index: "spyEncounter11", name: "spy is once again near your office, scrolling through her phone.", requirements: "?trust spy 100; ?location northHallway; ?time Morning;", altName: "", altImage: "",},
 ];
 
 function writeEncounter(name) { //Plays the actual encounter.
@@ -314,29 +317,42 @@ function writeEncounter(name) { //Plays the actual encounter.
 
 		
 		case "spyEncounter07": {
-			//passTime();
+			passTime();
 			writeHTML(`
 				define p; = sp spy;
 				t She looks up at you for a moment, her pen in hand.
-				p; A-Ah, I... I need time to come up with more questions. S-Sorry.
-				player Of course, it's no problem. I'm patient - I can wait.
+				p; Ah, there you are. I, um... I was looking over my notes, and...
+				t She seems to think over her words for a moment, before shrugging.
+				p; Basically, they weren't as detailed as I would like. Expect me to take more during this interview.
+				t Riiiiight...
+				t You have no intention of wasting your time with her handling a pencil.
+				player No problem at all. Shall we?
+				t You gesture for her to enter the room and, when you follow her in, you take care to lock the door behind you.
+				player So, shall we begin?
 			`);
-			writeSpecial("You've completed all content currently available for spyF spyL! Look forward to more in future updates!")
-			//setTrust("spy", 60);
-			//writeFunction("writeEncounter('placeholder')", "Continue");
-			writeFunction("changeLocation(data.player.location)", "Finish");
+			// writeHTML(`
+			// 	define p; = sp spy;
+			// 	t She looks up at you for a moment, her pen in hand.
+			// 	p; A-Ah, I... I need time to come up with more questions. S-Sorry.
+			// 	player Of course, it's no problem. I'm patient - I can wait.
+			// `);
+			// writeSpecial("You've completed all content currently available for spyF spyL! Look forward to more in future updates!")
+			setTrust("spy", 30);
+			writeFunction("writeEncounter('spyEv03')", "Continue");
 			break;
 		}
 
 
-		
+
 		case "spyEncounter08": {
-			passTime();
 			writeHTML(`
-				
+				define p; = sp spy;
+				t ?trust spy 30; Hm, she doesn't seem to be here... Maybe she texted you something about it?
+				t ?trust spy 35; She mentioned that she wouldn't be at the university for a bit since she's looking into something... You'll have to wait for her to contact you first, it seems like.
 			`);
-			setTrust("spy", 60);
-			writeFunction("writeEncounter('placeholder')", "Continue");
+			for(i = 0; i < data.story.length; i++)
+  				if(data.story[i].index == "spy")
+    				data.story[i].encountered = false;
 			writeFunction("changeLocation(data.player.location)", "Finish");
 			break;
 		}
@@ -346,11 +362,219 @@ function writeEncounter(name) { //Plays the actual encounter.
 		case "spyEncounter09": {
 			passTime();
 			writeHTML(`
-				
+				define p; = sp spy;
+				player ?flag kuro Radicool; Texas Crematorium, you kill 'em, we grill 'em - who we cooking today?
+				p; ?flag kuro Radicool; Err... What?
+				player ?flag kuro Radicool; Just a bit of humor. This is playerF, yeah. What's up?
+				player !flag kuro Radicool; This is playerF. How's it going, spyF?
+				p; I... I need to talk to you. About the thing I was looking into?
+				t Her voice seems a bit distracted, and at this point you're fairly curious.
+				player I'll be at the university tomorrow - my office door's are-
+				p; No! Err...
+				t You can hear a quiet, embarrassed hum over the phone.
+				p; I need to talk tonight.
+				player ...Alright. Do you have my address?
+				p; I got it from secretaryF, yeah.
+				player Then I'll see you when you arrive.
+				p; Y-Yeah, see you then.
+				...
+				t It isn't long before she arrives; she practically darts past you when you open the door for her, keeping her head down. Not down enough, though, for you to not notice the flush on her face.
+				t A locked door and a short few steps later, you and spyF are seated in your apartment as she fidgets in place.
+				player Should I be worried about the abruptness of the meeting?
+				t Your tone is calm and even, but you'd be lying if you said you weren't just a little bit on edge.
+				p; No, I just...
+				t She seems to think over her words, before sighing in a long, drawn-out manner and leaning her head down onto the table between you two.
+				t Her voice is a little muffled, but not by much as she slides her phone over. The screen is currently showing... an audio file?
+				p; When I said I was gonna take more notes during our last interview, I... didn't mention <i>how</i> I was gonna do it. I thought maybe if I could listen to it over again, I'd have a better idea of how to progress, and what I heard was...
+				player Troubling?
+				t She lets out a low, frustrated groan at that, and as you hit play, it's not surprising why.
+				t It's the sounds you'd expect from a microphone catching the sounds of a titjob, and the sounds of her moans are nearly as loud as your words.
+				t She only lets it play for a few moments before pulling the phone back, and you let her stop the sound.
+				player Not the kinds of notes you were expecting, I take it?
+				t She shoots you a small glare, but it only takes a moment for it to soften as she looks back down.
+				player To be honest... I'm a little bit surprised you didn't take it to your boss. Sure, it's a bit too embarrassing to use as evidence for a story, but I'm sure it'd be enough to convince him to let you come back in force, don't you?
+				t spyF's fidgeting only gets more obvious, hands practically being wrung together.
+				player That, or you could go directly to principalF - I can't imagine this sort of thing would look good for me. You'd successfully remove me from my position... in exchange for fewer interviews, of course.
+				t The fidgeting stops for a moment.
+				player Of course, that's just a ridiculous idea, isn't it? That you would-
+				p; Ugh...
+				t You stop when you see her push her phone forward again, an audio file selected again. This one is much smaller, though...
+				t You quirk an eyebrow at her, opting to let <b>her</b> press play this time... and after a few seconds of awkward silence, she huffs a bit and, with a bright red face, presses play.
+				player <i><b>Good girl.</b></i>
+				t ...Well.
+				t That's more blatant than expected.
+				player ...You know, I remember this app having a play count-
+				t The phone is immediately pulled back, and spyF somehow manages to look even more embarrassed in that moment, but relaxes a bit when you laugh and shake your head.
+				player If all you wanted was a bit more praise, you could've just asked over the phone, you know. Unless, of course...
+				t You lean towards her on the table, flashing an almost predatory grin.
+				player That's not all you wanted in coming here. So, do tell me what brings you here - and <b>be honest</b> with me, won't you?
+				t She crosses her arms and looks away before speaking.
+				p; I... I wasn't actually looking into anything, or doing research, or anything like that. I was...
+				p; ...I was masturbating while playing that clip over and over again...
+				t Her eyes seemed close shut tight in thought for a moment, before she lets out another sigh, this one a bit more morose.
+				p; You said I'm a good reporter, right? And that... and that the reason I'm not successful is because the boss doesn't know how to use me?
+				player Of course. I've not a doubt in my mind that your intuition is a force to be reckoned with.
+				p; Could you... help me?
+				t You let a moment of silence fester, prompting her to continue.
+				p; ...I want to be a better reporter, to actually <i>be</i> a reporter. But they won't <i>let</i> me, tell me it's too risky, even though I <i>know</i> what I'm doing.
+				t A more resolute look on her face appears, and she perks up with a bit more confidence. 
+				p; So, if I were to delete that interview recording... would you be willing to use me?
+				t There's no subtlety to the double meaning to her phrasing, and the fact that she opened all of this with the audio recordings she did.
+				t You place your hand on hers, the small touch highlighting the warmth of her hand against yours.
+				player I could use you in ways that would result only, and <i>exclusively</i>, with satisfaction. If that's what you want, then we can start right now.
+				t She bites her lip at that, before grabbing her phone. A moment later, you can see the file was deleted, and you can see her starting to lift her shirt up.
+				t You stop her halfway, though, and grab onto her waist.
+				player Come here.
+				t There's a demure squeak from her as she leans into you, and you take control to guide her to the bed.
 			`);
-			setTrust("spy", 60);
-			writeFunction("writeEncounter('placeholder')", "Continue");
+			setTrust("spy", 40);
+			writeFunction("writeEncounter('spyEv04')", "Continue");
+			break;
+		}
+
+
+
+		case "spyEncounter10" : {
+			passTime();
+			writeHTML(`
+			 	define p; = sp spy;
+			 	player How's it going?
+			 	t spyF looks up at you, smiling wide for a moment before she pauses, clears her throat, and adopts a slightly more professional look to her.
+			 	p; Let's discuss it in private.
+			 	t You just nod at that, following her into your office with an amused smile.
+			 	...
+			 	player So... Is this another 'interview', or...?
+			 	p; Not quite.
+			 	t spyF crosses her arms over her chest at that, holding a rather serious look on her face.
+			 	p; I want to discuss the serious stuff. Like, obviously I'm into you, but I'm also into my career - the whole 'use me' thing was also literal.<br>I intend to be a good reporter, and if I'm not reporting on your extra-legal sexcapades, then I feel like I need something else to work on.
+			 	player Not a fan of idle hands, then?
+			 	t That's fair - you're not exactly a fan of it either.
+			 	t You stop to think a bit, before pausing.
+			 	player Actually...
+			 	t You open your phone, pulling open the browser and checking the history. You can't remember the name of it, but...
+			 	t Ah, there it is.
+			 	player What do you know about this place?
+			 	t You slide her your phone, which shows the landing page for a separate university a few towns over - technically the 'competing' one with this place, for lack of a better word.
+			 	p; ...Nothing <i>yet.</i> What kind of recon are we talking? Like, I'm good at snuffing out secrets, but figuring out a single person's schedules and other stalker-stuff is a bit more iffy.
+			 	player Just a cursory look at things. You mentioned before that there were way too many attractive students at this place, so...
+			 	p; ...So you trust that, if there's anyone 'blow-your-mind' levels of sexy, I'll make sure you know it's worth your time?
+			 	player Nailed it in one. I don't need you to start on this sort of thing now - goodness knows it'd take you away from this place for a good long while - but it's worth thinking over for now.
+			 	t She mulls over that for a bit, humming in thought.
+			 	t After around a half-minute, she nods once.
+			 	p; I'll also ask my boss about any rumors and the like about the place. A reporter can never have too much info, after all.
+			 	player That's good and all... but what does your gut say about it?
+			 	t She looks surprised for a moment (she probably forgot that you actually value your intuition for a second there), before smiling a bit.
+			 	p; Honestly, I get the feeling it's about as righteous and pure as the two of us.
+			 	player So more debauched than your local sex dungeon, got it.
+			 	t spyF's laugh fills the room as she uncrosses her arms.
+			 	p; Hope you don't mind if I head out before doing anything like <i>that</i> today. I'm all up in business mode, and I wanna get the prepwork done before I end up losing it, you know?
+			 	player No problem. We have all the time in the world, so I'll see you around.
+			 	p; Count on it~
+			 	t She blows you a kiss and hops out of her seat with an almost infectious level of confidence in her stride.
+			 	t She hasn't even started working for you, yet she already seems to be enjoying it more than her actual job...
+			 	player Hah. It's that idiot's loss, honestly...
+			`);
+			setTrust("spy", 100);
 			writeFunction("changeLocation(data.player.location)", "Finish");
+			break;
+		}
+
+
+
+		case "spyEncounter11" : {
+			writeHTML(`
+			 	define p; = sp spy;
+				t spyF gives you a small smile as you approach, and a second later you're both in the office.
+				p; Comfy as always~
+				t She leans forward a bit, the cut of her shirt highlighting just the barest amount of her cleavage.
+				p; So, what's the plan for the day, 'boss'?
+			`);
+			//writeFunction("writeEncounter('spyEv05')", "Continue");
+			writeFunction("writeEncounter('spyEnding')", "Send her on the assignment", "blue");
+			writeFunction("changeLocation(data.player.location)", "Finish");
+			break;
+		}
+
+
+
+		case "spyEnding" : {
+			writeHTML(`
+			 	define p; = sp spy;
+				player Actually, I was thinking of sending you on the assignment to the other university. Did you find anything out about it?
+				p; A couple rumors here and there. One sec...
+				t She pulls open her phone and, after a few quick moments, your own phone buzzes.
+				t Checking it, you see...
+				player That's... a fair few documents.
+				p; Don't worry, most of them are just newspaper articles and pictures. The number of hotties is definitely considerable, though not as many as around here if you ask me.
+				t You check a few of the images, and sure enough, she's right that there are indeed some rather attractive folks pictured...
+				player Huh. They even have their own nickname, huh?
+				p; Yup; seems like the folks started calling it 'Ecchi University' to match this place. Not too surprising though, since a lot of the clubs seem a bit more... <i>open,</i> you could say?<br>Click on the... 13th image, I think?
+				player ...That's a rather revealing outfit.
+				p; Yup. She's actually <i>faculty,</i> too - she's the advisor to the belly-dancing and crossdressing clubs.
+				t You set down your phone, nodding resolutely.
+				player Based on the information you've gathered, I think it's safe to say it's the perfect kind of place to target next after I finish with this place.
+				t She has a proud grin on her face as she leans back in her seat.
+				player Now, I <i>would</i> normally commend your work and praise you until you're red in the... well, <i>everything,</i> but how about we go for a more substantial reward?
+				t spyF blinks in confusion once, before sitting up straighter with a smile.
+				p; Your place or mine?
+				player Mine, tonight. Good girls deserve prompt rewards, I'd say.
+				p; Yeees~ See you then!
+				t She bounds out of her seat, heading towards the door before pausing just long enough to blow you a kiss.
+				t When the door shuts behind her, you lean back in your seat, thinking.
+				player ...Maybe doggy-style? Yeah, we haven't done that yet. Doggy it is...
+			`);
+			writeFunction("writeEncounter('spyEndingEvent')", "Continue");
+			break;
+		}
+
+
+
+		case "spyEndingEvent" : {
+			if(!checkFlag('spy','Ending'))
+				addFlag('spy','Ending');
+			if(!checkFlag('spy','EVEND'))
+				addFlag('spy','EVEND');
+			writeEvent('spyEventEnding');
+			writeFunction("writeEncounter('spyEndingTimeSkip')", "Jump ahead...");
+			break;
+		}
+
+
+
+		case "spyEndingTimeSkip" : {
+			writeHTML(`
+				...
+				t Around six months have passed, three of which were spent here at this new 'Ecchi University'.
+				t spyF really wasn't joking when she said that this place was a bit more open - sure, the Sexual Wellness club was actually just for healthy sexual education and <b>wasn't</b> a place for free-use orgies amongst the students (before you arrived, of course), but that's more than can be said about more than a few places.
+				t With her help, though, figuring out a way to get mot of the faculty alone was pretty easy, and even fun. You lost track of the number of evenings you spent brainstorming ideas with spyF... before 'testing' many of them on her at her own request, of course.
+				t And now, you get to not only enjoy the fruits of your labor, but also the start of a new term is once again upon you, with more than a few new students coming in.
+				p; If it weren't for the tent you're pitching right now, I'd say you were looking out at the quad with nothing but pride and a sensation of accomplishment.
+				player Then it's a good thing this window is above waist-level, or we'd probably have another 'sexual wellness seminar' right outside, wouldn't we?
+				t You see spyF roll her eyes at that, but the wide smile is telling enough.
+				p; And me without my parka.
+				t She steps up right beside you, browsing through her phone.
+				p; ...So, were you seriously <i>never</i> gonna make a joke about the paper's name? 'Cause like, I didn't realize the pun until one of the students pointed it out.
+				player The Common Insider? Honestly, I was tempted, but knowing that you were saying it without realizing it was <i>way</i> too funny.
+				t She playfully bounces her hip against yours, pushing you to the side a bit.
+				p; Jerk.
+				player Speaking of, how does it feel to know that the place that ignored your talents, intuition, and <i>outrageously</i> sexy body has gone under?
+				p; Meh.
+				t You quirk an eyebrow.
+				p; ...playerF, you fucked me so hard I could swear I forgot how to <i>speak</i> for half an hour. Compared to that, revenge is pretty paltry.
+				player ...
+				p; ...Okay fine it feels satisfying.
+				player Called it.
+				t You take a slow sip from your drink, looking away from the quad to look at spyF instead.
+				player So... Seeing as you didn't bother knocking, I assume you wanted to walk into the middle of me plowing someone so you could turn it into a threeway.
+				p; I was hoping.
+				player ...I can call Natalia-
+				p; I'll walk in in about five minutes.
+				player Use the key - she'll probably lock it behind her.
+				p; Of course. See you in five~!
+				t She gives you a quick peck on the cheek before darting out the door with that same energetic confidence you love to see.
+				player Ah... Now this is the good life...
+			`);
+			writeFunction("loadEncounter('system', 'credits')", "The End");
 			break;
 		}
 
@@ -374,6 +598,45 @@ function writeEncounter(name) { //Plays the actual encounter.
 			if(!checkFlag('spy','EV03'))
 				addFlag('spy','EV03');
 			writeEvent('spyEvent03');
+			writeHTML(`
+				t ...Of course, she tries to collect herself again a few more seconds later, but it's pretty entertaining to watch her bob back and forth between dopey and serious...
+				...
+				t Around five minutes of toying with her like that later, and another ten or so minutes of clean-up and getting dressed, you smile at spyF as she adjusts her sweater.
+				player Hey, Ms. spyL.
+				p; <font size='-3'>...spyF is fine, y'know...</font>
+				t Her tone is low and her face is red, but you chuckle nonetheless.
+				player Alright - spyF. Look over here.
+				p; What's-
+				t You step forward and bring your lips up to hers, her eyes going wide as she stands still for a moment.
+				t Then, right when she started to lean into it-
+				p; Ahn- huh?
+				t You step backwards, increasing the distance between the two of you as she looks almost disappointed.
+				player Don't surround yourself with idiots who can't see you're worth praising.
+				t Her face goes completely red, her gaze immediately going to the floor.
+				p; T-That's all for the interview <i>thank you for the answers <b>BYE</b></i>
+				t She practically sprints out the door, and you can't help but laugh as she does.
+				t Adorable...
+				t Useful, too. It won't be long before these 'interviews' can wrap up and things can move on...
+				t A moment later, you look down and see her notebook and pencil sitting on your couch.
+				t Hilarious.
+			`);
+			writeFunction("changeLocation(data.player.location)", "Finish");
+			break;
+		}
+		case "spyEv04": {
+			if(!checkFlag('spy','EV04'))
+				addFlag('spy','EV04');
+			writeEvent('spyEvent04');
+			writeHTML(`
+				p; I... I wanted to talk more about the thing, with the reporting, but...
+				t She trails off, just looking down at her sweaty, and now cum-covered body.
+				player Yeah, I think it can wait until tomorrow.
+				t She smiles at you, before just moving an arm over her eyes.
+				p; Yeah... Next time, your office; we'll discuss it.
+				player Sounds good to me.
+				p; Yeeeeah...
+				t Yeah... This was good.
+			`);
 			writeFunction("changeLocation(data.player.location)", "Finish");
 			break;
 		}
@@ -387,7 +650,9 @@ function writeEncounter(name) { //Plays the actual encounter.
 var eventArray = [
 	{index: "spyEvent01", name: "Unaware Groping"},
 	{index: "spyEvent02", name: "Blindfolded Questioning"},
-	{index: "spyEvent03", name: "Event Name"},
+	{index: "spyEvent03", name: "Half-Lucid Titjob"},
+	{index: "spyEvent04", name: "Missionary in the Night"},
+	{index: "spyEventEnding", name: "The Pre-Mission Ride"},
 ];
 
 function writeEvent(name) { //Plays the actual event.
@@ -516,7 +781,266 @@ function writeEvent(name) { //Plays the actual event.
 		}
 		case "spyEvent03": {
 			writeHTML(`
-				
+				define p; = sp spy;
+				player You know... I actually have a question for you.
+				t You gently stroke along her collarbone as you say that, a jolt of pleasure going up her spine as she shudders.
+				player Why are you so focused on breaking this news? Is it the thrill of catching someone up to no good?
+				t Your hands slide further down, pushing her coat as you gesture for her to lift her shirt.
+				t She, of course, does.
+				player Is it a justice thing? Or more of a self-gratification bit?
+				p; It's...
+				player Oh, and Ms. spyL... <b>Do be honest about it.</b>
+				t She bites her lip as she leans forward, her now bare breasts enveloping a good amount of your cock as your head pokes out between them as she seems to think over the question.
+				im 03-1.jpg
+				p; I... want to be...<font size='-3'>praised...</font>
+				t You run your hand through her hair, grunting slightly as she starts bouncing her chest along your shaft.
+				player I didn't catch that, Ms. spyL. Again, but louder this time.
+				t To her credit, as she bites her lip, it seems like she's almost able to reject the order... before looking up and locking eyes with you, and her will crumbles a little bit more.
+				p; I...  I said I want to be recognized for my efforts, and my skills, and... and to be praised.
+				t You smile down at her, one hand going to stroke her cheek gently.
+				player Really now? All of this skill, beauty, and intuition... and you're not being praised already?
+				t She tries to shift her head away, but you grab her chin and force her to look right back at you.
+				player Clearly, you surround yourself with blind idiots.
+				t Her face flushes slightly.
+				p; You're just-
+				player If you imply I'm giving you empty praise, then I'm ending this interview early.
+				t Her jaw snaps shut.
+				player I told you last time, and I'll repeat it as much as needed. You are an excellent reporter.
+				t Your hand goes to the top of her head, pulling her mouth closer to your cock as her lips press against the tip.
+				p; B-But-
+				player For someone wanting praise, you seem to need practice accepting it. So use that mouth for something more constructive than backtalking me. So how about you just focus on this, like a <i>good girl</i>.
+				t She holds still for a moment... before she relaxes a bit more, and opens her mouth.
+				im 03-2.jpg
+				t Her tongue laps against the underside of the glans, drops of her saliva slowly sliding down your shaft and lubricating her tits.
+				t Her hands adjust her breasts a bit, stimulating the shaft as her hot breath makes your cock feel warmer, before her lips wrap around your head entirely.
+				player Fuck... That's good...
+				p; Mmm...!
+				t You toy with her hair as she starts to softly, almost hesitantly suck you off.
+				player Such a good girl... You're getting better with every interview, you know that? Always able to get...<br>Nn!
+				im 03-3.jpg
+				t The vacuum pressure from her sucking gets a bit stronger, her body shifting forward a bit as her breasts slide up and down the full length of your cock to match.
+				player ...able to get exactly what you want out of me~
+				t She shudders again from the sound of your huskier, pleased voice as she squeezes her tits together tighter, pressing around your shaft more as she bounces a bit faster.
+				t Her tongue doesn't slow down either, lapping at the underside of your cock as she bounces her tits.
+				t She's putting a lot of focus and effort into it, clearly working to hear more praise...
+				player Go faster, Ms. spyL...!
+				p; M-Mhm~!
+				t Her spit spills down from her lips down your shaft more and more, making her tits a sloppy mess as she keeps pressing her chest forward.
+				t You buck your hips in time with her, fucking her cleavage roughly as her breathing picks up in speed.
+				t Your hand moves along her face, grasping her hair with one hand and stroking her ear with the other.
+				p; <i><b>MNN~!!</b></i>
+				t Her body quivers against you as you grab the back of her head a bit tighter, before biting your lip and leaning back.
+				t Your hands support your body now as she puts everything she can into sucking you off, your cockhead sliding against her tongue as she brings her tits down faster.
+				player Fucking- Fuck...!
+				t Each time her head bobs down, she turns her head a bit and her lips slide around your shaft, and you approach the edge faster and faster.
+				t The twitching of your shaft is the only warning you give her, and the moment you start to cum, her entire body seems start shaking in ecstasy as her eyes shut tight.
+				im 03-4.jpg
+				t Your cum spills out from her lips, spilling down and making an even bigger mess of her chest. Your hips buck up a few more times, more ropes flooding her mouth as she keeps swallowing what she can.
+				t When you finish, there's a dazed look on her face for a few moments, her cheeks still a bit puffed out from the mouthful of cum... but she seems to collect herself pretty quickly.
+				im 03-5.jpg
+				p; M-Mm~...
+				t She swallows deeply one more time, before her mouth hangs open a bit as she blushes and pants for a few seconds.
+				p; T-That was...
+				player That was very good, yes.
+				t You stroke her hair a bit, and she pretty much melts in place again as she leans into you.
+			`);
+			break;
+		}
+		case "spyEvent04" : {
+			writeHTML(`
+				define p; = sp spy;
+				t You pull her back with you towards the bed, the thumb and finger of one hand unclasping the button on her skirt with a swift motion before she pulls it the rest of the way off.
+				t Her coat hits the floor nearly as quickly, with the only thing remaining being the half-lifted shirt.
+				t You lift it the rest of the way over her head, causing her hair to get tossed about a bit, but she shakes her head a bit to get it out of her face almost immediately.
+				t And speaking of immediately, it's just as quickly that her lips are pressed against yours as she brings her body close to yours, her tits feeling warm against your body.
+				t Both of you fall backwards onto the bed, with her on top of you for a second before, with one hand tightly grasping her thigh and the other around her waist, you turn her over onto her back.
+				player Seems to me like masturbating to my voice wasn't quite enough, was it?
+				t She looks a bit embarrassed, but doesn't look away this time.
+				p; This time, I want to stay clear-headed. But, um...
+				t She clears her throat once.
+				p; I'm still keeping that recording.
+				t You can't help but laugh at that, and lean into her ear to whisper,
+				player I wouldn't have it any other way~
+				p; You-
+				t Any attempt at a quip is cut off as your lips tease at her earlobe, making her gasp sharply with even more arousal tinging her voice.
+				t Not that words are that necessary, anyway.
+				t Her pussy is soaked at this point, and your cock is more than ready as well. You have half a mind to keep teasing her and extend the foreplay out, but...
+				t You're not the only one whispering huskily.
+				p; Please... Stick it in already~
+				t The soft, lustful tone to her voice has you throbbing as you line yourself up, and...
+				im 04-1.jpg
+				t You bottom out in a single long, slow stroke into her.
+				t spyF's folds feel as warm and ever, but it does feel a bit different...
+				p; No distractions for <i>this</i> interview~
+				t Her teasing tone is accompanied by her cunt tightening around you, slowly at first before almost rolling along your cock as she relaxes and tightens in a short sequence.
+				player F-Fucking hell...!
+				t You feel her calves glide against your back as she wraps her legs around you, pulling your body forward and tighter against you as your hips press even more firmly against her ass.
+				player You... are a lot more lewd than I gave you credit for, aren't you?
+				p; You'd have learned more, you know, if you'd...
+				t She pauses to roll her hips a bit, shifting your cock inside her.
+				p; ...if you'd used those interviews to ask different kinds of questions~
+				t You tighten your grip on her hips, slowly pulling back your own to start thrusting into her again.
+				player And risk scaring off such a delightfully tight reporter? Perish the thought, spyF!
+				t She rolls her eyes in amusement at that, and you can't help but enjoy the more relaxed look about her.
+				t Though an entire day of fucking herself silly to the sound of your voice is likely what really pushed her over the edge...
+				t And speaking of getting fucked silly...
+				player I hope you weren't expecting me to hold back, spyF-
+				t Her legs tighten around your back, sharply pulling you into another balls-deep thrust.
+				p; <i><b>A-Ahn...!</b></i> Don't you dare~...!
+				t Her eyes, desperate for pleasure, lock onto yours as she smiles.
+				t Well, she asked for it...!
+				...
+				im 04-2.jpg
+				p; F-Fuuhh...~! Fuck'n fuckkkk~!
+				t Your hips keep slamming into hers with enough force to make the clap of skin-to-skin nearly loud enough overwhelm her surprisingly soft moans and the steady stream of blank expletives from her mouth.
+				t Her tits sway wildly, bouncing in front of you with every clap of impact between you too, and her adorable squirming underneath you doesn't seem to be slowing as her body seems caught between trying to move away from the powerful stimulation... and trying to rub against you however she can in order to increase it.
+				t You move one hand from her hips now, and her eyes flicker open for a moment as you do.
+				player Why don't we see how this feels, hm?
+				t You don't slow down in fucking her as your free hand rests against her lower abdomen, just lightly applying pressure down with your thumb, and her entire body shudders at once.
+				p; Holy shit yes please again <i>don't stop that!</i>
+				player Hah! God, you are just <i>so fucking adorable...!</i>
+				t The stimulation of the area above her womb and the continuous fucking has her arching her back and squeezing wildly around your cock, wildly milking your cock as she twists in place.
+				t And honestly, it's taking an incredible amount of willpower to not immediately bust inside her yourself. The way she moans and squeals and squirms, the way her wet pussy grasps and strokes your cock...
+				t You bite your lip, refocusing on her face to avoid letting the stimulation put you over the edge. You don't know how many times she's cum at this point (at least one, but probably less than five?), but you have every intention of finishing at the same time as her.
+				t And Fortunately for you and your cock, it's clear that that's not far off...!
+				p; <i><b>Haaahn~!</b></i>
+				t Each of her moans are getting louder as you push forward. With her on the edge, you know better than to switch up the stimulation, but your hand is a little too sore, so...
+				player Such a sexy, beautiful woman...!
+				t You grasp her hips again and continue bucking into her as you praise her.
+				player Those big, lewd tits, your perfect fucking hips and ass...!
+				t You can feel her tightening become more uncontrolled as her arms begin to quake a bit.
+				player You know what that makes you, don't you?
+				p; <i><b>Fuckfuckfuckfuck...!</b></i>
+				player Such a <i><b>good fucking girl...!</b></i>
+				t She finally goes over the edge one last time, and the wild squeezing like a vise around you is far too much to withstand as you cum as well.
+				im 04-3.jpg
+				t Her mouth is wide open in a silent scream of pleasure as she cums around your shaft, milking rope after rope of jizz into her cunt while more of it starts spilling out and coating your hips and her ass.
+				t It feels like your orgasm lasts almost as long as hers as you just keep cumming, until after who-knows-how-long...
+				t You're both finally just holding still, your breathing heavy and ragged as you bask in the warm afterglow of the long fuck session.
+				t Her chest continues to heave up and down, shifting her tits in front of you, but her eyes catch your attention more as she just... looks at you.
+				p; You... You're...
+				t She can't seem to think up the words to say, before just letting out a satisfied giggle.
+				p; That felt incredible~
+				player Haah. Same - it felt amazing.
+				t There's a deeply satisfied look to her as she relaxes into the bed, heaving a sigh of contentment.
+				im 04-4.jpg
+				t You glide your hands along her thighs for a moment, before you slowly pull out. She lets out a small squeak of pleasure for a moment, before you finally get all the way out and she relaxes more.
+			`);
+			break;
+		}
+		case "spyEventEnding" : {
+			if(data.player.location != "gallery"){
+				writeHTML(`
+					t The low light of the night fills the apartment, setting what seems to be a fairly nice mood. And of course, spyF doesn't keep you waiting long...
+					t When she steps through the door into your apartment, shutting the door behind her, she reaches for the light switch, but you stop her by grabbing her waist and pulling her close.
+					p; Hu-? Mm~!
+					t You press your lips to hers, and she relaxes in your grip, the confusion quickly giving way to amusement.
+					t When you separate a bit, you can see her smile and quirked, curious eyebrow.
+					p; So we're getting right into it? Not that I'm complaining~
+					player I <i>did</i> say you deserved a prompt reward, didn't I?
+					t Leading her to the bed is quick and easy; when you get there, she reaches down to unfasten her skirt, but you stop her again.
+					player Allow me.
+				`);
+			}
+			writeHTML(`
+				t Her hands move away from her skirt as yours take their place, unfastening the button at her waist to loosen it.
+				t Rather than just letting it drop unceremoniously, you grab both sides and slowly tease it down, your hands slowly gliding across her thighs at the same time.
+				t Black, lacy panties catch your eye as take the skirt lower and lower, and you can't help but tease her with a gentle trailing of your lips across her inner thigh at the same time.
+				p; H-Hn~...
+				t The hitch in her breath is adorable, and you let the skirt go as it pools around her ankles. You slide your palms up along her legs slowly as you stand up again, teasingly pulling her panties up a bit tighter as you do.
+				p; T-This is... really nice...
+				player Good~
+				t Her coat comes off next, your hands sliding against the sides of her breasts before moving up to cup her shoulders, pushing back the coat as you push forward into a kiss with her. She moans softly into your mouth as her coat falls back effortlessly, hitting the ground with a sound that she completely misses.
+				t Then, of course... comes the sweater.
+				t Your palms rest against her hips at first, you dropping low enough that your face is at her stomach, and as you lift the hem of the sweater...
+				p; H-HAHN~!
+				t Her body shudders from the kiss at her now-exposed stomach, right above her womb.
+				p; T-Thats-! Nn~!
+				t Your hands continue sliding the sweater up her body as you continue kissing her skin, pausing just long enough to pull it over her ample chest.
+				t Her face is bright red at this point, the foreplay clearly doing its job of getting her excited for the next part... Though her soaked panties would be just as obvious a sign.
+				t Your lips drag across her chest as her sweater slides all the way up and off, and you move your hands behind her back.
+				t Grabbing her by the small of her back, you pull her in close, and she feels your hard cock press against her panties.
+				p; H-Hoh wow...
+				t Her hand moves down to try and grasp it, but instead you just raise your hands up from her back to the strap behind her, and...
+				p; Oh!
+				t Her bra pretty much falls right off when unfastened, hitting the ground between you as you grab her firmly and just fall forward.
+				t You both land easily on the bed, taking her with you as she bounces quite nicely...
+				p; H-Hah... Um, can you...
+				t She trails off, still sounding unsure.
+				player It's <i>your</i> reward. Ask with confidence.
+				t She bites her lip for a moment, before nodding.
+				p; I really, really enjoyed the foreplay, but... I want to get started even more. Is that okay?
+				t Rather than answering immediately, you chuckle and reach down.
+				t Her panties are pulled away and tossed over your shoulder to the rest of her clothes, and you grab her hips.
+				t When your cock presses against her thigh, she shudders with excitement as she spreads her legs out just a bit more, and gets into position.
+				player If you're that excited... then let's get started.
+				im E-1.jpg
+				p; F-Fuuuck yes~!
+				t You start out slowly pushing into her, but dont wait long to start moving your hips against her faster when she starts pushing her ass back towards you.
+				t Your hands firmly grasp her ass, your thumbs pressing in as you thrust.
+				t As you pick up more and more speed, her body bouncing back against yours each time, her dogged panting gets more apparent as starts squeezing around your shaft.
+				p; It's so hot...!
+				player And fucking <i>tight...!</i>
+				t One hand slides down her ass to tease at her pussylips, sliding a thumb along them.
+				player Just how badly did you want this cock?
+				p; F-Fuck...!
+				t She bites her lip, somehow still looking a bit bashful despite getting absolutely railed.
+				p; So much...! I wanted you to fuck me, use my pussy like it's yours, and...
+				t You playfully swat at her ass, eliciting an aroused yelp from her.
+				player And?
+				p; And p-praise me!
+				t She can say fuck time and again, but stammers to ask for that...
+				t Well, only one way to fix that.
+				player Your cunt is fucking <i>amazing,</i> spyF.
+				t She tightens around you.
+				player Every thrust, every pull back, just <i>thinking</i> about it on top of fucking you makes me feel like I'm going <i>mad.</i>
+				t Your hands dig into her ass, her breathing picking up even more.
+				player And every cute little squeal, every little <i>squeeze</i> around my cock, and every <i>adorable</i> moan out of your lips makes me want to <i>fuck you stupid.</i>
+				p; <font size='-2'>holy fuck yes <i>please don't stop talking</i></font>
+				player Every bit of that beautiful body makes me want to leave you moaning, screaming in pleasure, and <i>dripping with my cum.</i>
+				im E-2.jpg
+				t She is practically soaked with a mixture of your fluids and hers, every thrust making wet, lewd sounds as she lets out even louder moans of pleasure and lust.
+				t Each and every thrust is matched by the wild, barely-controlled shifting and squirming of her folds around your cock, the wet heat amplifying every thrust as you can't help but grunt alongside her.
+				player Fucking hell... You feel so damn good I can hardly think about anything else...!
+				t Her toes curl at that and her nails dig into the sheet with one hand, the other grasping at her ass like she's trying to spread it just a little bit more for you.
+				p; I-I feel like I'm gonna go crazyyyy...!
+				t The pleasure has her drooling a bit as she tries to make eye-contact, but every balls-deep thrust shakes her whole body enough that she can't focus enough, her eyes even tearing up slightly from the non-stop, overwhelming pleasure.
+				t But despite how mind-numbing it's getting, you don't see a sign of her even wanting you to slow down, so you keep thrusting forward and rolling your hips as you do, just enough to push into every sensitive spot within her that you can.
+				t And when you find that perfect spot, and her whole body tightens up at once in a single, almost unbearably tight moment, you grin.
+				im E-3.jpg
+				t Her voice gets louder now, each thrust perfectly slamming past into her body starts to quake beneath you, her first orgasm (of many) starting to rake across her body.
+				t Each time you bottom-out, you feel her twitch in ecstasy as you press against a certain spot deep inside...
+				p; Fuck yes, ooh <i>fuck</i> just like that <i>please!</i>
+				t And that's a cue to target that spot if you've ever heard one.
+				t You're practically slamming your hips against hers with each thrust at this point, hitting that spot reliably as she turns into little more than a drooling mess of a girl beneath you.
+				player God... You are just so <i>fucking hot...!</i>
+				t Tempted as you are to flip her over and taste her lips against yours, you focus on thrusting against her weakest point, pushing the both of you closer and closer to the edge.
+				t And the edge really isn't far, as you feel it welling up pretty quickly on your end.
+				p; O-Ohh fuck fuck oh fuck yes fuck
+				t And there's no question that she is too.
+				t The tightening of her pussy around you, milking your shaft and tightening around your tip is driving you mad at this point, and after just a half-minute more...!
+				player Fuck, <i><b>I'm cumming!</b></i>
+				p; <font size='+3'><i><b>FUCK~!</b></i></font>
+				im E-4.jpg
+				t You both finish at the same time, her pussy's contractions around your shaft gripping you so tight that it's hard to pull back enough to buck forward.
+				t Her heaving gasps are mirrored by the shaking of her hand on her ass, and you teasingly knead your thumb against the meat of her juicy behind.
+				player That was good, spyF...
+				p; Y-Yeah, it-
+				player Especially for a first round.
+				t There's a half-hazed look in her eyes at that, and she stares blankly at you for a second.
+				im E-5.jpg
+				p; U-Uhm... First round?
+				player Of course. After all, you made the request, didn't you?
+				t You give her a playful swat on her ass, her cunt tightening around you as her breathing hitches.
+				player You wanted me to "use you", didn't you?
+				t A full second goes by as she clearly weighs her options, before a resolute expression appears on her face.
+				t Turning away from you, resting her face in the pillow, you watch for another moment of silence...
+				p; F-Fuck me...
+				t Her embarrassment has her fidgeting for another moment, before she groans loudly.
+				p; Just fuck me stupid please!?
+				t Just as she buries her face in the pillow, you laugh and lean in.
+				player As you wish~
+				t It's going to be a long, and unbelievably pleasant night...
 			`);
 			break;
 		}
@@ -542,14 +1066,32 @@ function writeEvent(name) { //Plays the actual event.
 }
 
 var phoneArray = [//Lists the potential text events the player can receive at the start of the day, depending on their trust.
-	{index: "placeholder", requirements: "?trust principal 10000;"},
+	{index: "spyPhone01", requirements: "?trust spy 30;"},
+	{index: "spyPhoneComplete", requirements: "?flag spy Ending;"},
 ]
 
 function writePhoneEvent(name) { //Plays the relevant phone event
 	phoneRight.scrollTop = 0;
 	switch (name) {
-		case "placeholder": {
+		case "spyPhone01": {
+			setTrust("spy", 35);
+			writePhoneSpeech("spy","","Not gonna be at school for now, going to be looking into some things, will message when they're resolved");
+			writePhoneSpeech("spy","","Don't think that means the interviews are done with tho");
+			writePhoneSpeech("spy","","I'll have more questions for you later, so prepare yourself");
+			writePhoneChoices("I'll be prepared");
 			//Write the event's text here using writePhoneSpeech, writePhoneImage, and writePhoneChoices
+			break;
+		}
+		case "spyPhone01A": {
+			writePhoneSpeech("player","","I'll make sure to be prepared - I quite enjoy these interviews after all");
+			writePhoneSpeech("spy","","Whatever interrogate you later");
+			writePhoneSpeech("player","","Looking forward to it");
+			break;
+		}
+		case "spyPhoneComplete": {
+			writePhoneImage("images/spy/fin.jpg", "Art by Anzu Yuu");
+			writePhoneSpeech("player","","Congratulations! You've completed all currently available content for spyF spyL. Her story is complete, but in the future, more lewd scenes may show up!");
+			writePhoneSpeech("player","","I hope you've enjoyed HU thus far - please look forward to more content going forward!");
 			break;
 		}
 		default: {
